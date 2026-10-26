@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" viewBox="0 0 820 246" role="img" aria-labelledby="f3t"><style>
+text { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #14140f; }
+.muted { fill: #6b6b64; } .sub { fill: #3d3d38; }
+.box { fill: #f7f7f5; stroke: #d8d8d2; } .box2 { fill: #ecece7; stroke: #d8d8d2; }
+.known { fill: #e3edfa; stroke: #2a78d6; } .pred { fill: #fcebe3; stroke: #eb6834; }
+.known-t { fill: #2a78d6; font-weight: 600; } .pred-t { fill: #eb6834; font-weight: 600; }
+.line { stroke: #6b6b64; fill: none; } .arrowhead { fill: #6b6b64; }
+.bar { fill: #2a78d6; } .bar-base { fill: #d8d8d2; }
+</style>
+  <rect class="figbg" x="0" y="0" width="820" height="246" rx="10" fill="#ffffff"/>
+  <title id="f3t">Average performance over 50 tasks with the raw fields plus the embedding of each model: models not made by Voyage 62.9 to 70.8; voyage-4-nano (346M parameters) 70.0; voyage-json (API) 73.3.</title>
+  <g font-size="13">
+    <text x="230" y="27.5" text-anchor="end" class="sub">all-MiniLM-L6-v2 (23M)</text>
+    <rect x="242" y="14" width="98.6" height="18" rx="4" class="bar-base"/>
+    <text x="348.6" y="27.5" class="sub">62.9</text>
+    <text x="230" y="53.5" text-anchor="end" class="sub">bge-small-en-v1.5 (33M)</text>
+    <rect x="242" y="40" width="156.4" height="18" rx="4" class="bar-base"/>
+    <text x="406.4" y="53.5" class="sub">64.6</text>
+    <text x="230" y="79.5" text-anchor="end" class="sub">Qwen3-Embedding-0.6B (596M)</text>
+    <rect x="242" y="66" width="251.6" height="18" rx="4" class="bar-base"/>
+    <text x="501.6" y="79.5" class="sub">67.4</text>
+    <text x="230" y="105.5" text-anchor="end" class="sub">Nemotron-3-Embed-1B (1.1B)</text>
+    <rect x="242" y="92" width="302.6" height="18" rx="4" class="bar-base"/>
+    <text x="552.6" y="105.5" class="sub">68.9</text>
+    <text x="230" y="131.5" text-anchor="end" class="sub">Qwen3-Embedding-4B (4.0B)</text>
+    <rect x="242" y="118" width="309.4" height="18" rx="4" class="bar-base"/>
+    <text x="559.4" y="131.5" class="sub">69.1</text>
+    <text x="230" y="157.5" text-anchor="end" class="sub">Nemotron-3-Embed-8B (8.0B)</text>
+    <rect x="242" y="144" width="367.2" height="18" rx="4" class="bar-base"/>
+    <text x="617.2" y="157.5" class="sub">70.8</text>
+    <text x="230" y="183.5" text-anchor="end" class="sub">voyage-4-nano (346M)</text>
+    <rect x="242" y="170" width="340.0" height="18" rx="4" class="bar" opacity=".75"/>
+    <text x="590.0" y="183.5" class="sub">70.0</text>
+    <text x="230" y="209.5" text-anchor="end" font-weight="600">voyage-json (API)</text>
+    <rect x="242" y="196" width="452.2" height="18" rx="4" class="bar"/>
+    <text x="702.2" y="209.5" font-weight="600">73.3</text>
+    <text x="242" y="234" class="muted" font-size="11.5">raw fields + each embedding; AUROC or R² × 100 (higher is better)</text>
+  </g>
+</svg>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url=./pymongopredict.html"/>
+<!-- mongopredict-theme -->
+<style>/* Theme added to every pdoc page by docs/_postprocess.py (light, and dark from the system setting). */
+.pdoc{--text:#1d1d1b;--muted:#6b6b64;--link:#2a78d6;--link-hover:#1b5fb0;--code:#f5f5f2;--active:#fff6d6;
+      --accent:#f2f4f7;--accent2:#e3e6eb;--nav-hover:rgba(42,120,214,.08);--name:#1b5fb0;--def:#8a3ffc;
+      --annotation:#0a7f6f;--border:#e6e6e1;--surface:#fff;--chip:#eef4fc}
+:root{--pdoc-background:#fbfbfa}
+@media (prefers-color-scheme: dark){
+  :root{--pdoc-background:#111110}
+  .pdoc{--text:#ecebe6;--muted:#a3a29a;--link:#6aa8f5;--link-hover:#9cc6fa;--code:#1b1b19;--active:#3a3420;
+        --accent:#1d1d1b;--accent2:#2a2a27;--nav-hover:rgba(106,168,245,.10);--name:#8ab8f7;--def:#c39bff;
+        --annotation:#4fd1bd;--border:#2c2c29;--surface:#171715;--chip:#1c2a3d}
+}
+html,body{background:var(--pdoc-background)}
+.pdoc{font-family:Inter,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.65;
+      -webkit-font-smoothing:antialiased;color:var(--text)}
+.pdoc code,.pdoc pre,.pdoc .signature{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-size:.86em}
+@media (min-width:770px){main.pdoc{padding:2.5rem 3rem 4rem calc(var(--sidebar-width) + 3.5rem)}}
+.pdoc h1,.pdoc h2,.pdoc h3,.pdoc h4{font-weight:650;letter-spacing:-.01em;line-height:1.25}
+.pdoc h1{font-size:1.9rem;margin:.2rem 0 1rem}
+.pdoc h2{font-size:1.35rem;margin-top:2.2rem;padding-bottom:.35rem;border-bottom:1px solid var(--border)}
+.pdoc h3{font-size:1.1rem;margin-top:1.6rem}
+.pdoc a{text-decoration:none}
+.pdoc a:hover{text-decoration:underline;text-underline-offset:3px}
+.pdoc .modulename{font-size:1.6rem;font-weight:700;margin-bottom:.5rem}
+/* inline code */
+.pdoc :not(pre)>code{background:var(--code);border:1px solid var(--border);border-radius:5px;padding:.08em .35em}
+/* code blocks */
+.pdoc .pdoc-code{position:relative;margin:1rem 0 1.25rem}
+.pdoc .pdoc-code pre,.pdoc pre{background:var(--code) !important;border:1px solid var(--border);border-radius:10px;
+      padding:.95rem 1.1rem;line-height:1.55;overflow-x:auto}
+.pdoc .mp-copy{position:absolute;top:.5rem;right:.5rem;font:500 12px/1 Inter,-apple-system,"Segoe UI",sans-serif;
+      color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.35rem .55rem;
+      cursor:pointer;opacity:0;transition:opacity .15s}
+.pdoc .pdoc-code:hover .mp-copy,.pdoc .mp-copy:focus{opacity:1}
+.pdoc .mp-copy.done{color:var(--link)}
+/* each class and function as a card */
+main.pdoc > section[id]{background:var(--surface);border:1px solid var(--border);border-radius:14px;
+      padding:1.2rem 1.5rem 1rem;margin:1.5rem 0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.pdoc .classattr{border-top:1px solid var(--border);padding-top:.9rem;margin-top:.9rem}
+.pdoc .attr{background:none;border:0;padding:0;margin:0 0 .4rem;font-size:1.02rem}
+.pdoc .signature{display:block;margin-top:.5rem;padding:.6rem .85rem;white-space:pre-wrap;
+      background:var(--code) !important;border:1px solid var(--border);border-radius:8px}
+.pdoc .def{color:var(--def);font-weight:600}
+.pdoc .name{color:var(--name);font-weight:650}
+.pdoc .annotation{color:var(--annotation)}
+.pdoc .headerlink{opacity:0;transition:opacity .15s}
+.pdoc .attr:hover .headerlink,.pdoc h2:hover .headerlink{opacity:.6}
+.pdoc .docstring{margin-top:.6rem}
+.pdoc .docstring > p,.pdoc .docstring li{max-width:72ch}
+/* numpy sections: Parameters / Returns / Raises headers */
+.pdoc .docstring h6{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:1.2rem 0 .4rem}
+.pdoc .docstring dl dt code,.pdoc .docstring dt{font-weight:600}
+/* tables */
+.pdoc table{border-collapse:separate;border-spacing:0;width:auto;border:1px solid var(--border);border-radius:10px;
+      overflow:hidden;margin:1rem 0;font-size:.93em}
+.pdoc th{background:var(--accent);text-align:left;font-weight:600}
+.pdoc th,.pdoc td{padding:.5rem .8rem;border-bottom:1px solid var(--border)}
+.pdoc tr:last-child td{border-bottom:0}
+.pdoc tbody tr:hover td{background:var(--nav-hover)}
+/* sidebar */
+nav.pdoc{background:var(--surface);border-right:1px solid var(--border);box-shadow:none;font-size:14px}
+nav.pdoc a:hover{text-decoration:none}
+nav.pdoc li{border-radius:6px}
+nav.pdoc h2{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:0;margin-top:1.4rem}
+nav.pdoc input[type=search]{border:1px solid var(--border);border-radius:8px;background:var(--pdoc-background);
+      color:var(--text);padding:.45rem .65rem}
+.pdoc .attribution{color:var(--muted);font-size:12px}
+
+@media (prefers-color-scheme: dark){
+pre { line-height: 125%; }
+td.linenos .normal { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+.pdoc .pdoc-code .hll { background-color: #6e7681 }
+.pdoc .pdoc-code { background: #0d1117; color: #E6EDF3 }
+.pdoc .pdoc-code .c { color: #8B949E; font-style: italic } /* Comment */
+.pdoc .pdoc-code .err { color: #F85149 } /* Error */
+.pdoc .pdoc-code .esc { color: #E6EDF3 } /* Escape */
+.pdoc .pdoc-code .g { color: #E6EDF3 } /* Generic */
+.pdoc .pdoc-code .k { color: #FF7B72 } /* Keyword */
+.pdoc .pdoc-code .l { color: #A5D6FF } /* Literal */
+.pdoc .pdoc-code .n { color: #E6EDF3 } /* Name */
+.pdoc .pdoc-code .o { color: #FF7B72; font-weight: bold } /* Operator */
+.pdoc .pdoc-code .x { color: #E6EDF3 } /* Other */
+.pdoc .pdoc-code .p { color: #E6EDF3 } /* Punctuation */
+.pdoc .pdoc-code .ch { color: #8B949E; font-style: italic } /* Comment.Hashbang */
+.pdoc .pdoc-code .cm { color: #8B949E; font-style: italic } /* Comment.Multiline */
+.pdoc .pdoc-code .cp { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Preproc */
+.pdoc .pdoc-code .cpf { color: #8B949E; font-style: italic } /* Comment.PreprocFile */
+.pdoc .pdoc-code .c1 { color: #8B949E; font-style: italic } /* Comment.Single */
+.pdoc .pdoc-code .cs { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Special */
+.pdoc .pdoc-code .gd { color: #FFA198; background-color: #490202 } /* Generic.Deleted */
+.pdoc .pdoc-code .ge { color: #E6EDF3; font-style: italic } /* Generic.Emph */
+.pdoc .pdoc-code .ges { color: #E6EDF3; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.pdoc .pdoc-code .gr { color: #FFA198 } /* Generic.Error */
+.pdoc .pdoc-code .gh { color: #79C0FF; font-weight: bold } /* Generic.Heading */
+.pdoc .pdoc-code .gi { color: #56D364; background-color: #0F5323 } /* Generic.Inserted */
+.pdoc .pdoc-code .go { color: #8B949E } /* Generic.Output */
+.pdoc .pdoc-code .gp { color: #8B949E } /* Generic.Prompt */
+.pdoc .pdoc-code .gs { color: #E6EDF3; font-weight: bold } /* Generic.Strong */
+.pdoc .pdoc-code .gu { color: #79C0FF } /* Generic.Subheading */
+.pdoc .pdoc-code .gt { color: #FF7B72 } /* Generic.Traceback */
+.pdoc .pdoc-code .g-Underline { color: #E6EDF3; text-decoration: underline } /* Generic.Underline */
+.pdoc .pdoc-code .kc { color: #79C0FF } /* Keyword.Constant */
+.pdoc .pdoc-code .kd { color: #FF7B72 } /* Keyword.Declaration */
+.pdoc .pdoc-code .kn { color: #FF7B72 } /* Keyword.Namespace */
+.pdoc .pdoc-code .kp { color: #79C0FF } /* Keyword.Pseudo */
+.pdoc .pdoc-code .kr { color: #FF7B72 } /* Keyword.Reserved */
+.pdoc .pdoc-code .kt { color: #FF7B72 } /* Keyword.Type */
+.pdoc .pdoc-code .ld { color: #79C0FF } /* Literal.Date */
+.pdoc .pdoc-code .m { color: #A5D6FF } /* Literal.Number */
+.pdoc .pdoc-code .s { color: #A5D6FF } /* Literal.String */
+.pdoc .pdoc-code .na { color: #E6EDF3 } /* Name.Attribute */
+.pdoc .pdoc-code .nb { color: #E6EDF3 } /* Name.Builtin */
+.pdoc .pdoc-code .nc { color: #F0883E; font-weight: bold } /* Name.Class */
+.pdoc .pdoc-code .no { color: #79C0FF; font-weight: bold } /* Name.Constant */
+.pdoc .pdoc-code .nd { color: #D2A8FF; font-weight: bold } /* Name.Decorator */
+.pdoc .pdoc-code .ni { color: #FFA657 } /* Name.Entity */
+.pdoc .pdoc-code .ne { color: #F0883E; font-weight: bold } /* Name.Exception */
+.pdoc .pdoc-code .nf { color: #D2A8FF; font-weight: bold } /* Name.Function */
+.pdoc .pdoc-code .nl { color: #79C0FF; font-weight: bold } /* Name.Label */
+.pdoc .pdoc-code .nn { color: #FF7B72 } /* Name.Namespace */
+.pdoc .pdoc-code .nx { color: #E6EDF3 } /* Name.Other */
+.pdoc .pdoc-code .py { color: #79C0FF } /* Name.Property */
+.pdoc .pdoc-code .nt { color: #7EE787 } /* Name.Tag */
+.pdoc .pdoc-code .nv { color: #79C0FF } /* Name.Variable */
+.pdoc .pdoc-code .ow { color: #FF7B72; font-weight: bold } /* Operator.Word */
+.pdoc .pdoc-code .pm { color: #E6EDF3 } /* Punctuation.Marker */
+.pdoc .pdoc-code .w { color: #6E7681 } /* Text.Whitespace */
+.pdoc .pdoc-code .mb { color: #A5D6FF } /* Literal.Number.Bin */
+.pdoc .pdoc-code .mf { color: #A5D6FF } /* Literal.Number.Float */
+.pdoc .pdoc-code .mh { color: #A5D6FF } /* Literal.Number.Hex */
+.pdoc .pdoc-code .mi { color: #A5D6FF } /* Literal.Number.Integer */
+.pdoc .pdoc-code .mo { color: #A5D6FF } /* Literal.Number.Oct */
+.pdoc .pdoc-code .sa { color: #79C0FF } /* Literal.String.Affix */
+.pdoc .pdoc-code .sb { color: #A5D6FF } /* Literal.String.Backtick */
+.pdoc .pdoc-code .sc { color: #A5D6FF } /* Literal.String.Char */
+.pdoc .pdoc-code .dl { color: #79C0FF } /* Literal.String.Delimiter */
+.pdoc .pdoc-code .sd { color: #A5D6FF } /* Literal.String.Doc */
+.pdoc .pdoc-code .s2 { color: #A5D6FF } /* Literal.String.Double */
+.pdoc .pdoc-code .se { color: #79C0FF } /* Literal.String.Escape */
+.pdoc .pdoc-code .sh { color: #79C0FF } /* Literal.String.Heredoc */
+.pdoc .pdoc-code .si { color: #A5D6FF } /* Literal.String.Interpol */
+.pdoc .pdoc-code .sx { color: #A5D6FF } /* Literal.String.Other */
+.pdoc .pdoc-code .sr { color: #79C0FF } /* Literal.String.Regex */
+.pdoc .pdoc-code .s1 { color: #A5D6FF } /* Literal.String.Single */
+.pdoc .pdoc-code .ss { color: #A5D6FF } /* Literal.String.Symbol */
+.pdoc .pdoc-code .bp { color: #E6EDF3 } /* Name.Builtin.Pseudo */
+.pdoc .pdoc-code .fm { color: #D2A8FF; font-weight: bold } /* Name.Function.Magic */
+.pdoc .pdoc-code .vc { color: #79C0FF } /* Name.Variable.Class */
+.pdoc .pdoc-code .vg { color: #79C0FF } /* Name.Variable.Global */
+.pdoc .pdoc-code .vi { color: #79C0FF } /* Name.Variable.Instance */
+.pdoc .pdoc-code .vm { color: #79C0FF } /* Name.Variable.Magic */
+.pdoc .pdoc-code .il { color: #A5D6FF } /* Literal.Number.Integer.Long */
+}</style>
+</head>
+</html>
+<script>
+document.querySelectorAll('.pdoc .pdoc-code').forEach(function (box) {
+  if (box.querySelector('.mp-copy')) return;
+  var b = document.createElement('button');
+  b.className = 'mp-copy'; b.type = 'button'; b.textContent = 'Copy';
+  b.addEventListener('click', function () {
+    var text = box.querySelector('pre').innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      b.textContent = 'Copied'; b.classList.add('done');
+      setTimeout(function () { b.textContent = 'Copy'; b.classList.remove('done'); }, 1400);
+    });
+  });
+  box.appendChild(b);
+});
+</script>

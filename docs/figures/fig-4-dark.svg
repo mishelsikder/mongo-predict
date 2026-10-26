@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" viewBox="0 0 820 90" role="img" aria-labelledby="f4t"><style>
+text { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #f2f2ee; }
+.muted { fill: #9a9990; } .sub { fill: #c9c8c0; }
+.box { fill: #1d1d1b; stroke: #3a3a36; } .box2 { fill: #2a2a27; stroke: #3a3a36; }
+.known { fill: #1c2a3d; stroke: #3987e5; } .pred { fill: #3a2219; stroke: #d95926; }
+.known-t { fill: #3987e5; font-weight: 600; } .pred-t { fill: #d95926; font-weight: 600; }
+.line { stroke: #9a9990; fill: none; } .arrowhead { fill: #9a9990; }
+.bar { fill: #3987e5; } .bar-base { fill: #3a3a36; }
+</style>
+  <rect class="figbg" x="0" y="0" width="820" height="90" rx="10" fill="#161614"/>
+  <title id="f4t">AUROC on 29 classification tasks: Jev 77.6 at $0.042 per million tokens, voyage-json 88.3 at $0.040.</title>
+  <g font-size="13">
+    <text x="250" y="27.5" text-anchor="end" class="sub">Jev</text>
+    <rect x="262" y="14" width="265.0" height="18" rx="4" class="bar-base"/>
+    <text x="535.0" y="27.5" class="sub">77.6 · $0.042 / 1M tokens</text>
+    <text x="250" y="53.5" text-anchor="end" font-weight="600">voyage-json</text>
+    <rect x="262" y="40" width="367.7" height="18" rx="4" class="bar"/>
+    <text x="637.7" y="53.5" font-weight="600">88.3 · $0.040</text>
+    <text x="262" y="78" class="muted" font-size="11.5">AUROC on 29 classification tasks, bars from 50 (coin flip) to 100; price per 1M tokens</text>
+  </g>
+</svg>

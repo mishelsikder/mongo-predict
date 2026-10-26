@@ -1,0 +1,76 @@
+{
+ "n_train": 17527,
+ "n_rated": 5914,
+ "seconds": {
+  "train": 78.93255019187927,
+  "predict": 7.945570707321167
+ },
+ "task": "regression",
+ "table": [
+  {
+   "approach": "Always guess the average",
+   "average error": 0.7635537066643533,
+   "within 1 point": 0.7243828204261076
+  },
+  {
+   "approach": "$predict (embedding of the movie)",
+   "average error": 0.675490797827846,
+   "within 1 point": 0.7803517078119716
+  }
+ ],
+ "examples": [
+  {
+   "title": "Inception",
+   "year": 2010,
+   "actual": 8.8,
+   "predicted": 7.7
+  },
+  {
+   "title": "The Dark Knight Rises",
+   "year": 2012,
+   "actual": 8.5,
+   "predicted": 7.8
+  },
+  {
+   "title": "The Avengers",
+   "year": 2012,
+   "actual": 8.1,
+   "predicted": 6.1
+  },
+  {
+   "title": "Django Unchained",
+   "year": 2012,
+   "actual": 8.5,
+   "predicted": 6.8
+  },
+  {
+   "title": "Interstellar",
+   "year": 2014,
+   "actual": 8.7,
+   "predicted": 8.0
+  },
+  {
+   "title": "Shutter Island",
+   "year": 2010,
+   "actual": 8.1,
+   "predicted": 7.2
+  },
+  {
+   "title": "The Hunger Games",
+   "year": 2012,
+   "actual": 7.3,
+   "predicted": 7.4
+  },
+  {
+   "title": "The Wolf of Wall Street",
+   "year": 2013,
+   "actual": 8.2,
+   "predicted": 7.5
+  }
+ ],
+ "figure": {
+  "Inception": 7.7,
+  "The Hunger Games": 7.4,
+  "Django Unchained": 6.8
+ }
+}

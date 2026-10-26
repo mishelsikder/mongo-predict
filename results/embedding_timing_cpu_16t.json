@@ -1,0 +1,39 @@
+{
+ "device": "cpu",
+ "gpu": null,
+ "tasks": [
+  {
+   "task": "airbnb_room_type",
+   "device": "cpu",
+   "threads": 16,
+   "n": 200,
+   "mean_json_chars": 6305.375,
+   "load_s": 20.466779239475727,
+   "embed_s": 144.733641076833,
+   "docs_per_s": 1.381848743056415,
+   "s_per_1000": 723.668205384165
+  },
+  {
+   "task": "mflix_imdb_rating",
+   "device": "cpu",
+   "threads": 16,
+   "n": 200,
+   "mean_json_chars": 1581.6,
+   "load_s": 10.620930620469153,
+   "embed_s": 85.75980823952705,
+   "docs_per_s": 2.3320947668329692,
+   "s_per_1000": 428.79904119763523
+  },
+  {
+   "task": "tweets_user_lang",
+   "device": "cpu",
+   "threads": 16,
+   "n": 200,
+   "mean_json_chars": 1787.25,
+   "load_s": 15.14614809025079,
+   "embed_s": 96.14435779303312,
+   "docs_per_s": 2.0802052724771807,
+   "s_per_1000": 480.7217889651656
+  }
+ ]
+}

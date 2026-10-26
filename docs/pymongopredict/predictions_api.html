@@ -1,0 +1,1254 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="pdoc 16.0.0"/>
+    <title>pymongopredict.predictions_api API documentation</title>
+
+    <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
+    <style>/*! syntax-highlighting.css */pre{line-height:125%;}span.linenos{color:inherit; background-color:transparent; padding-left:5px; padding-right:20px;}.pdoc-code .hll{background-color:#ffffcc}.pdoc-code{background:#f8f8f8;}.pdoc-code .c{color:#3D7B7B; font-style:italic}.pdoc-code .err{border:1px solid #FF0000}.pdoc-code .k{color:#008000; font-weight:bold}.pdoc-code .o{color:#666666}.pdoc-code .ch{color:#3D7B7B; font-style:italic}.pdoc-code .cm{color:#3D7B7B; font-style:italic}.pdoc-code .cp{color:#9C6500}.pdoc-code .cpf{color:#3D7B7B; font-style:italic}.pdoc-code .c1{color:#3D7B7B; font-style:italic}.pdoc-code .cs{color:#3D7B7B; font-style:italic}.pdoc-code .gd{color:#A00000}.pdoc-code .ge{font-style:italic}.pdoc-code .gr{color:#E40000}.pdoc-code .gh{color:#000080; font-weight:bold}.pdoc-code .gi{color:#008400}.pdoc-code .go{color:#717171}.pdoc-code .gp{color:#000080; font-weight:bold}.pdoc-code .gs{font-weight:bold}.pdoc-code .gu{color:#800080; font-weight:bold}.pdoc-code .gt{color:#0044DD}.pdoc-code .kc{color:#008000; font-weight:bold}.pdoc-code .kd{color:#008000; font-weight:bold}.pdoc-code .kn{color:#008000; font-weight:bold}.pdoc-code .kp{color:#008000}.pdoc-code .kr{color:#008000; font-weight:bold}.pdoc-code .kt{color:#B00040}.pdoc-code .m{color:#666666}.pdoc-code .s{color:#BA2121}.pdoc-code .na{color:#687822}.pdoc-code .nb{color:#008000}.pdoc-code .nc{color:#0000FF; font-weight:bold}.pdoc-code .no{color:#880000}.pdoc-code .nd{color:#AA22FF}.pdoc-code .ni{color:#717171; font-weight:bold}.pdoc-code .ne{color:#CB3F38; font-weight:bold}.pdoc-code .nf{color:#0000FF}.pdoc-code .nl{color:#767600}.pdoc-code .nn{color:#0000FF; font-weight:bold}.pdoc-code .nt{color:#008000; font-weight:bold}.pdoc-code .nv{color:#19177C}.pdoc-code .ow{color:#AA22FF; font-weight:bold}.pdoc-code .w{color:#bbbbbb}.pdoc-code .mb{color:#666666}.pdoc-code .mf{color:#666666}.pdoc-code .mh{color:#666666}.pdoc-code .mi{color:#666666}.pdoc-code .mo{color:#666666}.pdoc-code .sa{color:#BA2121}.pdoc-code .sb{color:#BA2121}.pdoc-code .sc{color:#BA2121}.pdoc-code .dl{color:#BA2121}.pdoc-code .sd{color:#BA2121; font-style:italic}.pdoc-code .s2{color:#BA2121}.pdoc-code .se{color:#AA5D1F; font-weight:bold}.pdoc-code .sh{color:#BA2121}.pdoc-code .si{color:#A45A77; font-weight:bold}.pdoc-code .sx{color:#008000}.pdoc-code .sr{color:#A45A77}.pdoc-code .s1{color:#BA2121}.pdoc-code .ss{color:#19177C}.pdoc-code .bp{color:#008000}.pdoc-code .fm{color:#0000FF}.pdoc-code .vc{color:#19177C}.pdoc-code .vg{color:#19177C}.pdoc-code .vi{color:#19177C}.pdoc-code .vm{color:#19177C}.pdoc-code .il{color:#666666}</style>
+    <style>/*! theme.css */:root{--pdoc-background:#fff;}.pdoc{--text:#212529;--muted:#6c757d;--link:#3660a5;--link-hover:#1659c5;--code:#f8f8f8;--active:#fff598;--accent:#eee;--accent2:#c1c1c1;--nav-hover:rgba(255, 255, 255, 0.5);--name:#0066BB;--def:#008800;--annotation:#007020;}</style>
+    <style>/*! layout.css */html, body{width:100%;height:100%;}html, main{scroll-behavior:smooth;}body{background-color:var(--pdoc-background);}@media (max-width:769px){#navtoggle{cursor:pointer;position:absolute;width:50px;height:40px;top:1rem;right:1rem;border-color:var(--text);color:var(--text);display:flex;opacity:0.8;z-index:999;}#navtoggle:hover{opacity:1;}#togglestate + div{display:none;}#togglestate:checked + div{display:inherit;}main, header{padding:2rem 3vw;}header + main{margin-top:-3rem;}.git-button{display:none !important;}nav input[type="search"]{max-width:77%;}nav input[type="search"]:first-child{margin-top:-6px;}nav input[type="search"]:valid ~ *{display:none !important;}}@media (min-width:770px){:root{--sidebar-width:clamp(12.5rem, 28vw, 22rem);}nav{position:fixed;overflow:auto;height:100vh;width:var(--sidebar-width);}main, header{padding:3rem 2rem 3rem calc(var(--sidebar-width) + 3rem);width:calc(54rem + var(--sidebar-width));max-width:100%;}header + main{margin-top:-4rem;}#navtoggle{display:none;}}#togglestate{position:absolute;height:0;opacity:0;}nav.pdoc{--pad:clamp(0.5rem, 2vw, 1.75rem);--indent:1.5rem;background-color:var(--accent);border-right:1px solid var(--accent2);box-shadow:0 0 20px rgba(50, 50, 50, .2) inset;padding:0 0 0 var(--pad);overflow-wrap:anywhere;scrollbar-width:thin; scrollbar-color:var(--accent2) transparent; z-index:1}nav.pdoc::-webkit-scrollbar{width:.4rem; }nav.pdoc::-webkit-scrollbar-thumb{background-color:var(--accent2); }nav.pdoc > div{padding:var(--pad) 0;}nav.pdoc .module-list-button{display:inline-flex;align-items:center;color:var(--text);border-color:var(--muted);margin-bottom:1rem;}nav.pdoc .module-list-button:hover{border-color:var(--text);}nav.pdoc input[type=search]{display:block;outline-offset:0;width:calc(100% - var(--pad));}nav.pdoc .logo{max-width:calc(100% - var(--pad));max-height:35vh;display:block;margin:0 auto 1rem;transform:translate(calc(-.5 * var(--pad)), 0);}nav.pdoc ul{list-style:none;padding-left:0;}nav.pdoc > div > ul{margin-left:calc(0px - var(--pad));}nav.pdoc li a{padding:.2rem 0 .2rem calc(var(--pad) + var(--indent));}nav.pdoc > div > ul > li > a{padding-left:var(--pad);}nav.pdoc li{transition:all 100ms;}nav.pdoc li:hover{background-color:var(--nav-hover);}nav.pdoc a, nav.pdoc a:hover{color:var(--text);}nav.pdoc a{display:block;}nav.pdoc > h2:first-of-type{margin-top:1.5rem;}nav.pdoc .class:before{content:"class ";color:var(--muted);}nav.pdoc .function:after{content:"()";color:var(--muted);}nav.pdoc footer:before{content:"";display:block;width:calc(100% - var(--pad));border-top:solid var(--accent2) 1px;margin-top:1.5rem;padding-top:.5rem;}nav.pdoc footer{font-size:small;}</style>
+    <style>/*! content.css */.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{cursor:pointer;display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .alert{padding:1rem 1rem 1rem calc(1.5rem + 24px);border:1px solid transparent;border-radius:.25rem;background-repeat:no-repeat;background-position:.75rem center;margin-bottom:1rem;}.pdoc .alert > em{display:none;}.pdoc .alert > *:last-child{margin-bottom:0;}.pdoc .alert.note{color:#084298;background-color:#cfe2ff;border-color:#b6d4fe;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23084298%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%2016A8%208%200%201%200%208%200a8%208%200%200%200%200%2016zm.93-9.412-1%204.705c-.07.34.029.533.304.533.194%200%20.487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703%200-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381%202.29-.287zM8%205.5a1%201%200%201%201%200-2%201%201%200%200%201%200%202z%22/%3E%3C/svg%3E");}.pdoc .alert.tip{color:#0a3622;background-color:#d1e7dd;border-color:#a3cfbb;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%230a3622%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2%206a6%206%200%201%201%2010.174%204.31c-.203.196-.359.4-.453.619l-.762%201.769A.5.5%200%200%201%2010.5%2013a.5.5%200%200%201%200%201%20.5.5%200%200%201%200%201l-.224.447a1%201%200%200%201-.894.553H6.618a1%201%200%200%201-.894-.553L5.5%2015a.5.5%200%200%201%200-1%20.5.5%200%200%201%200-1%20.5.5%200%200%201-.46-.302l-.761-1.77a2%202%200%200%200-.453-.618A5.98%205.98%200%200%201%202%206m6-5a5%205%200%200%200-3.479%208.592c.263.254.514.564.676.941L5.83%2012h4.342l.632-1.467c.162-.377.413-.687.676-.941A5%205%200%200%200%208%201%22/%3E%3C/svg%3E");}.pdoc .alert.important{color:#055160;background-color:#cff4fc;border-color:#9eeaf9;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23055160%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2%200a2%202%200%200%200-2%202v12a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V2a2%202%200%200%200-2-2zm6%204c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%204.995A.905.905%200%200%201%208%204m.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E");}.pdoc .alert.warning{color:#664d03;background-color:#fff3cd;border-color:#ffecb5;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23664d03%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8.982%201.566a1.13%201.13%200%200%200-1.96%200L.165%2013.233c-.457.778.091%201.767.98%201.767h13.713c.889%200%201.438-.99.98-1.767L8.982%201.566zM8%205c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%205.995A.905.905%200%200%201%208%205zm.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2z%22/%3E%3C/svg%3E");}.pdoc .alert.caution{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M11.46.146A.5.5%200%200%200%2011.107%200H4.893a.5.5%200%200%200-.353.146L.146%204.54A.5.5%200%200%200%200%204.893v6.214a.5.5%200%200%200%20.146.353l4.394%204.394a.5.5%200%200%200%20.353.146h6.214a.5.5%200%200%200%20.353-.146l4.394-4.394a.5.5%200%200%200%20.146-.353V4.893a.5.5%200%200%200-.146-.353zM8%204c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%204.995A.905.905%200%200%201%208%204m.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E");}.pdoc .alert.danger{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5.52.359A.5.5%200%200%201%206%200h4a.5.5%200%200%201%20.474.658L8.694%206H12.5a.5.5%200%200%201%20.395.807l-7%209a.5.5%200%200%201-.873-.454L6.823%209.5H3.5a.5.5%200%200%201-.48-.641l2.5-8.5z%22/%3E%3C/svg%3E");}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc > section:not(.module-info) h1{font-size:1.5rem;font-weight:500;}.pdoc > section:not(.module-info) h2{font-size:1.4rem;font-weight:500;}.pdoc > section:not(.module-info) h3{font-size:1.3rem;font-weight:500;}.pdoc > section:not(.module-info) h4{font-size:1.2rem;}.pdoc > section:not(.module-info) h5{font-size:1.1rem;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-top:0;margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;background-color:var(--code);}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--accent);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc > section:not(.module-info){margin-bottom:1.5rem;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.view-source-toggle-state,.view-source-toggle-state ~ .pdoc-code{display:none;}.view-source-toggle-state:checked ~ .pdoc-code{display:block;}.view-source-button{display:inline-block;float:right;font-size:.75rem;line-height:1.5rem;color:var(--muted);padding:0 .4rem 0 1.3rem;cursor:pointer;text-indent:-2px;}.view-source-button > span{visibility:hidden;}.module-info .view-source-button{float:none;display:flex;justify-content:flex-end;margin:-1.2rem .4rem -.2rem 0;}.view-source-button::before{position:absolute;content:"View Source";display:list-item;list-style-type:disclosure-closed;}.view-source-toggle-state:checked ~ .attr .view-source-button::before,.view-source-toggle-state:checked ~ .view-source-button::before{list-style-type:disclosure-open;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc section:not(.module-info) .docstring{margin-left:clamp(0rem, 5vw - 2rem, 1rem);}.pdoc .docstring .pdoc-code{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target,.pdoc .pdoc-code > pre > span:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc .pdoc-code > pre > span:target{display:block;}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc *{scroll-margin:2rem;}.pdoc .pdoc-code .linenos{user-select:none;}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc section, .pdoc .classattr{position:relative;}.pdoc .headerlink{--width:clamp(1rem, 3vw, 2rem);position:absolute;top:0;left:calc(0rem - var(--width));transition:all 100ms ease-in-out;opacity:0;}.pdoc .headerlink::before{content:"#";display:block;text-align:center;width:var(--width);height:2.3rem;line-height:2.3rem;font-size:1.5rem;}.pdoc .attr:hover ~ .headerlink,.pdoc *:target > .headerlink,.pdoc .headerlink:hover{opacity:1;}.pdoc .attr{display:block;margin:.5rem 0 .5rem;padding:.4rem .4rem .4rem 1rem;background-color:var(--accent);overflow-x:auto;}.pdoc .classattr{margin-left:2rem;}.pdoc .decorator-deprecated{color:#842029;}.pdoc .decorator-deprecated ~ span{filter:grayscale(1) opacity(0.8);}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{background-color:transparent;}.pdoc .param, .pdoc .return-annotation{white-space:pre;}.pdoc .signature.multiline .param{display:block;}.pdoc .signature.condensed .param{display:inline-block;}.pdoc .annotation{color:var(--annotation);}.pdoc .view-value-toggle-state,.pdoc .view-value-toggle-state ~ .default_value{display:none;}.pdoc .view-value-toggle-state:checked ~ .default_value{display:inherit;}.pdoc .view-value-button{font-size:.5rem;vertical-align:middle;border-style:dashed;margin-top:-0.1rem;}.pdoc .view-value-button:hover{background:white;}.pdoc .view-value-button::before{content:"show";text-align:center;width:2.2em;display:inline-block;}.pdoc .view-value-toggle-state:checked ~ .view-value-button::before{content:"hide";}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .search-result .docstring{overflow:auto;max-height:25vh;}.pdoc .search-result.focused > .attr{background-color:var(--active);}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:27px;vertical-align:bottom;width:50px;transition:all 200ms;}.pdoc table{display:block;width:max-content;max-width:100%;overflow:auto;margin-bottom:1rem;}.pdoc table th{font-weight:600;}.pdoc table th, .pdoc table td{padding:6px 13px;border:1px solid var(--accent2);}</style>
+    <style>/*! custom.css */</style><!-- mongopredict-theme -->
+<style>/* Theme added to every pdoc page by docs/_postprocess.py (light, and dark from the system setting). */
+.pdoc{--text:#1d1d1b;--muted:#6b6b64;--link:#2a78d6;--link-hover:#1b5fb0;--code:#f5f5f2;--active:#fff6d6;
+      --accent:#f2f4f7;--accent2:#e3e6eb;--nav-hover:rgba(42,120,214,.08);--name:#1b5fb0;--def:#8a3ffc;
+      --annotation:#0a7f6f;--border:#e6e6e1;--surface:#fff;--chip:#eef4fc}
+:root{--pdoc-background:#fbfbfa}
+@media (prefers-color-scheme: dark){
+  :root{--pdoc-background:#111110}
+  .pdoc{--text:#ecebe6;--muted:#a3a29a;--link:#6aa8f5;--link-hover:#9cc6fa;--code:#1b1b19;--active:#3a3420;
+        --accent:#1d1d1b;--accent2:#2a2a27;--nav-hover:rgba(106,168,245,.10);--name:#8ab8f7;--def:#c39bff;
+        --annotation:#4fd1bd;--border:#2c2c29;--surface:#171715;--chip:#1c2a3d}
+}
+html,body{background:var(--pdoc-background)}
+.pdoc{font-family:Inter,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.65;
+      -webkit-font-smoothing:antialiased;color:var(--text)}
+.pdoc code,.pdoc pre,.pdoc .signature{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-size:.86em}
+@media (min-width:770px){main.pdoc{padding:2.5rem 3rem 4rem calc(var(--sidebar-width) + 3.5rem)}}
+.pdoc h1,.pdoc h2,.pdoc h3,.pdoc h4{font-weight:650;letter-spacing:-.01em;line-height:1.25}
+.pdoc h1{font-size:1.9rem;margin:.2rem 0 1rem}
+.pdoc h2{font-size:1.35rem;margin-top:2.2rem;padding-bottom:.35rem;border-bottom:1px solid var(--border)}
+.pdoc h3{font-size:1.1rem;margin-top:1.6rem}
+.pdoc a{text-decoration:none}
+.pdoc a:hover{text-decoration:underline;text-underline-offset:3px}
+.pdoc .modulename{font-size:1.6rem;font-weight:700;margin-bottom:.5rem}
+/* inline code */
+.pdoc :not(pre)>code{background:var(--code);border:1px solid var(--border);border-radius:5px;padding:.08em .35em}
+/* code blocks */
+.pdoc .pdoc-code{position:relative;margin:1rem 0 1.25rem}
+.pdoc .pdoc-code pre,.pdoc pre{background:var(--code) !important;border:1px solid var(--border);border-radius:10px;
+      padding:.95rem 1.1rem;line-height:1.55;overflow-x:auto}
+.pdoc .mp-copy{position:absolute;top:.5rem;right:.5rem;font:500 12px/1 Inter,-apple-system,"Segoe UI",sans-serif;
+      color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.35rem .55rem;
+      cursor:pointer;opacity:0;transition:opacity .15s}
+.pdoc .pdoc-code:hover .mp-copy,.pdoc .mp-copy:focus{opacity:1}
+.pdoc .mp-copy.done{color:var(--link)}
+/* each class and function as a card */
+main.pdoc > section[id]{background:var(--surface);border:1px solid var(--border);border-radius:14px;
+      padding:1.2rem 1.5rem 1rem;margin:1.5rem 0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.pdoc .classattr{border-top:1px solid var(--border);padding-top:.9rem;margin-top:.9rem}
+.pdoc .attr{background:none;border:0;padding:0;margin:0 0 .4rem;font-size:1.02rem}
+.pdoc .signature{display:block;margin-top:.5rem;padding:.6rem .85rem;white-space:pre-wrap;
+      background:var(--code) !important;border:1px solid var(--border);border-radius:8px}
+.pdoc .def{color:var(--def);font-weight:600}
+.pdoc .name{color:var(--name);font-weight:650}
+.pdoc .annotation{color:var(--annotation)}
+.pdoc .headerlink{opacity:0;transition:opacity .15s}
+.pdoc .attr:hover .headerlink,.pdoc h2:hover .headerlink{opacity:.6}
+.pdoc .docstring{margin-top:.6rem}
+.pdoc .docstring > p,.pdoc .docstring li{max-width:72ch}
+/* numpy sections: Parameters / Returns / Raises headers */
+.pdoc .docstring h6{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:1.2rem 0 .4rem}
+.pdoc .docstring dl dt code,.pdoc .docstring dt{font-weight:600}
+/* tables */
+.pdoc table{border-collapse:separate;border-spacing:0;width:auto;border:1px solid var(--border);border-radius:10px;
+      overflow:hidden;margin:1rem 0;font-size:.93em}
+.pdoc th{background:var(--accent);text-align:left;font-weight:600}
+.pdoc th,.pdoc td{padding:.5rem .8rem;border-bottom:1px solid var(--border)}
+.pdoc tr:last-child td{border-bottom:0}
+.pdoc tbody tr:hover td{background:var(--nav-hover)}
+/* sidebar */
+nav.pdoc{background:var(--surface);border-right:1px solid var(--border);box-shadow:none;font-size:14px}
+nav.pdoc a:hover{text-decoration:none}
+nav.pdoc li{border-radius:6px}
+nav.pdoc h2{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:0;margin-top:1.4rem}
+nav.pdoc input[type=search]{border:1px solid var(--border);border-radius:8px;background:var(--pdoc-background);
+      color:var(--text);padding:.45rem .65rem}
+.pdoc .attribution{color:var(--muted);font-size:12px}
+
+@media (prefers-color-scheme: dark){
+pre { line-height: 125%; }
+td.linenos .normal { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+.pdoc .pdoc-code .hll { background-color: #6e7681 }
+.pdoc .pdoc-code { background: #0d1117; color: #E6EDF3 }
+.pdoc .pdoc-code .c { color: #8B949E; font-style: italic } /* Comment */
+.pdoc .pdoc-code .err { color: #F85149 } /* Error */
+.pdoc .pdoc-code .esc { color: #E6EDF3 } /* Escape */
+.pdoc .pdoc-code .g { color: #E6EDF3 } /* Generic */
+.pdoc .pdoc-code .k { color: #FF7B72 } /* Keyword */
+.pdoc .pdoc-code .l { color: #A5D6FF } /* Literal */
+.pdoc .pdoc-code .n { color: #E6EDF3 } /* Name */
+.pdoc .pdoc-code .o { color: #FF7B72; font-weight: bold } /* Operator */
+.pdoc .pdoc-code .x { color: #E6EDF3 } /* Other */
+.pdoc .pdoc-code .p { color: #E6EDF3 } /* Punctuation */
+.pdoc .pdoc-code .ch { color: #8B949E; font-style: italic } /* Comment.Hashbang */
+.pdoc .pdoc-code .cm { color: #8B949E; font-style: italic } /* Comment.Multiline */
+.pdoc .pdoc-code .cp { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Preproc */
+.pdoc .pdoc-code .cpf { color: #8B949E; font-style: italic } /* Comment.PreprocFile */
+.pdoc .pdoc-code .c1 { color: #8B949E; font-style: italic } /* Comment.Single */
+.pdoc .pdoc-code .cs { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Special */
+.pdoc .pdoc-code .gd { color: #FFA198; background-color: #490202 } /* Generic.Deleted */
+.pdoc .pdoc-code .ge { color: #E6EDF3; font-style: italic } /* Generic.Emph */
+.pdoc .pdoc-code .ges { color: #E6EDF3; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.pdoc .pdoc-code .gr { color: #FFA198 } /* Generic.Error */
+.pdoc .pdoc-code .gh { color: #79C0FF; font-weight: bold } /* Generic.Heading */
+.pdoc .pdoc-code .gi { color: #56D364; background-color: #0F5323 } /* Generic.Inserted */
+.pdoc .pdoc-code .go { color: #8B949E } /* Generic.Output */
+.pdoc .pdoc-code .gp { color: #8B949E } /* Generic.Prompt */
+.pdoc .pdoc-code .gs { color: #E6EDF3; font-weight: bold } /* Generic.Strong */
+.pdoc .pdoc-code .gu { color: #79C0FF } /* Generic.Subheading */
+.pdoc .pdoc-code .gt { color: #FF7B72 } /* Generic.Traceback */
+.pdoc .pdoc-code .g-Underline { color: #E6EDF3; text-decoration: underline } /* Generic.Underline */
+.pdoc .pdoc-code .kc { color: #79C0FF } /* Keyword.Constant */
+.pdoc .pdoc-code .kd { color: #FF7B72 } /* Keyword.Declaration */
+.pdoc .pdoc-code .kn { color: #FF7B72 } /* Keyword.Namespace */
+.pdoc .pdoc-code .kp { color: #79C0FF } /* Keyword.Pseudo */
+.pdoc .pdoc-code .kr { color: #FF7B72 } /* Keyword.Reserved */
+.pdoc .pdoc-code .kt { color: #FF7B72 } /* Keyword.Type */
+.pdoc .pdoc-code .ld { color: #79C0FF } /* Literal.Date */
+.pdoc .pdoc-code .m { color: #A5D6FF } /* Literal.Number */
+.pdoc .pdoc-code .s { color: #A5D6FF } /* Literal.String */
+.pdoc .pdoc-code .na { color: #E6EDF3 } /* Name.Attribute */
+.pdoc .pdoc-code .nb { color: #E6EDF3 } /* Name.Builtin */
+.pdoc .pdoc-code .nc { color: #F0883E; font-weight: bold } /* Name.Class */
+.pdoc .pdoc-code .no { color: #79C0FF; font-weight: bold } /* Name.Constant */
+.pdoc .pdoc-code .nd { color: #D2A8FF; font-weight: bold } /* Name.Decorator */
+.pdoc .pdoc-code .ni { color: #FFA657 } /* Name.Entity */
+.pdoc .pdoc-code .ne { color: #F0883E; font-weight: bold } /* Name.Exception */
+.pdoc .pdoc-code .nf { color: #D2A8FF; font-weight: bold } /* Name.Function */
+.pdoc .pdoc-code .nl { color: #79C0FF; font-weight: bold } /* Name.Label */
+.pdoc .pdoc-code .nn { color: #FF7B72 } /* Name.Namespace */
+.pdoc .pdoc-code .nx { color: #E6EDF3 } /* Name.Other */
+.pdoc .pdoc-code .py { color: #79C0FF } /* Name.Property */
+.pdoc .pdoc-code .nt { color: #7EE787 } /* Name.Tag */
+.pdoc .pdoc-code .nv { color: #79C0FF } /* Name.Variable */
+.pdoc .pdoc-code .ow { color: #FF7B72; font-weight: bold } /* Operator.Word */
+.pdoc .pdoc-code .pm { color: #E6EDF3 } /* Punctuation.Marker */
+.pdoc .pdoc-code .w { color: #6E7681 } /* Text.Whitespace */
+.pdoc .pdoc-code .mb { color: #A5D6FF } /* Literal.Number.Bin */
+.pdoc .pdoc-code .mf { color: #A5D6FF } /* Literal.Number.Float */
+.pdoc .pdoc-code .mh { color: #A5D6FF } /* Literal.Number.Hex */
+.pdoc .pdoc-code .mi { color: #A5D6FF } /* Literal.Number.Integer */
+.pdoc .pdoc-code .mo { color: #A5D6FF } /* Literal.Number.Oct */
+.pdoc .pdoc-code .sa { color: #79C0FF } /* Literal.String.Affix */
+.pdoc .pdoc-code .sb { color: #A5D6FF } /* Literal.String.Backtick */
+.pdoc .pdoc-code .sc { color: #A5D6FF } /* Literal.String.Char */
+.pdoc .pdoc-code .dl { color: #79C0FF } /* Literal.String.Delimiter */
+.pdoc .pdoc-code .sd { color: #A5D6FF } /* Literal.String.Doc */
+.pdoc .pdoc-code .s2 { color: #A5D6FF } /* Literal.String.Double */
+.pdoc .pdoc-code .se { color: #79C0FF } /* Literal.String.Escape */
+.pdoc .pdoc-code .sh { color: #79C0FF } /* Literal.String.Heredoc */
+.pdoc .pdoc-code .si { color: #A5D6FF } /* Literal.String.Interpol */
+.pdoc .pdoc-code .sx { color: #A5D6FF } /* Literal.String.Other */
+.pdoc .pdoc-code .sr { color: #79C0FF } /* Literal.String.Regex */
+.pdoc .pdoc-code .s1 { color: #A5D6FF } /* Literal.String.Single */
+.pdoc .pdoc-code .ss { color: #A5D6FF } /* Literal.String.Symbol */
+.pdoc .pdoc-code .bp { color: #E6EDF3 } /* Name.Builtin.Pseudo */
+.pdoc .pdoc-code .fm { color: #D2A8FF; font-weight: bold } /* Name.Function.Magic */
+.pdoc .pdoc-code .vc { color: #79C0FF } /* Name.Variable.Class */
+.pdoc .pdoc-code .vg { color: #79C0FF } /* Name.Variable.Global */
+.pdoc .pdoc-code .vi { color: #79C0FF } /* Name.Variable.Instance */
+.pdoc .pdoc-code .vm { color: #79C0FF } /* Name.Variable.Magic */
+.pdoc .pdoc-code .il { color: #A5D6FF } /* Literal.Number.Integer.Long */
+}</style>
+</head>
+<body>
+    <nav class="pdoc">
+        <label id="navtoggle" for="togglestate" class="pdoc-button"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke-linecap='round' stroke="currentColor" stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg></label>
+        <input id="togglestate" type="checkbox" aria-hidden="true" tabindex="-1">
+        <div>            <a class="pdoc-button module-list-button" href="../pymongopredict.html">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+</svg>                &nbsp;pymongopredict</a>
+
+
+            <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
+                   pattern=".+" required>
+
+            <h2>Contents</h2>
+            <ul>
+  <li><a href="#model-definition">Model definition</a></li>
+  <li><a href="#how-a-pipeline-runs">How a pipeline runs</a></li>
+  <li><a href="#details-and-limits">Details and limits</a></li>
+</ul>
+
+
+
+            <h2>API Documentation</h2>
+                <ul class="memberlist">
+            <li>
+                    <a class="class" href="#PredictionModel">PredictionModel</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#PredictionModel.__init__">PredictionModel</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#PredictionModel.document">document</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="function" href="#create_prediction_model">create_prediction_model</a>
+            </li>
+            <li>
+                    <a class="function" href="#update_prediction_model">update_prediction_model</a>
+            </li>
+            <li>
+                    <a class="function" href="#list_prediction_models">list_prediction_models</a>
+            </li>
+            <li>
+                    <a class="function" href="#drop_prediction_model">drop_prediction_model</a>
+            </li>
+            <li>
+                    <a class="function" href="#aggregate">aggregate</a>
+            </li>
+            <li>
+                    <a class="function" href="#enable">enable</a>
+            </li>
+            <li>
+                    <a class="function" href="#disable">disable</a>
+            </li>
+            <li>
+                    <a class="class" href="#PredictCursor">PredictCursor</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#PredictCursor.__init__">PredictCursor</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#PredictCursor.next">next</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#PredictCursor.try_next">try_next</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#PredictCursor.alive">alive</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#PredictCursor.to_list">to_list</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#PredictCursor.close">close</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="function" href="#cleanup_temporary_collections">cleanup_temporary_collections</a>
+            </li>
+    </ul>
+
+
+            <footer>mongo-predict 0.5.0</footer>
+
+        <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
+            built with <span class="visually-hidden">pdoc</span><img
+                alt="pdoc logo"
+                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20role%3D%22img%22%20aria-label%3D%22pdoc%20logo%22%20width%3D%22300%22%20height%3D%22160%22%20viewBox%3D%220%200%20150%2080%22%3E%3Ctitle%3Epdoc%3C/title%3E%3Cpath%20d%3D%22M132.316%2048.886c.276-4.679%202.342-6.698%204.409-7.982s4.27-1.165%206.751-1.055c1.586.07%203.044.156%204.222-.482%201.142-.619%202.026-1.932%202.162-3.739.268-3.576-1.929-5.368-5.006-5.551s-7.599.524-10.517%201.606c-4.455%201.652-8.588%206.606-9.552%208.992s-2.342%206.193-1.745%2010.873%202.664%209.221%205.878%2011.79%205.878%203.808%2010.103%204.312%203.444.229%206.062.229%205.006-2.202%204.914-4.909-2.296-5.001-4.501-4.863-3.077.505-5.281.229-7.715-2.064-7.899-9.451z%22%20fill%3D%22%23198754%22/%3E%3Ccircle%20cx%3D%22101.504%22%20cy%3D%2248.943%22%20r%3D%2214.208%22%20fill%3D%22none%22%20stroke%3D%22%23198754%22%20stroke-width%3D%229.354%22/%3E%3Cpath%20d%3D%22M87.81.002c-3.637.065-5.001.454-7.014%201.232s-3.443%201.363-6.3%204.282c-1.723%201.76-3.148%205.019-3.776%207.329-.413%201.521-.316%202.63-.316%202.63l-.195%2034.612c.065%205.774-6.755%208.305-9.612%208.37s-9.678-1.038-9.743-9.408%207.128-9.521%208.362-9.521c1.413-.13%202.526-.021%203.718-.016%202.071.009%204.157-.778%204.092-4.671s-4.157-4.736-4.157-4.736c-6.3-.843-11.43%202.206-11.43%202.206S40.917%2038.15%2041.372%2049.634%2051.568%2068.19%2061.311%2068.125s18.316-7.007%2018.445-17.193l.13-22.772c.046-2.291%202.683-3.644%204.476-4.203.745-.232%201.694-.274%201.694-.274l10.457-.13s4.871-.324%207.729-3.114%204.352-6.294%204.352-6.294.974-3.049.13-4.606-.195-1.233-2.792-3.309-8.573-4.477-8.573-4.477S91.447-.063%2087.81.002zM0%2047.169l.065%2028.417S0%2080.127%204.481%2079.997s5.072-3.866%205.049-4.152l-.113-28.482s1.624-7.656%209.937-7.721%2010.002%206.942%2010.002%208.499-.909%2010.51-9.093%2010.51c-.948%200-2.99-.567-4.145-.272-3.919%201-3.194%204.554-3.194%204.554s.065%205.061%207.404%204.996%2018.575-6.034%2018.575-19.074S26.953%2030.04%2019.549%2029.91%201.234%2035.296%200%2047.169z%22%20fill%3D%22%23198754%22/%3E%3Cg%20transform%3D%22matrix%28.325601%200%200%20.325256%20-10.32669%20-45.802786%29%22%3E%3Ccircle%20cx%3D%22297.554%22%20cy%3D%22172.286%22%20r%3D%2216.5%22%20fill%3D%22%23fff%22/%3E%3Cellipse%20cx%3D%22297.709%22%20cy%3D%22172.642%22%20rx%3D%2211.071%22%20ry%3D%2210.871%22%20fill%3D%22%23105a48%22/%3E%3Ccircle%20cx%3D%22304.104%22%20cy%3D%22167.667%22%20r%3D%224.5%22%20fill%3D%22%23fff%22/%3E%3C/g%3E%3Cpath%20d%3D%22M94.661%2017.032l.893-1.476s.99.714%201.916.925%201.575.114%202.955.114l14.565-.162c1.283-.032%203.085-.762%203.02-3.293s-.373-3.503-.373-3.503l1.283-.487s.52.503.877%201.573.309%201.995.292%202.66-.227%201.541-.227%201.541%201.564-.308%202.359-1.038.823-.779%201.489-1.508.812-.86.812-.86.552-.13.877.26.341.957.065%201.46-1.672%202.206-3.247%203.066-2.76%201.427-3.929%201.768-3.848.73-7.063.714l-10.944-.114s-2.143-.081-3.02-.373-2.241-.973-2.598-1.265z%22%20fill%3D%22%23d36d49%22/%3E%3Cg%20fill%3D%22%23105a48%22%3E%3Cellipse%20cx%3D%2293.052%22%20cy%3D%2243.567%22%20rx%3D%22.869%22%20ry%3D%221.014%22%20transform%3D%22rotate%28341.022%29%22/%3E%3Cellipse%20cx%3D%22104.3%22%20cy%3D%22-16.184%22%20rx%3D%22.865%22%20ry%3D%221.009%22%20transform%3D%22rotate%2814.786%29%22/%3E%3C/g%3E%3C/svg%3E"/>
+        </a>
+</div>
+    </nav>
+    <main class="pdoc">
+            <section class="module-info">
+                    <h1 class="modulename">
+<a href="./../pymongopredict.html">pymongopredict</a><wbr>.predictions_api    </h1>
+
+                        <div class="docstring"><p>The predictions API: a <code>$predict</code> aggregation stage backed by prediction models stored in the database.</p>
+
+<p>You define a model once on a collection, as you would a vector search index, then call it by name as the first stage
+of an aggregation pipeline; later stages read its output through <code>$meta</code>. No server changes are needed.</p>
+
+<table>
+<thead>
+<tr>
+  <th></th>
+  <th><code>$vectorSearch</code></th>
+  <th><code>$predict</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>defined with</td>
+  <td><code>create_search_index</code></td>
+  <td><code><a href="#create_prediction_model">create_prediction_model</a></code></td>
+</tr>
+<tr>
+  <td>managed with</td>
+  <td><code>list_</code> / <code>update_</code> / <code>drop_search_index</code></td>
+  <td><code>list_</code> / <code>update_</code> / <code><a href="#drop_prediction_model">drop_prediction_model</a></code></td>
+</tr>
+<tr>
+  <td>stage options</td>
+  <td><code>index</code>, <code>path</code>, <code>queryVector</code>, <code>filter</code>, <code>limit</code></td>
+  <td><code>model</code>, <code>filter</code>, <code>limit</code>, <code>batchSize</code></td>
+</tr>
+<tr>
+  <td>position</td>
+  <td>first stage only</td>
+  <td>first stage only</td>
+</tr>
+<tr>
+  <td>output</td>
+  <td><code>{"$meta": "vectorSearchScore"}</code></td>
+  <td><code>{"$meta": "prediction"}</code>, <code>"predictScore"</code>, <code>"predictProbabilities"</code></td>
+</tr>
+<tr>
+  <td>runs</td>
+  <td>inside Atlas</td>
+  <td>in your Python program, then on the server</td>
+</tr>
+</tbody>
+</table>
+
+<p>What you use:</p>
+
+<ul>
+<li><code><a href="#PredictionModel">PredictionModel</a></code> and <code><a href="#create_prediction_model">create_prediction_model()</a></code>: define and train a model; the
+model is stored in the <code>__mongopredict_models</code> collection of the same database.</li>
+<li><code><a href="#list_prediction_models">list_prediction_models()</a></code>, <code><a href="#update_prediction_model">update_prediction_model()</a></code>,
+<code><a href="#drop_prediction_model">drop_prediction_model()</a></code>: status, metrics, retraining, deletion.</li>
+<li><code><a href="#enable">enable()</a></code> / <code><a href="#disable">disable()</a></code>: let <code>coll.aggregate</code> run <code>$predict</code> and make the model
+functions collection methods.</li>
+<li><code><a href="#aggregate">aggregate()</a></code> and <code><a href="#PredictCursor">PredictCursor</a></code>: run a pipeline that starts with <code>$predict</code>,
+and its result (with timing <code>stats</code>).</li>
+</ul>
+
+<p>Without <code><a href="#enable">enable()</a></code>, call <code>aggregate(coll, pipeline)</code> and the module-level model
+functions with the collection as their first argument.</p>
+
+<h2 id="model-definition">Model definition</h2>
+
+<p>The definition given to <code><a href="#PredictionModel">PredictionModel</a></code> takes:</p>
+
+<ul>
+<li><code>target</code>: the dotted path of the field to predict (required).</li>
+<li><code>columns</code>, <code>embedFields</code>, <code>excludeFields</code>, <code>embeddingModel</code>, <code>embeddingKwargs</code>, <code>maskTarget</code>,
+<code>maxTokens</code>, <code>maxJsonChars</code>: the settings of the
+<code><a href="embeddings_api.html#DocumentFeaturizer">pymongopredict.embeddings_api.DocumentFeaturizer</a></code>; <code>featurizerOptions</code> passes any other of its
+arguments by its Python name. Without <code>embedFields</code> the whole document is embedded.</li>
+<li><code>embeddingModel</code>: <code>"voyage-4-nano"</code> (the default, runs locally), any Hugging Face model id (runs locally), or a
+Voyage API model such as <code>"voyage-4-lite"</code>, <code>"voyage-4"</code> or <code>"voyage-4-large"</code> (needs <code>VOYAGE_API_KEY</code>); <code>embeddingKwargs</code> passes its settings, e.g.
+<code>{"output_dimension": 512}</code> for an API model (but not <code>api_key</code>, which would be stored with the model: set
+<code>VOYAGE_API_KEY</code> instead). See the embeddings API documentation for every option.</li>
+<li><code>task</code>: <code>"auto"</code>, <code>"classification"</code> or <code>"regression"</code>. <code>"auto"</code> predicts a number when every value of
+the target is a number (numbers stored as text count; empty strings and text such as <code>"NA"</code>, <code>"none"</code> or <code>"-"</code>
+are missing values, while in a field of categories they are labels) and there are at least 8 distinct values, and
+a category otherwise, so a 0/1 flag or a 1 to 5 star rating stored as numbers is a category.</li>
+<li><code>estimator</code>: <code>"auto"</code> (the default: XGBoost with its default settings, for categories and numbers, on at most
+16 threads unless <code>OMP_NUM_THREADS</code> is set), <code>"xgboost"</code> (the same), <code>"logistic"</code>, <code>"ridge"</code> or <code>"hgb"</code> (histogram gradient boosting), or any scikit-learn estimator
+passed to <code><a href="#create_prediction_model">create_prediction_model()</a></code>.</li>
+<li><code>filter</code>: which documents to learn from (documents without the target are always left out);
+<code>numTrainingDocuments</code>: a cap on their number.</li>
+<li><code>testSize</code>: the fraction, or the number, of training documents held out to measure the stored metrics (default
+0.2; 0 skips them). The stored model is then refitted on all training documents.</li>
+</ul>
+
+<p><code>{"$meta": "predictScore"}</code> is the probability of the predicted category and <code>{"$meta": "predictProbabilities"}</code>
+maps each category to its probability; both exist only when the estimator has <code>predict_proba</code> (not for numbers or
+<code>"ridge"</code>).</p>
+
+<h2 id="how-a-pipeline-runs">How a pipeline runs</h2>
+
+<ol>
+<li><code><a href="#create_prediction_model">create_prediction_model()</a></code> fits the featurizer and the estimator on the documents that have the target,
+records the held-out metrics, refits on all of them and stores the fitted model (a pickle of at most 15 MB) with
+its status and version in the <code>__mongopredict_models</code> collection of the same database. As with a search index,
+the previous version keeps answering while a new one trains.</li>
+<li><code><a href="#aggregate">aggregate()</a></code> fetches the documents selected by the stage's <code>filter</code> and <code>limit</code> (only the fields the model
+reads), predicts them in batches in your program, and uploads only <code>{_id, prediction, score, probabilities}</code>
+rows to a temporary collection.</li>
+<li>The rest of the pipeline runs on the server: the temporary collection is joined back to the full documents
+(<code>$lookup</code> on <code>_id</code>), the <code>$meta</code> references are rewritten to the joined fields, and the helper field is
+removed before the output (or before a final <code>$merge</code> / <code>$out</code>). The temporary collection is then dropped.</li>
+</ol>
+
+<p>On the 14 MongoDB sample tasks, <code>$predict</code> returns the same predictions as calling the model directly, at a median
+1.39 times the time of that code (<code>reports/01_predictions_api.html</code>).</p>
+
+<h2 id="details-and-limits">Details and limits</h2>
+
+<ul>
+<li>Requirements: MongoDB 5.0 or later (5.1 or later when the source collection is sharded); fitting a model or running
+<code>$predict</code> on an older server raises <code>RuntimeError</code>. The tests run on MongoDB 5.0, 6.0, 7.0 and 8.0, and on Atlas (8.0). On 5.0 a
+time-series collection is a view, so <code>collation=</code> cannot be passed for it there (6.0 and later accept it). <code>$predict</code> needs
+<code>find</code> on the source collection and <code>createCollection</code>, <code>insert</code> and <code>dropCollection</code> in its database (for
+the temporary <code>__mongopredict_tmp_*</code> collection); training needs <code>find</code>, <code>insert</code> and <code>update</code> on
+<code>__mongopredict_models</code> (<code>remove</code> to drop a model). Model records and temporary collections are read and written on the primary, even with
+a secondary read preference.</li>
+<li>A killed process can leave a temporary collection behind: <code><a href="#cleanup_temporary_collections">cleanup_temporary_collections()</a></code> drops those older
+than 24 hours (<code>older_than</code>). A call whose temporary collection is dropped while it runs raises
+<code>RuntimeError</code> instead of returning partial results. A record still <code>BUILDING</code> after 24 hours is flagged <code>stale: True</code> by
+<code><a href="#list_prediction_models">list_prediction_models()</a></code>.</li>
+<li>Documents are predicted in batches of at most <code>batchSize</code> documents and 64 MB of BSON. Scores and probabilities
+are computed only when the pipeline reads <code>predictScore</code> or <code>predictProbabilities</code>. An embedding cache directory
+that cannot be used gives a warning, and the embeddings are then computed without a cache.</li>
+<li>The source can be a collection, a view or a time-series collection; views and time-series collections are joined
+from the source side, through the temporary collection's <code>_id</code> index. <code>_id</code> values must be unique (a view with an
+<code>$unwind</code> stage is refused).</li>
+<li>A class is returned as first stored in the training documents (an <code>ObjectId</code>, a date, an <code>int</code>), so predictions
+can be compared with the labels or joined to them with <code>$lookup</code>. The <code>predictProbabilities</code> keys and the
+record's <code>classes</code> are <code>str()</code> of those values, so <code>str(prediction)</code> is always a key.</li>
+<li>Model names may not contain <code>.</code> or <code>$</code>. <code>limit</code> and <code>batchSize</code> must be positive integers; without
+<code>limit</code> every matching document is predicted.</li>
+<li><code>hint=</code>, <code>collation=</code>, <code>let=</code> and <code>session=</code> passed to the aggregate apply to the query on the source
+collection, and the temporary collection gets the source collection's default collation, so string matching and
+sorting behave the same.</li>
+<li><code>$meta</code> works in <code>$sort</code>, <code>sortBy</code> (<code>$setWindowFields</code>, <code>$top</code>, <code>$bottom</code>), expressions, <code>$group</code>,
+<code>$facet</code>, <code>$redact</code>, and after an inclusion <code>$project</code> or a <code>$replaceRoot</code>. It is not available inside
+<code>$lookup</code> / <code>$unionWith</code> sub-pipelines (add it as a field first and pass it with <code>let</code>), nor in <code>$merge</code>'s
+<code>let</code> or <code>whenMatched</code>. <code>__mongopredict</code> is reserved as a field name.</li>
+<li><code>$predict</code> cannot run inside a multi-document transaction, because it creates and drops a temporary collection.</li>
+<li>The documents travel to your program and the model runs there; the result is read in full before it is returned;
+<code>$predict</code> works from Python only (not from <code>mongosh</code> or other drivers).</li>
+<li>The stored model is a pickle, so only users trusted to run code in your program should be able to write
+<code>__mongopredict_models</code>. Set <code>MONGOPREDICT_MODEL_KEY</code> (the same secret where models are trained and where they
+are used) to sign stored models: a model without a valid signature is then never unpickled.</li>
+<li>The record holds the library versions the model was stored with (<code>versions</code>). Loading it under other
+scikit-learn, numpy or pymongopredict versions gives a warning; a model that cannot be loaded raises a
+<code>ValueError</code> that says to rebuild it with <code><a href="#update_prediction_model">update_prediction_model()</a></code>.</li>
+<li><code>$predict</code> caches embeddings only when <code>MONGOPREDICT_PREDICT_CACHE_DIR</code> names a directory (the training
+<code>cache_dir</code> is not used), so a long-running process does not grow a cache of every document it predicts.</li>
+<li>Training on a collection streams the documents: only <code>_id</code> and the target of each are held in memory (if
+documents are deleted meanwhile, it trains again from a single read). Views and time-series collections are read
+once into memory, and training on them also needs unique <code>_id</code> values.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<p>Usage:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymongopredict</span><span class="w"> </span><span class="kn">import</span> <span class="n">PredictionModel</span><span class="p">,</span> <span class="n">predictions_api</span>
+
+<span class="n">predictions_api</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>                       <span class="c1"># coll.aggregate() understands $predict</span>
+<span class="n">coll</span><span class="o">.</span><span class="n">create_prediction_model</span><span class="p">(</span><span class="n">PredictionModel</span><span class="p">({</span><span class="s2">"target"</span><span class="p">:</span> <span class="s2">"room_type"</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s2">"room_type"</span><span class="p">))</span>
+<span class="n">coll</span><span class="o">.</span><span class="n">list_prediction_models</span><span class="p">()</span>                  <span class="c1"># status, definition, holdout metrics</span>
+<span class="n">coll</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([{</span><span class="s2">"$predict"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"model"</span><span class="p">:</span> <span class="s2">"room_type"</span><span class="p">,</span> <span class="s2">"limit"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">}},</span>
+                <span class="p">{</span><span class="s2">"$project"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"p"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"$meta"</span><span class="p">:</span> <span class="s2">"prediction"</span><span class="p">}}}])</span>
+</pre></div>
+</div>
+
+                
+                
+                
+            </section>
+                <section id="PredictionModel">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">PredictionModel</span>:
+
+        
+    </div>
+    <a class="headerlink" href="#PredictionModel"></a>
+    
+            <div class="docstring"><p>A prediction model definition, the counterpart of <code>pymongo.operations.SearchIndexModel</code>.</p>
+
+<p>Only the arguments are checked here; the values are checked when the model is trained.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><p><strong>definition</strong> (dict):
+How to train the model. All keys are optional except <code>target</code>:</p>
+
+<ul>
+<li><code>target</code>: dotted path of the field to predict.</li>
+<li><code>columns</code>, <code>embedFields</code>, <code>excludeFields</code>, <code>embeddingModel</code>,
+<code>embeddingKwargs</code>, <code>maskTarget</code>, <code>maxTokens</code>, <code>maxJsonChars</code>: passed to
+<code>pymongopredict.DocumentFeaturizer</code> as <code>columns</code>, <code>embed_fields</code>,
+<code>exclude</code>, <code>embedding_model</code>, <code>embedding_kwargs</code>, <code>mask_target</code>,
+<code>max_tokens</code> and <code>max_json_chars</code> (<code>embedFields</code> omitted means embed the whole
+document). <code>featurizerOptions</code> is a dict of any other <code>DocumentFeaturizer</code>
+argument by its Python name; it overrides the keys above.</li>
+<li><code>task</code>: <code>"classification"</code>, <code>"regression"</code> or <code>"auto"</code> (default). <code>"auto"</code>
+picks regression when every target is a number (or numeric text; empty strings are
+dropped) and there are at least <code>MIN_REGRESSION_VALUES</code> (8) distinct values;
+otherwise classification, so a 0/1 flag, 1-5 stars, booleans and text are categories.</li>
+<li><code>estimator</code>: <code>"auto"</code> (default) or <code>"xgboost"</code>: XGBoost with its default settings
+(<code>_XGBLabelClassifier</code> for classification, <code>xgboost.XGBRegressor</code> for
+regression); <code>"logistic"</code> (classification only), <code>"ridge"</code>
+(<code>RidgeClassifierCV</code> / <code>RidgeCV</code>), <code>"hgb"</code> (histogram gradient boosting), or
+an sklearn estimator object (usually passed as the <code>estimator</code> argument of
+<code><a href="#create_prediction_model">create_prediction_model()</a></code>; it is deep-copied before fitting).</li>
+<li><code>filter</code>: query selecting the training documents. Documents without the target
+are always left out, as are documents whose target is null (and, for regression,
+not a number).</li>
+<li><code>numTrainingDocuments</code>: positive integer cap on training documents (default: all).</li>
+<li><code>testSize</code>: holdout fraction in <code>[0, 1)</code>, or integer count of documents, used
+for the stored metrics (default 0.2; 0 skips them). The split is stratified for
+classification when every class has at least 2 documents. The stored model is
+refitted on all training documents.</li>
+</ul></li>
+<li><strong>name</strong> (str, default "default"):
+Model name, unique per collection. Must be a non-empty string without <code>.</code> or <code>$</code>.</li>
+<li><strong>type</strong> (str, default "prediction"):
+Model type; only <code>"prediction"</code> is supported.</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: If <code>name</code> is invalid, <code>type</code> is not <code>"prediction"</code>, <code>target</code> is missing, or
+<code>definition</code> has a key outside <code>DEFINITION_KEYS</code>.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<p>Usage:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="n">PredictionModel</span><span class="p">({</span><span class="s2">"target"</span><span class="p">:</span> <span class="s2">"imdb.rating"</span><span class="p">,</span> <span class="s2">"embedFields"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"plot"</span><span class="p">,</span> <span class="s2">"genres"</span><span class="p">]},</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">"imdb_rating"</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+                            <div id="PredictionModel.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">PredictionModel</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">definition</span><span class="p">:</span> <span class="nb">dict</span>, </span><span class="param"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'default'</span>, </span><span class="param"><span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'prediction'</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#PredictionModel.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="PredictionModel.document" class="classattr">
+                                <div class="attr variable">
+            <span class="name">document</span><span class="annotation">: dict</span>
+
+        
+    </div>
+    <a class="headerlink" href="#PredictionModel.document"></a>
+    
+            <div class="docstring"><p>The model as a <code>{"name", "type", "definition"}</code> dict (<code>SearchIndexModel.document</code>).</p>
+
+<p><code><a href="#create_prediction_model">create_prediction_model()</a></code> accepts this dict in place of the object.</p>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="create_prediction_model">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">create_prediction_model</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">collection</span>,</span><span class="param">	<span class="n">model</span><span class="p">:</span> <span class="n"><a href="#PredictionModel">PredictionModel</a></span> <span class="o">|</span> <span class="nb">dict</span>,</span><span class="param">	<span class="n">estimator</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">progress</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#create_prediction_model"></a>
+    
+            <div class="docstring"><p>Train and store a prediction model; the counterpart of <code>Collection.create_search_index</code>.</p>
+
+<p>Training runs synchronously in this process. If a model with this name already exists on
+the collection, it is rebuilt (as <code><a href="#update_prediction_model">update_prediction_model</a></code> would): as with a search index
+rebuild, the previous version stays stored and queryable until the new one is written.</p>
+
+<p>The record in <code>MODELS_COLLECTION</code> (<code>_id</code> <code>"&lt;collection&gt;.&lt;name&gt;"</code>) holds:</p>
+
+<ul>
+<li><code>collection</code>, <code>name</code>, <code>type</code> and <code>latestDefinition</code> (the definition of the latest
+build, with values BSON cannot store, such as estimator objects, as their <code>repr</code>).</li>
+<li><code>status</code>: <code>"BUILDING"</code> while a build runs, then <code>"READY"</code>, or <code>"FAILED"</code> with
+<code>message</code> set to the error (an interrupted build, e.g. <code>KeyboardInterrupt</code>, is marked
+<code>FAILED</code> too). Only a killed process (SIGKILL, out of memory, a lost node) leaves a
+record <code>BUILDING</code>; <code>buildStartedAt</code> records when the build started and
+<code><a href="#list_prediction_models">list_prediction_models()</a></code> flags such builds as <code>stale</code> after <code>STALE_BUILD</code>.</li>
+<li><code>queryable</code>: <code>False</code> while the first build runs; <code>True</code> once a version is stored.
+A failed rebuild keeps the previous version and its <code>queryable</code> value.</li>
+<li><code>version</code>: increments with each build started (taken atomically, so concurrent builds
+get distinct versions); <code>buildId</code>: unique id of the stored build.</li>
+<li>After a successful build: <code>task</code>, <code>classes</code> (empty for regression),
+<code>numTrainingDocuments</code>, <code>metrics</code> (<code>r2</code> / <code>mae</code>, or <code>accuracy</code> / <code>auroc</code>, plus
+<code>numTestDocuments</code>; empty when <code>testSize</code> is 0), <code>modelBytes</code>, <code>updatedAt</code> (UTC)
+and <code>model</code> (the pickled featurizer and estimator).</li>
+<li>Internal bookkeeping: <code>nextVersion</code> and <code>buildingId</code> (the build allowed to write).</li>
+</ul>
+
+<p>Only the latest build started may write its result. If a newer build started meanwhile, or
+the model was dropped, this build's result is discarded with a warning.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>collection</strong> (pymongo.collection.Collection):
+Collection holding the training documents; the model is registered on it.</li>
+<li><strong>model</strong> (PredictionModel or dict):
+The model, or its <code>{"name", "type", "definition"}</code> document (<code>name</code> defaults to
+<code>"default"</code>, <code>type</code> to <code>"prediction"</code>). See <code><a href="#PredictionModel">PredictionModel</a></code> for the
+definition keys.</li>
+<li><strong>estimator</strong> (sklearn estimator, optional):
+Overrides the definition's <code>estimator</code> with any sklearn estimator object.</li>
+<li><strong>progress</strong> (bool or None, default None):
+Show a progress bar for each training step: embedding the training part, fitting on it,
+embedding and scoring the holdout part, embedding all documents (mostly from the cache)
+and fitting the final model (only these last two when <code>testSize</code> is 0). Embedding steps
+count documents. <code>None</code> shows the bars on a terminal or in a notebook and hides them
+when stderr is redirected; <code>True</code> / <code>False</code> force them on or off.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>str</strong>: The model name.</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: If the definition is invalid (see <code><a href="#PredictionModel">PredictionModel</a></code>), there are fewer than 2
+training documents, the estimator name does not fit the task, the pickled model is over
+15 MB, or the record is over MongoDB's 16 MB document limit. The record is marked
+<code>FAILED</code> before any error from training is re-raised.</li>
+</ul>
+
+<h6 id="warns">Warns</h6>
+
+<ul>
+<li><strong>UserWarning</strong>: If the build was superseded by a newer one (or the model dropped) and was not stored.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<p>Usage:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="n">create_prediction_model</span><span class="p">(</span><span class="n">coll</span><span class="p">,</span> <span class="n">PredictionModel</span><span class="p">({</span><span class="s2">"target"</span><span class="p">:</span> <span class="s2">"room_type"</span><span class="p">},</span> <span class="s2">"room_type"</span><span class="p">))</span>
+<span class="n">create_prediction_model</span><span class="p">(</span><span class="n">coll</span><span class="p">,</span> <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"price"</span><span class="p">,</span> <span class="s2">"definition"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"target"</span><span class="p">:</span> <span class="s2">"price"</span><span class="p">}},</span>
+                        <span class="n">estimator</span><span class="o">=</span><span class="n">HistGradientBoostingRegressor</span><span class="p">())</span>
+</pre></div>
+</div>
+
+
+                </section>
+                <section id="update_prediction_model">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">update_prediction_model</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">collection</span>,</span><span class="param">	<span class="n">name</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">definition</span><span class="p">:</span> <span class="nb">dict</span>,</span><span class="param">	<span class="n">estimator</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">progress</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#update_prediction_model"></a>
+    
+            <div class="docstring"><p>Retrain an existing model with a new definition (<code>Collection.update_search_index</code>).</p>
+
+<p>The previous version stays queryable while the new one trains, as described in
+<code><a href="#create_prediction_model">create_prediction_model()</a></code>.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>collection</strong> (pymongo.collection.Collection):
+Collection the model is registered on.</li>
+<li><strong>name</strong> (str):
+Name of the existing model.</li>
+<li><strong>definition</strong> (dict):
+The new definition; it replaces the old one entirely (see <code><a href="#PredictionModel">PredictionModel</a></code>).</li>
+<li><strong>estimator</strong> (sklearn estimator, optional):
+Overrides the definition's <code>estimator</code>.</li>
+<li><strong>progress</strong> (bool or None, default None):
+Progress bars for the training steps, as in <code><a href="#create_prediction_model">create_prediction_model()</a></code>.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>str</strong>: The model name.</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: If no model <code>name</code> exists on the collection, or for any reason
+<code><a href="#create_prediction_model">create_prediction_model()</a></code> raises.</li>
+</ul>
+</div>
+
+
+                </section>
+                <section id="list_prediction_models">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">list_prediction_models</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">collection</span>, </span><span class="param"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#list_prediction_models"></a>
+    
+            <div class="docstring"><p>Status, definition and metrics of the models on a collection (<code>list_search_indexes</code>).</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>collection</strong> (pymongo.collection.Collection):
+Collection the models are registered on.</li>
+<li><strong>name</strong> (str, optional):
+Return only this model (an empty list if it does not exist).</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>list of dict</strong>: One record per model, as described in <code><a href="#create_prediction_model">create_prediction_model()</a></code>, without the
+pickled <code>model</code> and the internal <code>nextVersion</code> / <code>buildingId</code> fields. A record
+still <code>BUILDING</code> after <code>STALE_BUILD</code> gets <code>stale: True</code>: its build was most likely
+killed (the process cannot record that); create the model again.</li>
+</ul>
+</div>
+
+
+                </section>
+                <section id="drop_prediction_model">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">drop_prediction_model</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">collection</span>, </span><span class="param"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#drop_prediction_model"></a>
+    
+            <div class="docstring"><p>Delete a stored model and its cached copy (<code>Collection.drop_search_index</code>).</p>
+
+<p>Dropping a model that does not exist is a no-op. A build still running for it is not
+stored when it finishes.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>collection</strong> (pymongo.collection.Collection):
+Collection the model is registered on.</li>
+<li><strong>name</strong> (str):
+Model name.</li>
+</ul>
+</div>
+
+
+                </section>
+                <section id="aggregate">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">aggregate</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">collection</span>, </span><span class="param"><span class="n">pipeline</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>, </span><span class="param"><span class="n">_aggregate</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="o">**</span><span class="n">kwargs</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#aggregate"></a>
+    
+            <div class="docstring"><p><code>collection.aggregate</code> that understands a leading <code>$predict</code> stage.</p>
+
+<p>The stage is <code>{"$predict": {"model": &lt;name&gt;, "filter": &lt;query&gt;, "limit": &lt;n&gt;,
+"batchSize": &lt;n&gt;}}</code>:</p>
+
+<ul>
+<li><code>model</code> (required): name of a stored prediction model of <code>collection</code> with a
+queryable version (see <code>pymongopredict.predictions_api.load_prediction_model()</code>).</li>
+<li><code>filter</code>: any query selecting the documents to predict (default: all).</li>
+<li><code>limit</code>: positive integer, the most documents to predict (default: every match).</li>
+<li><code>batchSize</code>: positive integer, how many documents are featurized and uploaded at a
+time (default 512).</li>
+</ul>
+
+<p>Later stages read the predictions with <code>{"$meta": "prediction"}</code>,
+<code>{"$meta": "predictScore"}</code> and <code>{"$meta": "predictProbabilities"}</code>; see the module
+docstring for how the pipeline runs. Pipelines without <code>$predict</code> go straight to the
+server unchanged.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>collection</strong> (pymongo.collection.Collection):
+Source collection.</li>
+<li><strong>pipeline</strong> (list of dict):
+Aggregation pipeline; <code>$predict</code>, if present, must be its first stage and nowhere else.</li>
+<li><strong>_aggregate</strong> (callable, optional):
+Internal: <code>(collection, pipeline, **kwargs) -&gt; cursor</code> that runs a plain pipeline;
+<code><a href="#enable">enable()</a></code> passes the unpatched <code>Collection.aggregate</code> here.</li>
+<li><p>**<strong>kwargs</strong>: <code><a href="#aggregate">aggregate</a></code> options, handled as on the server where possible:</p>
+
+<ul>
+<li><code>session</code>: used for every operation (the query, creating, filling and dropping the
+temporary collection, the server pipeline). A session in a transaction, or a snapshot
+session, is refused.</li>
+<li><code>hint</code>: applies only to the query on the source collection.</li>
+<li><code>collation</code>: applies to the source query and to the user's stages. The <code>_id</code>
+join then runs separately with the source's default collation (into a second
+temporary collection), so a case-insensitive collation cannot join <code>"a"</code> to
+<code>"A"</code>. Without it, the temporary collection gets the source's default collation,
+so string matching and sorting behave the same as on the source.</li>
+<li><code>comment</code>, <code>maxTimeMS</code>: passed to the source query and to the server pipeline
+(<code>comment</code> is dropped from the query on backends that do not support it).</li>
+<li><code>let</code>: passed to the server pipeline, and to the source query when the stage has
+a <code>filter</code> (for <code>$$</code> variables in its <code>$expr</code>).</li>
+<li>anything else: passed to the server pipeline.</li>
+</ul></li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>PredictCursor or cursor</strong>: A <code><a href="#PredictCursor">PredictCursor</a></code> for a <code>$predict</code> pipeline; otherwise whatever
+<code>collection.aggregate</code> returns.</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: If <code>$predict</code> is not only the first stage, the stage has other fields beside it,
+<code>model</code> is missing, the spec has unknown keys, <code>limit</code> / <code>batchSize</code> are not
+positive integers, the model does not exist or is not queryable, the session is in a
+transaction or is a snapshot session, a document contains the reserved
+<code>META_FIELD</code>, a view or time-series source returns an <code>_id</code> twice, or <code>$meta</code>
+is used where it is not available (<code>$lookup</code> / <code>$unionWith</code> sub-pipelines,
+<code>$merge</code>'s <code>let</code> / <code>whenMatched</code>).</li>
+<li><strong>RuntimeError</strong>: If the temporary collection lost rows while the call ran (dropped by
+<code><a href="#cleanup_temporary_collections">cleanup_temporary_collections()</a></code> with a short <code>older_than</code>).</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<p>Usage:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="n">aggregate</span><span class="p">(</span><span class="n">coll</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">"$predict"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"model"</span><span class="p">:</span> <span class="s2">"imdb_rating"</span><span class="p">,</span> <span class="s2">"filter"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"year"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"$gte"</span><span class="p">:</span> <span class="mi">2010</span><span class="p">}}}},</span>
+    <span class="p">{</span><span class="s2">"$sort"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"p"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"$meta"</span><span class="p">:</span> <span class="s2">"prediction"</span><span class="p">}}},</span>   <span class="c1"># a $meta sort key sorts descending</span>
+    <span class="p">{</span><span class="s2">"$limit"</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+<span class="p">],</span> <span class="n">maxTimeMS</span><span class="o">=</span><span class="mi">60_000</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+</pre></div>
+</div>
+
+
+                </section>
+                <section id="enable">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">enable</span><span class="signature pdoc-code condensed">(<span class="param"><span class="o">*</span><span class="n">classes</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#enable"></a>
+    
+            <div class="docstring"><p>Let <code>Collection.aggregate</code> run <code>$predict</code> and add the model helpers as methods.</p>
+
+<p>After this, <code>coll.aggregate(pipeline, ...)</code> calls <code><a href="#aggregate">aggregate()</a></code> (pymongo's positional
+<code>session</code>, <code>let</code> and <code>comment</code> arguments are still accepted), and
+<code>coll.create_prediction_model</code>, <code><a href="#update_prediction_model">update_prediction_model</a></code>, <code><a href="#list_prediction_models">list_prediction_models</a></code>
+and <code><a href="#drop_prediction_model">drop_prediction_model</a></code> call the functions of the same name with <code>coll</code> first.
+Calling it again for a class already patched does nothing.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li>*<strong>classes</strong> (type):
+Collection classes to patch (e.g. <code>mongomock.Collection</code>). Default:
+<code>pymongo.collection.Collection</code>.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<p>Usage:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="n">predictions_api</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<span class="n">coll</span><span class="o">.</span><span class="n">create_prediction_model</span><span class="p">(</span><span class="n">PredictionModel</span><span class="p">({</span><span class="s2">"target"</span><span class="p">:</span> <span class="s2">"room_type"</span><span class="p">},</span> <span class="s2">"room_type"</span><span class="p">))</span>
+<span class="n">coll</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([{</span><span class="s2">"$predict"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"model"</span><span class="p">:</span> <span class="s2">"room_type"</span><span class="p">}}])</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="n">predictions_api</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
+</pre></div>
+</div>
+
+
+                </section>
+                <section id="disable">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">disable</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#disable"></a>
+    
+            <div class="docstring"><p>Undo <code><a href="#enable">enable()</a></code> for every patched class, restoring their original attributes.</p>
+
+<p>Attributes a class inherited before <code><a href="#enable">enable()</a></code> are deleted from it again, so the
+inherited ones apply. Does nothing if nothing is patched.</p>
+</div>
+
+
+                </section>
+                <section id="PredictCursor">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">PredictCursor</span>:
+
+        
+    </div>
+    <a class="headerlink" href="#PredictCursor"></a>
+    
+            <div class="docstring"><p>The materialised result of a <code>$predict</code> pipeline.</p>
+
+<p>Behaves like a pymongo <code>CommandCursor</code> over a list: iterate it, or call <code><a href="#PredictCursor.next">next()</a></code>,
+<code><a href="#PredictCursor.try_next">try_next()</a></code>, <code><a href="#PredictCursor.to_list">to_list()</a></code>, <code><a href="#PredictCursor.close">close()</a></code>, check <code><a href="#PredictCursor.alive">alive</a></code>, or use it as a context manager.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>docs</strong> (list of dict):
+The pipeline output.</li>
+<li><strong>stats</strong> (dict, optional):
+Timing statistics (default: empty).</li>
+</ul>
+
+<h6 id="attributes">Attributes</h6>
+
+<ul>
+<li><strong>stats</strong> (dict):
+<code>nDocuments</code>: number of documents predicted (after removing duplicates);
+<code>fetchSeconds</code>: seconds spent fetching them; <code>predictSeconds</code>: featurizing and
+predicting on the client; <code>uploadSeconds</code>: uploading the predictions;
+<code>serverSeconds</code>: running the rest of the pipeline on the server.</li>
+</ul>
+</div>
+
+
+                            <div id="PredictCursor.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">PredictCursor</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">docs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>, </span><span class="param"><span class="n">stats</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#PredictCursor.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="PredictCursor.next" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">next</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#PredictCursor.next"></a>
+    
+            <div class="docstring"><p>The next document; raises <code>StopIteration</code> when none are left.</p>
+</div>
+
+
+                            </div>
+                            <div id="PredictCursor.try_next" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">try_next</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#PredictCursor.try_next"></a>
+    
+            <div class="docstring"><p>The next document, or <code>None</code> when none are left.</p>
+</div>
+
+
+                            </div>
+                            <div id="PredictCursor.alive" class="classattr">
+                                <div class="attr variable">
+            <span class="name">alive</span><span class="annotation">: bool</span>
+
+        
+    </div>
+    <a class="headerlink" href="#PredictCursor.alive"></a>
+    
+            <div class="docstring"><p>Whether documents are left (like pymongo's cursors).</p>
+</div>
+
+
+                            </div>
+                            <div id="PredictCursor.to_list" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">to_list</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#PredictCursor.to_list"></a>
+    
+            <div class="docstring"><p>The remaining documents as a list (like pymongo's <code>Cursor.to_list</code>).</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>length</strong> (int, optional):
+Return at most this many documents (the rest stay in the cursor). Default: all.</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: If <code>length</code> is less than 1.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="PredictCursor.close" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">close</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#PredictCursor.close"></a>
+    
+            <div class="docstring"><p>Discard the remaining documents.</p>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="cleanup_temporary_collections">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">cleanup_temporary_collections</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">database</span>,</span><span class="param">	<span class="n">older_than</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#cleanup_temporary_collections"></a>
+    
+            <div class="docstring"><p>Drop the temporary collections that <code>$predict</code> calls left behind (a killed process,
+or a user without the <code>dropCollection</code> privilege). Returns the dropped names.</p>
+
+<p>Collections created less than <code>older_than</code> ago may belong to a running call and are kept;
+names without a creation time (older versions) count as old. A call whose collection is
+dropped while it runs raises <code>RuntimeError</code> rather than returning partial results, so keep
+<code>older_than</code> above the longest <code>$predict</code> call.</p>
+</div>
+
+
+                </section>
+    </main>
+<script>
+    function escapeHTML(html) {
+        return document.createElement('div').appendChild(document.createTextNode(html)).parentNode.innerHTML;
+    }
+
+    const originalContent = document.querySelector("main.pdoc");
+    let currentContent = originalContent;
+
+    function setContent(innerHTML) {
+        let elem;
+        if (innerHTML) {
+            elem = document.createElement("main");
+            elem.classList.add("pdoc");
+            elem.innerHTML = innerHTML;
+        } else {
+            elem = originalContent;
+        }
+        if (currentContent !== elem) {
+            currentContent.replaceWith(elem);
+            currentContent = elem;
+        }
+    }
+
+    function getSearchTerm() {
+        return (new URL(window.location)).searchParams.get("search");
+    }
+
+    const searchBox = document.querySelector(".pdoc input[type=search]");
+    searchBox.addEventListener("input", function () {
+        let url = new URL(window.location);
+        if (searchBox.value.trim()) {
+            url.hash = "";
+            url.searchParams.set("search", searchBox.value);
+        } else {
+            url.searchParams.delete("search");
+        }
+        history.replaceState("", "", url.toString());
+        onInput();
+    });
+    window.addEventListener("popstate", onInput);
+
+
+    let search, searchErr;
+
+    async function initialize() {
+        try {
+            search = await new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.type = "text/javascript";
+                script.async = true;
+                script.onload = () => resolve(window.pdocSearch);
+                script.onerror = (e) => reject(e);
+                script.src = "../search.js";
+                document.getElementsByTagName("head")[0].appendChild(script);
+            });
+        } catch (e) {
+            console.error("Cannot fetch pdoc search index");
+            searchErr = "Cannot fetch search index.";
+        }
+        onInput();
+
+        document.querySelector("nav.pdoc").addEventListener("click", e => {
+            if (e.target.hash) {
+                searchBox.value = "";
+                searchBox.dispatchEvent(new Event("input"));
+            }
+        });
+    }
+
+    function onInput() {
+        setContent((() => {
+            const term = getSearchTerm();
+            if (!term) {
+                return null
+            }
+            if (searchErr) {
+                return `<h3>Error: ${searchErr}</h3>`
+            }
+            if (!search) {
+                return "<h3>Searching...</h3>"
+            }
+
+            window.scrollTo({top: 0, left: 0, behavior: 'auto'});
+
+            const results = search(term);
+
+            let html;
+            if (results.length === 0) {
+                html = `No search results for '${escapeHTML(term)}'.`
+            } else {
+                html = `<h4>${results.length} search result${results.length > 1 ? "s" : ""} for '${escapeHTML(term)}'.</h4>`;
+            }
+            for (let result of results.slice(0, 10)) {
+                let doc = result.doc;
+                let url = `../${doc.modulename.replaceAll(".", "/")}.html`;
+                if (doc.qualname) {
+                    url += `#${doc.qualname}`;
+                }
+
+                let heading;
+                switch (result.doc.kind) {
+                    case "function":
+                        if (doc.fullname.endsWith(".__init__")) {
+                            heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
+                        } else {
+                            heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span>${doc.signature}`;
+                        }
+                        break;
+                    case "class":
+                        heading = `<span class="def">class</span> <span class="name">${doc.fullname}</span>`;
+                        if (doc.bases)
+                            heading += `<wbr>(<span class="base">${doc.bases}</span>)`;
+                        heading += `:`;
+                        break;
+                    case "variable":
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        if (doc.annotation)
+                            heading += `<span class="annotation">${doc.annotation}</span>`;
+                        if (doc.default_value)
+                            heading += `<span class="default_value"> = ${doc.default_value}</span>`;
+                        break;
+                    default:
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        break;
+                }
+                html += `
+                        <section class="search-result">
+                        <a href="${url}" class="attr ${doc.kind}">${heading}</a>
+                        <div class="docstring">${doc.doc}</div>
+                        </section>
+                    `;
+
+            }
+            return html;
+        })());
+    }
+
+    if (getSearchTerm()) {
+        initialize();
+        searchBox.value = getSearchTerm();
+        onInput();
+    } else {
+        searchBox.addEventListener("focus", initialize, {once: true});
+    }
+
+    searchBox.addEventListener("keydown", e => {
+        if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
+            let focused = currentContent.querySelector(".search-result.focused");
+            if (!focused) {
+                currentContent.querySelector(".search-result").classList.add("focused");
+            } else if (
+                e.key === "ArrowDown"
+                && focused.nextElementSibling
+                && focused.nextElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.nextElementSibling.classList.add("focused");
+                focused.nextElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "ArrowUp"
+                && focused.previousElementSibling
+                && focused.previousElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.previousElementSibling.classList.add("focused");
+                focused.previousElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "Enter"
+            ) {
+                focused.querySelector("a").click();
+            }
+        }
+    });
+</script><script>
+document.querySelectorAll('.pdoc .pdoc-code').forEach(function (box) {
+  if (box.querySelector('.mp-copy')) return;
+  var b = document.createElement('button');
+  b.className = 'mp-copy'; b.type = 'button'; b.textContent = 'Copy';
+  b.addEventListener('click', function () {
+    var text = box.querySelector('pre').innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      b.textContent = 'Copied'; b.classList.add('done');
+      setTimeout(function () { b.textContent = 'Copy'; b.classList.remove('done'); }, 1400);
+    });
+  });
+  box.appendChild(b);
+});
+</script>
+</body>
+</html>

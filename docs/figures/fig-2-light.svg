@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" viewBox="0 0 820 250" role="img" aria-labelledby="f2t"><style>
+text { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #14140f; }
+.muted { fill: #6b6b64; } .sub { fill: #3d3d38; }
+.box { fill: #f7f7f5; stroke: #d8d8d2; } .box2 { fill: #ecece7; stroke: #d8d8d2; }
+.known { fill: #e3edfa; stroke: #2a78d6; } .pred { fill: #fcebe3; stroke: #eb6834; }
+.known-t { fill: #2a78d6; font-weight: 600; } .pred-t { fill: #eb6834; font-weight: 600; }
+.line { stroke: #6b6b64; fill: none; } .arrowhead { fill: #6b6b64; }
+.bar { fill: #2a78d6; } .bar-base { fill: #d8d8d2; }
+</style>
+  <rect class="figbg" x="0" y="0" width="820" height="250" rx="10" fill="#ffffff"/>
+  <title id="f2t">A movie is turned into an embedding; a prediction model learned from rated movies turns it into a predicted rating.</title>
+  <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker></defs>
+  <rect x="10" y="50" width="190" height="150" rx="8" class="box"/>
+  <text x="24" y="74" font-size="14" font-weight="600">A movie</text>
+  <text x="24" y="100" font-size="12.5" class="sub">year: 2010</text>
+  <text x="24" y="120" font-size="12.5" class="sub">runtime: 148</text>
+  <text x="24" y="140" font-size="12.5" class="sub">rated: "PG-13"</text>
+  <text x="24" y="160" font-size="12.5" class="sub">plot: "A thief who..."</text>
+  <text x="24" y="180" font-size="12.5" class="sub">cast: [DiCaprio, ...]</text>
+  <line x1="200" y1="125" x2="262" y2="125" class="line" stroke-width="2" marker-end="url(#ah2)"/>
+  <rect x="266" y="92" width="214" height="66" rx="8" class="box2"/>
+  <text x="280" y="116" font-size="13.5" font-weight="600">Embedding of the movie</text>
+  <text x="280" y="138" font-size="12.5" class="sub">[0.12, -0.80, 0.33, ...]</text>
+  <line x1="480" y1="125" x2="532" y2="125" class="line" stroke-width="2" marker-end="url(#ah2)"/>
+  <rect x="536" y="92" width="130" height="66" rx="8" class="known"/>
+  <text x="601" y="120" text-anchor="middle" font-size="13.5" font-weight="600">Prediction</text>
+  <text x="601" y="140" text-anchor="middle" font-size="13.5" font-weight="600">model</text>
+  <line x1="666" y1="125" x2="700" y2="125" class="line" stroke-width="2" marker-end="url(#ah2)"/>
+  <rect x="704" y="96" width="108" height="58" rx="8" class="pred"/>
+  <text x="758" y="120" text-anchor="middle" font-size="12.5" class="pred-t">predicted</text>
+  <text x="758" y="140" text-anchor="middle" font-size="12.5" class="pred-t">rating 7.5</text>
+  <text x="601" y="30" text-anchor="middle" font-size="12" class="muted">learned from movies</text>
+  <text x="601" y="46" text-anchor="middle" font-size="12" class="muted">with a known rating</text>
+  <line x1="601" y1="54" x2="601" y2="88" class="line" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
+</svg>

@@ -1,0 +1,77 @@
+[project]
+name = "pymongopredict"
+version = "0.5.0"
+description = "Predictive models on MongoDB collections: train/test splits, JSON document embeddings (voyage-4-nano by default), and sklearn / sktime estimators behind fit/predict/score."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Chandan Singh" }]
+requires-python = ">=3.10"
+keywords = ["mongodb", "scikit-learn", "sktime", "embeddings", "voyage"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scikit-learn>=1.4",
+    "pymongo>=4.6",
+    "sentence-transformers>=5.0",
+    "transformers>=4.56,<5",  # voyage-4-nano remote code does not load with transformers 5.x
+    "orjson>=3.12.0",
+    "openpyxl>=3.1.5",
+    "tqdm>=4.66",
+    # the default estimator of prediction models; the CPU build (no CUDA): the standard Linux /
+    # Windows wheel calls the GPU driver during CPU fits, which serialises processes on GPU machines
+    "xgboost-cpu>=2.1; sys_platform != 'darwin'",
+    "xgboost>=2.1; sys_platform == 'darwin'",  # (no xgboost-cpu wheels for macOS; no CUDA there)
+    "voyageai>=0.3",  # Voyage API embedding models
+]
+
+[project.optional-dependencies]
+voyage = []  # (voyageai is now a core dependency; kept so [voyage] installs still work)
+sktime = ["sktime>=0.30", "statsmodels>=0.14"]
+demos = ["requests>=2.31", "sktime>=0.30", "statsmodels>=0.14"]
+
+[project.urls]
+Homepage = "https://github.com/voyage-ai/mongo-predict"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "mongomock>=4.1",
+    "sktime>=0.30",
+    "statsmodels>=0.14",
+    "requests>=2.31",
+    "ruff>=0.5",
+    "pytest-xdist>=3.6",
+    "hypothesis>=6.100",
+    "pdoc>=15",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pymongopredict"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B"]
+ignore = ["E731", "B008", "B023", "B905"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pymongopredict"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/*" = ["E501"]
+# the module docstrings of the package and the two APIs hold the docs pages (tables, long code lines)
+"pymongopredict/__init__.py" = ["E501"]
+"pymongopredict/*/__init__.py" = ["E501"]

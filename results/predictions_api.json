@@ -1,0 +1,606 @@
+{
+ "n": 5000,
+ "tasks": [
+  {
+   "task": "airbnb_room_type",
+   "ns": "sample_airbnb.listingsAndReviews",
+   "kind": "clf",
+   "n_train": 5000,
+   "metrics": {
+    "accuracy": 0.858,
+    "auroc": 0.9095141299394811,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 9031,
+   "t_create": 9.119877594523132,
+   "n_predicted": 5000,
+   "t_project": 4.67848461959511,
+   "stats": {
+    "fetchSeconds": 0.4699915451928973,
+    "predictSeconds": 4.0106612499803305,
+    "uploadSeconds": 0.05075783468782902,
+    "serverSeconds": 0.1453561643138528,
+    "nDocuments": 5000
+   },
+   "t_baseline": 4.284215140156448,
+   "t_baseline_fetch": 0.40156188420951366,
+   "t_baseline_predict": 3.8826532559469342,
+   "agreement": 1.0,
+   "max_abs_diff": 0.0,
+   "t_group": 4.923608114942908,
+   "t_merge": 4.688407781533897,
+   "merge_stats": {
+    "fetchSeconds": 0.4407899873331189,
+    "predictSeconds": 3.959385931491852,
+    "uploadSeconds": 0.047091144137084484,
+    "serverSeconds": 0.23907335009425879,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "weather_air_temperature",
+   "ns": "sample_weatherdata.data",
+   "kind": "reg",
+   "n_train": 5000,
+   "metrics": {
+    "r2": 0.5984537034058353,
+    "mae": 4.8069857841491705,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 46830,
+   "t_create": 2.0689249243587255,
+   "n_predicted": 5000,
+   "t_project": 1.2994419308379292,
+   "stats": {
+    "fetchSeconds": 0.19745262619107962,
+    "predictSeconds": 0.9195890463888645,
+    "uploadSeconds": 0.046489871107041836,
+    "serverSeconds": 0.13406812213361263,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.9756317157298326,
+   "t_baseline_fetch": 0.21482978854328394,
+   "t_baseline_predict": 0.7608019271865487,
+   "agreement": 1.0,
+   "max_abs_diff": 1.1444091796875e-05,
+   "t_group": 1.2609140574932098,
+   "t_merge": 1.5021515237167478,
+   "merge_stats": {
+    "fetchSeconds": 0.19520402699708939,
+    "predictSeconds": 1.0216985158622265,
+    "uploadSeconds": 0.048438324593007565,
+    "serverSeconds": 0.2350708181038499,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "mflix_imdb_rating",
+   "ns": "sample_mflix.movies",
+   "kind": "reg",
+   "n_train": 5000,
+   "metrics": {
+    "r2": 0.37659334516210385,
+    "mae": 0.48018744773864747,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 5106,
+   "t_create": 2.3333953665569425,
+   "n_predicted": 5000,
+   "t_project": 1.2102095037698746,
+   "stats": {
+    "fetchSeconds": 0.05494983494281769,
+    "predictSeconds": 0.981757016852498,
+    "uploadSeconds": 0.04269819147884846,
+    "serverSeconds": 0.12947083916515112,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.947043533436954,
+   "t_baseline_fetch": 0.049294013530015945,
+   "t_baseline_predict": 0.8977495199069381,
+   "agreement": 1.0,
+   "max_abs_diff": 9.5367431640625e-07,
+   "t_group": 1.2946885954588652,
+   "t_merge": 1.3211144460365176,
+   "merge_stats": {
+    "fetchSeconds": 0.10938290879130363,
+    "predictSeconds": 0.9460025783628225,
+    "uploadSeconds": 0.03993633482605219,
+    "serverSeconds": 0.22435611579567194,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "analytics_transaction_count",
+   "ns": "sample_analytics.transactions",
+   "kind": "reg",
+   "n_train": 1746,
+   "metrics": {
+    "r2": 0.3411143078235782,
+    "mae": 20.690044540677754,
+    "numTestDocuments": 350
+   },
+   "model_bytes": 3601,
+   "t_create": 1.7985323257744312,
+   "n_predicted": 1746,
+   "t_project": 0.9455875921994448,
+   "stats": {
+    "fetchSeconds": 0.10873701889067888,
+    "predictSeconds": 0.7619473272934556,
+    "uploadSeconds": 0.026056354865431786,
+    "serverSeconds": 0.04748857673257589,
+    "nDocuments": 1746
+   },
+   "t_baseline": 0.8299010088667274,
+   "t_baseline_fetch": 0.08132030256092548,
+   "t_baseline_predict": 0.7485807063058019,
+   "agreement": 1.0,
+   "max_abs_diff": 0.0,
+   "t_group": 1.0006666416302323,
+   "t_merge": 0.9825368067249656,
+   "merge_stats": {
+    "fetchSeconds": 0.11058491561561823,
+    "predictSeconds": 0.7571993684396148,
+    "uploadSeconds": 0.025989132933318615,
+    "serverSeconds": 0.08700530603528023,
+    "nDocuments": 1746
+   },
+   "n_merged": 1746
+  },
+  {
+   "task": "geospatial_wreck_type",
+   "ns": "sample_geospatial.shipwrecks",
+   "kind": "clf",
+   "n_train": 5000,
+   "metrics": {
+    "accuracy": 0.93,
+    "auroc": 0.9661486121151422,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 55028,
+   "t_create": 0.7093167277052999,
+   "n_predicted": 5000,
+   "t_project": 0.5289168981835246,
+   "stats": {
+    "fetchSeconds": 0.016887446865439415,
+    "predictSeconds": 0.33387929294258356,
+    "uploadSeconds": 0.04394828714430332,
+    "serverSeconds": 0.13278285320848227,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.23558810353279114,
+   "t_baseline_fetch": 0.02025147806853056,
+   "t_baseline_predict": 0.21533662546426058,
+   "agreement": 1.0,
+   "max_abs_diff": 0.0,
+   "t_group": 0.482271833345294,
+   "t_merge": 0.657819889485836,
+   "merge_stats": {
+    "fetchSeconds": 0.01963208895176649,
+    "predictSeconds": 0.3515315977856517,
+    "uploadSeconds": 0.050165015272796154,
+    "serverSeconds": 0.23448726534843445,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "supplies_purchase_method",
+   "ns": "sample_supplies.sales",
+   "kind": "clf",
+   "n_train": 5000,
+   "metrics": {
+    "accuracy": 0.556,
+    "auroc": 0.48836776782604036,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 6723,
+   "t_create": 1.3941621966660023,
+   "n_predicted": 5000,
+   "t_project": 0.9023970887064934,
+   "stats": {
+    "fetchSeconds": 0.1495832446962595,
+    "predictSeconds": 0.5787341529503465,
+    "uploadSeconds": 0.04492961335927248,
+    "serverSeconds": 0.12783053517341614,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.6368556125089526,
+   "t_baseline_fetch": 0.149813967756927,
+   "t_baseline_predict": 0.4870416447520256,
+   "agreement": 1.0,
+   "max_abs_diff": 0.0,
+   "t_group": 0.8955772686749697,
+   "t_merge": 1.02577752340585,
+   "merge_stats": {
+    "fetchSeconds": 0.1426990358158946,
+    "predictSeconds": 0.5958635006099939,
+    "uploadSeconds": 0.049546005204319954,
+    "serverSeconds": 0.23585311137139797,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "companies_category",
+   "ns": "sample_training.companies",
+   "kind": "clf",
+   "n_train": 5000,
+   "metrics": {
+    "accuracy": 0.331,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 68339,
+   "t_create": 5.790778425522149,
+   "n_predicted": 5000,
+   "t_project": 2.701575300656259,
+   "stats": {
+    "fetchSeconds": 0.3543786173686385,
+    "predictSeconds": 2.1142071317881346,
+    "uploadSeconds": 0.093932188116014,
+    "serverSeconds": 0.1371053783223033,
+    "nDocuments": 5000
+   },
+   "t_baseline": 2.102941825054586,
+   "t_baseline_fetch": 0.325963519513607,
+   "t_baseline_predict": 1.776978305540979,
+   "agreement": 1.0,
+   "max_abs_diff": 0.0,
+   "t_group": 2.8646357096731663,
+   "t_merge": 3.0300010479986668,
+   "merge_stats": {
+    "fetchSeconds": 0.6196311060339212,
+    "predictSeconds": 1.9817219926044345,
+    "uploadSeconds": 0.08826747443526983,
+    "serverSeconds": 0.33772729337215424,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "grades_exam_score",
+   "ns": "sample_training.grades",
+   "kind": "reg",
+   "n_train": 5000,
+   "metrics": {
+    "r2": -0.0028346808405756985,
+    "mae": 24.637882242864293,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 3709,
+   "t_create": 0.5436237277463078,
+   "n_predicted": 5000,
+   "t_project": 0.3594119297340512,
+   "stats": {
+    "fetchSeconds": 0.01735724788159132,
+    "predictSeconds": 0.17619853932410479,
+    "uploadSeconds": 0.040922511368989944,
+    "serverSeconds": 0.1236252086237073,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.15732397977262735,
+   "t_baseline_fetch": 0.02215462364256382,
+   "t_baseline_predict": 0.13516935613006353,
+   "agreement": 1.0,
+   "max_abs_diff": 3.814697265625e-06,
+   "t_group": 0.4397072233259678,
+   "t_merge": 0.4475083015859127,
+   "merge_stats": {
+    "fetchSeconds": 0.01981988549232483,
+    "predictSeconds": 0.16781297512352467,
+    "uploadSeconds": 0.04011315293610096,
+    "serverSeconds": 0.21823048871010542,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "inspections_result",
+   "ns": "sample_training.inspections",
+   "kind": "clf",
+   "n_train": 5000,
+   "metrics": {
+    "accuracy": 0.647,
+    "auroc": 0.826739628970077,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 29250,
+   "t_create": 0.8437042515724897,
+   "n_predicted": 5000,
+   "t_project": 0.5550680113956332,
+   "stats": {
+    "fetchSeconds": 0.06869159080088139,
+    "predictSeconds": 0.2751995902508497,
+    "uploadSeconds": 0.045034315437078476,
+    "serverSeconds": 0.16461726929992437,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.19465524144470692,
+   "t_baseline_fetch": 0.018285628408193588,
+   "t_baseline_predict": 0.17636961303651333,
+   "agreement": 1.0,
+   "max_abs_diff": 0.0,
+   "t_group": 0.4780654041096568,
+   "t_merge": 0.6253481265157461,
+   "merge_stats": {
+    "fetchSeconds": 0.019445687532424927,
+    "predictSeconds": 0.32701406721025705,
+    "uploadSeconds": 0.04597888048738241,
+    "serverSeconds": 0.23083118721842766,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "routes_codeshare",
+   "ns": "sample_training.routes",
+   "kind": "clf",
+   "n_train": 5000,
+   "metrics": {
+    "accuracy": 0.962,
+    "auroc": 0.9893833373547964,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 67981,
+   "t_create": 0.6356293503195047,
+   "n_predicted": 5000,
+   "t_project": 0.4445594446733594,
+   "stats": {
+    "fetchSeconds": 0.01811982784420252,
+    "predictSeconds": 0.24918152950704098,
+    "uploadSeconds": 0.044163262471556664,
+    "serverSeconds": 0.13132990151643753,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.1881646467372775,
+   "t_baseline_fetch": 0.01630279142409563,
+   "t_baseline_predict": 0.17186185531318188,
+   "agreement": 1.0,
+   "max_abs_diff": 0.0,
+   "t_group": 0.48732815496623516,
+   "t_merge": 0.5076461173593998,
+   "merge_stats": {
+    "fetchSeconds": 0.01603666879236698,
+    "predictSeconds": 0.23194223083555698,
+    "uploadSeconds": 0.039789329282939434,
+    "serverSeconds": 0.21830161474645138,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "stories_media",
+   "ns": "sample_training.stories",
+   "kind": "clf",
+   "n_train": 5000,
+   "metrics": {
+    "accuracy": 0.827,
+    "auroc": 0.8793006665064186,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 8468,
+   "t_create": 1.526125155389309,
+   "n_predicted": 5000,
+   "t_project": 0.8283194834366441,
+   "stats": {
+    "fetchSeconds": 0.044427535496652126,
+    "predictSeconds": 0.6059917584061623,
+    "uploadSeconds": 0.04235170129686594,
+    "serverSeconds": 0.13401042204350233,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.6094438163563609,
+   "t_baseline_fetch": 0.07718419563025236,
+   "t_baseline_predict": 0.5322596207261086,
+   "agreement": 1.0,
+   "max_abs_diff": 0.0,
+   "t_group": 0.9688637219369411,
+   "t_merge": 0.9890195000916719,
+   "merge_stats": {
+    "fetchSeconds": 0.04312259238213301,
+    "predictSeconds": 0.6814348669722676,
+    "uploadSeconds": 0.04298803862184286,
+    "serverSeconds": 0.21972261369228363,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "trips_usertype",
+   "ns": "sample_training.trips",
+   "kind": "clf",
+   "n_train": 5000,
+   "metrics": {
+    "accuracy": 0.998,
+    "auroc": 1.0,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 5743,
+   "t_create": 0.7925776764750481,
+   "n_predicted": 5000,
+   "t_project": 0.6506778076291084,
+   "stats": {
+    "fetchSeconds": 0.024552302435040474,
+    "predictSeconds": 0.4064939897507429,
+    "uploadSeconds": 0.043250564485788345,
+    "serverSeconds": 0.1747645204886794,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.3352154344320297,
+   "t_baseline_fetch": 0.026565581560134888,
+   "t_baseline_predict": 0.30864985287189484,
+   "agreement": 1.0,
+   "max_abs_diff": 0.0,
+   "t_group": 0.5928778722882271,
+   "t_merge": 0.864187266677618,
+   "merge_stats": {
+    "fetchSeconds": 0.10022253170609474,
+    "predictSeconds": 0.5030960850417614,
+    "uploadSeconds": 0.04603981412947178,
+    "serverSeconds": 0.2131611779332161,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "tweets_user_lang",
+   "ns": "sample_training.tweets",
+   "kind": "clf",
+   "n_train": 5000,
+   "metrics": {
+    "accuracy": 0.905,
+    "auroc": 0.9330531872415637,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 32932,
+   "t_create": 2.1717116199433804,
+   "n_predicted": 5000,
+   "t_project": 1.2088166726753116,
+   "stats": {
+    "fetchSeconds": 0.08747786749154329,
+    "predictSeconds": 0.9440649831667542,
+    "uploadSeconds": 0.04939669277518988,
+    "serverSeconds": 0.12613140977919102,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.958985892124474,
+   "t_baseline_fetch": 0.14431968796998262,
+   "t_baseline_predict": 0.8146662041544914,
+   "agreement": 1.0,
+   "max_abs_diff": 0.0,
+   "t_group": 1.2773104682564735,
+   "t_merge": 1.3795835673809052,
+   "merge_stats": {
+    "fetchSeconds": 0.10101528000086546,
+    "predictSeconds": 1.0116156674921513,
+    "uploadSeconds": 0.04272436071187258,
+    "serverSeconds": 0.2210054462775588,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  },
+  {
+   "task": "zips_population",
+   "ns": "sample_training.zips",
+   "kind": "reg",
+   "n_train": 5000,
+   "metrics": {
+    "r2": 0.24896334672411913,
+    "mae": 9314.047897460938,
+    "numTestDocuments": 1000
+   },
+   "model_bytes": 101230,
+   "t_create": 0.6217463715001941,
+   "n_predicted": 5000,
+   "t_project": 0.39665817096829414,
+   "stats": {
+    "fetchSeconds": 0.012415466830134392,
+    "predictSeconds": 0.20894253440201283,
+    "uploadSeconds": 0.043589429929852486,
+    "serverSeconds": 0.12991291750222445,
+    "nDocuments": 5000
+   },
+   "t_baseline": 0.12246292643249035,
+   "t_baseline_fetch": 0.011570187285542488,
+   "t_baseline_predict": 0.11089273914694786,
+   "agreement": 1.0,
+   "max_abs_diff": 0.001953125,
+   "t_group": 0.3968167267739773,
+   "t_merge": 0.5153982061892748,
+   "merge_stats": {
+    "fetchSeconds": 0.05464096646755934,
+    "predictSeconds": 0.19798829592764378,
+    "uploadSeconds": 0.04162229225039482,
+    "serverSeconds": 0.21932982467114925,
+    "nDocuments": 5000
+   },
+   "n_merged": 5000
+  }
+ ],
+ "porto": {
+  "n_train": 5001,
+  "metrics": {
+   "accuracy": 0.9120879120879121,
+   "auroc": 0.9130298323213818,
+   "numTestDocuments": 1001
+  },
+  "t_create": 3.5383708626031876,
+  "top": [
+   {
+    "name": "Twin Room Standard",
+    "room_type": "Private room",
+    "predicted": "Private room",
+    "score": 0.9973188042640686
+   },
+   {
+    "name": "Double room with private WC and balcony S\u00e3o Bento",
+    "room_type": "Private room",
+    "predicted": "Private room",
+    "score": 0.9936448335647583
+   },
+   {
+    "name": "Elegant suite in historic center",
+    "room_type": "Private room",
+    "predicted": "Private room",
+    "score": 0.9933694005012512
+   },
+   {
+    "name": "BOMBARDA Room",
+    "room_type": "Private room",
+    "predicted": "Private room",
+    "score": 0.9898791313171387
+   },
+   {
+    "name": "Single Room Near the City Centre",
+    "room_type": "Private room",
+    "predicted": "Private room",
+    "score": 0.9887039065361023
+   }
+  ],
+  "t_top": 0.4290576074272394,
+  "top_stats": {
+   "fetchSeconds": 0.02328506112098694,
+   "predictSeconds": 0.3627391681075096,
+   "uploadSeconds": 0.02316416148096323,
+   "serverSeconds": 0.017998917028307915,
+   "nDocuments": 554
+  },
+  "confusion": [
+   {
+    "actual": "Entire home/apt",
+    "predicted": "Entire home/apt",
+    "n": 417
+   },
+   {
+    "actual": "Private room",
+    "predicted": "Private room",
+    "n": 95
+   },
+   {
+    "actual": "Entire home/apt",
+    "predicted": "Private room",
+    "n": 31
+   },
+   {
+    "actual": "Private room",
+    "predicted": "Entire home/apt",
+    "n": 6
+   },
+   {
+    "actual": "Shared room",
+    "predicted": "Private room",
+    "n": 5
+   }
+  ],
+  "t_confusion": 0.34680436085909605,
+  "confusion_stats": {
+   "fetchSeconds": 0.02310759574174881,
+   "predictSeconds": 0.28657899610698223,
+   "uploadSeconds": 0.018959163688123226,
+   "serverSeconds": 0.01660420559346676,
+   "nDocuments": 554
+  }
+ }
+}

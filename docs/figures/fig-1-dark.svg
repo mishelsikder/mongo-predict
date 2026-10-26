@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" viewBox="0 0 820 300" role="img" aria-labelledby="f1t"><style>
+text { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #f2f2ee; }
+.muted { fill: #9a9990; } .sub { fill: #c9c8c0; }
+.box { fill: #1d1d1b; stroke: #3a3a36; } .box2 { fill: #2a2a27; stroke: #3a3a36; }
+.known { fill: #1c2a3d; stroke: #3987e5; } .pred { fill: #3a2219; stroke: #d95926; }
+.known-t { fill: #3987e5; font-weight: 600; } .pred-t { fill: #d95926; font-weight: 600; }
+.line { stroke: #9a9990; fill: none; } .arrowhead { fill: #9a9990; }
+.bar { fill: #3987e5; } .bar-base { fill: #3a3a36; }
+</style>
+  <rect class="figbg" x="0" y="0" width="820" height="300" rx="10" fill="#161614"/>
+  <title id="f1t">Older movies with a known IMDb rating are used to fit a model; $predict rates newer movies.</title>
+  <defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker></defs>
+  <text x="20" y="24" class="sub" font-size="14" font-weight="600">Movies released before 2010</text>
+  <g font-size="13">
+    <rect x="20" y="40" width="300" height="52" rx="7" class="box"/>
+    <text x="34" y="62">The Godfather (1972): "The aging..."</text>
+    <rect x="34" y="70" width="124" height="16" rx="4" class="known"/><text x="40" y="82" class="known-t" font-size="11.5">imdb.rating: 9.2</text>
+    <rect x="20" y="102" width="300" height="52" rx="7" class="box"/>
+    <text x="34" y="124">Toy Story (1995): "A cowboy doll is..."</text>
+    <rect x="34" y="132" width="124" height="16" rx="4" class="known"/><text x="40" y="144" class="known-t" font-size="11.5">imdb.rating: 8.3</text>
+    <rect x="20" y="164" width="300" height="52" rx="7" class="box"/>
+    <text x="34" y="186">Catwoman (2004): "A shy woman..."</text>
+    <rect x="34" y="194" width="124" height="16" rx="4" class="known"/><text x="40" y="206" class="known-t" font-size="11.5">imdb.rating: 3.3</text>
+    <text x="20" y="238" class="muted" font-size="12.5">17,527 movies whose rating is known</text>
+    <text x="20" y="256" class="muted" font-size="12.5">teach the model.</text>
+  </g>
+  <line x1="338" y1="128" x2="466" y2="128" class="line" stroke-width="2" marker-end="url(#ah1)"/>
+  <text x="402" y="116" text-anchor="middle" font-size="14" font-weight="600">$predict</text>
+  <text x="402" y="150" text-anchor="middle" class="muted" font-size="12">uses the fitted model</text>
+  <g font-size="13">
+    <text x="480" y="24" class="sub" font-size="14" font-weight="600">Movies released from 2010 on</text>
+    <rect x="480" y="40" width="320" height="52" rx="7" class="box"/>
+    <text x="494" y="62">Inception (2010): "A thief who steals..."</text>
+    <rect x="494" y="70" width="152" height="16" rx="4" class="pred"/><text x="500" y="82" class="pred-t" font-size="11.5">predicted rating: 7.7</text>
+    <rect x="480" y="102" width="320" height="52" rx="7" class="box"/>
+    <text x="494" y="124">The Hunger Games (2012): "Katniss..."</text>
+    <rect x="494" y="132" width="152" height="16" rx="4" class="pred"/><text x="500" y="144" class="pred-t" font-size="11.5">predicted rating: 7.4</text>
+    <rect x="480" y="164" width="320" height="52" rx="7" class="box"/>
+    <text x="494" y="186">Django Unchained (2012): "With the help..."</text>
+    <rect x="494" y="194" width="152" height="16" rx="4" class="pred"/><text x="500" y="206" class="pred-t" font-size="11.5">predicted rating: 6.8</text>
+    <text x="480" y="238" class="muted" font-size="12.5">Each movie gets a predicted rating you can</text>
+    <text x="480" y="256" class="muted" font-size="12.5">sort, filter, group or save.</text>
+  </g>
+</svg>

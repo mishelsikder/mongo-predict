@@ -1,0 +1,2944 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="pdoc 16.0.0"/>
+    <title>pymongopredict.embeddings_api API documentation</title>
+
+    <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
+    <style>/*! syntax-highlighting.css */pre{line-height:125%;}span.linenos{color:inherit; background-color:transparent; padding-left:5px; padding-right:20px;}.pdoc-code .hll{background-color:#ffffcc}.pdoc-code{background:#f8f8f8;}.pdoc-code .c{color:#3D7B7B; font-style:italic}.pdoc-code .err{border:1px solid #FF0000}.pdoc-code .k{color:#008000; font-weight:bold}.pdoc-code .o{color:#666666}.pdoc-code .ch{color:#3D7B7B; font-style:italic}.pdoc-code .cm{color:#3D7B7B; font-style:italic}.pdoc-code .cp{color:#9C6500}.pdoc-code .cpf{color:#3D7B7B; font-style:italic}.pdoc-code .c1{color:#3D7B7B; font-style:italic}.pdoc-code .cs{color:#3D7B7B; font-style:italic}.pdoc-code .gd{color:#A00000}.pdoc-code .ge{font-style:italic}.pdoc-code .gr{color:#E40000}.pdoc-code .gh{color:#000080; font-weight:bold}.pdoc-code .gi{color:#008400}.pdoc-code .go{color:#717171}.pdoc-code .gp{color:#000080; font-weight:bold}.pdoc-code .gs{font-weight:bold}.pdoc-code .gu{color:#800080; font-weight:bold}.pdoc-code .gt{color:#0044DD}.pdoc-code .kc{color:#008000; font-weight:bold}.pdoc-code .kd{color:#008000; font-weight:bold}.pdoc-code .kn{color:#008000; font-weight:bold}.pdoc-code .kp{color:#008000}.pdoc-code .kr{color:#008000; font-weight:bold}.pdoc-code .kt{color:#B00040}.pdoc-code .m{color:#666666}.pdoc-code .s{color:#BA2121}.pdoc-code .na{color:#687822}.pdoc-code .nb{color:#008000}.pdoc-code .nc{color:#0000FF; font-weight:bold}.pdoc-code .no{color:#880000}.pdoc-code .nd{color:#AA22FF}.pdoc-code .ni{color:#717171; font-weight:bold}.pdoc-code .ne{color:#CB3F38; font-weight:bold}.pdoc-code .nf{color:#0000FF}.pdoc-code .nl{color:#767600}.pdoc-code .nn{color:#0000FF; font-weight:bold}.pdoc-code .nt{color:#008000; font-weight:bold}.pdoc-code .nv{color:#19177C}.pdoc-code .ow{color:#AA22FF; font-weight:bold}.pdoc-code .w{color:#bbbbbb}.pdoc-code .mb{color:#666666}.pdoc-code .mf{color:#666666}.pdoc-code .mh{color:#666666}.pdoc-code .mi{color:#666666}.pdoc-code .mo{color:#666666}.pdoc-code .sa{color:#BA2121}.pdoc-code .sb{color:#BA2121}.pdoc-code .sc{color:#BA2121}.pdoc-code .dl{color:#BA2121}.pdoc-code .sd{color:#BA2121; font-style:italic}.pdoc-code .s2{color:#BA2121}.pdoc-code .se{color:#AA5D1F; font-weight:bold}.pdoc-code .sh{color:#BA2121}.pdoc-code .si{color:#A45A77; font-weight:bold}.pdoc-code .sx{color:#008000}.pdoc-code .sr{color:#A45A77}.pdoc-code .s1{color:#BA2121}.pdoc-code .ss{color:#19177C}.pdoc-code .bp{color:#008000}.pdoc-code .fm{color:#0000FF}.pdoc-code .vc{color:#19177C}.pdoc-code .vg{color:#19177C}.pdoc-code .vi{color:#19177C}.pdoc-code .vm{color:#19177C}.pdoc-code .il{color:#666666}</style>
+    <style>/*! theme.css */:root{--pdoc-background:#fff;}.pdoc{--text:#212529;--muted:#6c757d;--link:#3660a5;--link-hover:#1659c5;--code:#f8f8f8;--active:#fff598;--accent:#eee;--accent2:#c1c1c1;--nav-hover:rgba(255, 255, 255, 0.5);--name:#0066BB;--def:#008800;--annotation:#007020;}</style>
+    <style>/*! layout.css */html, body{width:100%;height:100%;}html, main{scroll-behavior:smooth;}body{background-color:var(--pdoc-background);}@media (max-width:769px){#navtoggle{cursor:pointer;position:absolute;width:50px;height:40px;top:1rem;right:1rem;border-color:var(--text);color:var(--text);display:flex;opacity:0.8;z-index:999;}#navtoggle:hover{opacity:1;}#togglestate + div{display:none;}#togglestate:checked + div{display:inherit;}main, header{padding:2rem 3vw;}header + main{margin-top:-3rem;}.git-button{display:none !important;}nav input[type="search"]{max-width:77%;}nav input[type="search"]:first-child{margin-top:-6px;}nav input[type="search"]:valid ~ *{display:none !important;}}@media (min-width:770px){:root{--sidebar-width:clamp(12.5rem, 28vw, 22rem);}nav{position:fixed;overflow:auto;height:100vh;width:var(--sidebar-width);}main, header{padding:3rem 2rem 3rem calc(var(--sidebar-width) + 3rem);width:calc(54rem + var(--sidebar-width));max-width:100%;}header + main{margin-top:-4rem;}#navtoggle{display:none;}}#togglestate{position:absolute;height:0;opacity:0;}nav.pdoc{--pad:clamp(0.5rem, 2vw, 1.75rem);--indent:1.5rem;background-color:var(--accent);border-right:1px solid var(--accent2);box-shadow:0 0 20px rgba(50, 50, 50, .2) inset;padding:0 0 0 var(--pad);overflow-wrap:anywhere;scrollbar-width:thin; scrollbar-color:var(--accent2) transparent; z-index:1}nav.pdoc::-webkit-scrollbar{width:.4rem; }nav.pdoc::-webkit-scrollbar-thumb{background-color:var(--accent2); }nav.pdoc > div{padding:var(--pad) 0;}nav.pdoc .module-list-button{display:inline-flex;align-items:center;color:var(--text);border-color:var(--muted);margin-bottom:1rem;}nav.pdoc .module-list-button:hover{border-color:var(--text);}nav.pdoc input[type=search]{display:block;outline-offset:0;width:calc(100% - var(--pad));}nav.pdoc .logo{max-width:calc(100% - var(--pad));max-height:35vh;display:block;margin:0 auto 1rem;transform:translate(calc(-.5 * var(--pad)), 0);}nav.pdoc ul{list-style:none;padding-left:0;}nav.pdoc > div > ul{margin-left:calc(0px - var(--pad));}nav.pdoc li a{padding:.2rem 0 .2rem calc(var(--pad) + var(--indent));}nav.pdoc > div > ul > li > a{padding-left:var(--pad);}nav.pdoc li{transition:all 100ms;}nav.pdoc li:hover{background-color:var(--nav-hover);}nav.pdoc a, nav.pdoc a:hover{color:var(--text);}nav.pdoc a{display:block;}nav.pdoc > h2:first-of-type{margin-top:1.5rem;}nav.pdoc .class:before{content:"class ";color:var(--muted);}nav.pdoc .function:after{content:"()";color:var(--muted);}nav.pdoc footer:before{content:"";display:block;width:calc(100% - var(--pad));border-top:solid var(--accent2) 1px;margin-top:1.5rem;padding-top:.5rem;}nav.pdoc footer{font-size:small;}</style>
+    <style>/*! content.css */.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{cursor:pointer;display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .alert{padding:1rem 1rem 1rem calc(1.5rem + 24px);border:1px solid transparent;border-radius:.25rem;background-repeat:no-repeat;background-position:.75rem center;margin-bottom:1rem;}.pdoc .alert > em{display:none;}.pdoc .alert > *:last-child{margin-bottom:0;}.pdoc .alert.note{color:#084298;background-color:#cfe2ff;border-color:#b6d4fe;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23084298%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%2016A8%208%200%201%200%208%200a8%208%200%200%200%200%2016zm.93-9.412-1%204.705c-.07.34.029.533.304.533.194%200%20.487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703%200-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381%202.29-.287zM8%205.5a1%201%200%201%201%200-2%201%201%200%200%201%200%202z%22/%3E%3C/svg%3E");}.pdoc .alert.tip{color:#0a3622;background-color:#d1e7dd;border-color:#a3cfbb;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%230a3622%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2%206a6%206%200%201%201%2010.174%204.31c-.203.196-.359.4-.453.619l-.762%201.769A.5.5%200%200%201%2010.5%2013a.5.5%200%200%201%200%201%20.5.5%200%200%201%200%201l-.224.447a1%201%200%200%201-.894.553H6.618a1%201%200%200%201-.894-.553L5.5%2015a.5.5%200%200%201%200-1%20.5.5%200%200%201%200-1%20.5.5%200%200%201-.46-.302l-.761-1.77a2%202%200%200%200-.453-.618A5.98%205.98%200%200%201%202%206m6-5a5%205%200%200%200-3.479%208.592c.263.254.514.564.676.941L5.83%2012h4.342l.632-1.467c.162-.377.413-.687.676-.941A5%205%200%200%200%208%201%22/%3E%3C/svg%3E");}.pdoc .alert.important{color:#055160;background-color:#cff4fc;border-color:#9eeaf9;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23055160%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2%200a2%202%200%200%200-2%202v12a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V2a2%202%200%200%200-2-2zm6%204c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%204.995A.905.905%200%200%201%208%204m.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E");}.pdoc .alert.warning{color:#664d03;background-color:#fff3cd;border-color:#ffecb5;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23664d03%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8.982%201.566a1.13%201.13%200%200%200-1.96%200L.165%2013.233c-.457.778.091%201.767.98%201.767h13.713c.889%200%201.438-.99.98-1.767L8.982%201.566zM8%205c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%205.995A.905.905%200%200%201%208%205zm.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2z%22/%3E%3C/svg%3E");}.pdoc .alert.caution{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M11.46.146A.5.5%200%200%200%2011.107%200H4.893a.5.5%200%200%200-.353.146L.146%204.54A.5.5%200%200%200%200%204.893v6.214a.5.5%200%200%200%20.146.353l4.394%204.394a.5.5%200%200%200%20.353.146h6.214a.5.5%200%200%200%20.353-.146l4.394-4.394a.5.5%200%200%200%20.146-.353V4.893a.5.5%200%200%200-.146-.353zM8%204c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%204.995A.905.905%200%200%201%208%204m.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E");}.pdoc .alert.danger{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5.52.359A.5.5%200%200%201%206%200h4a.5.5%200%200%201%20.474.658L8.694%206H12.5a.5.5%200%200%201%20.395.807l-7%209a.5.5%200%200%201-.873-.454L6.823%209.5H3.5a.5.5%200%200%201-.48-.641l2.5-8.5z%22/%3E%3C/svg%3E");}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc > section:not(.module-info) h1{font-size:1.5rem;font-weight:500;}.pdoc > section:not(.module-info) h2{font-size:1.4rem;font-weight:500;}.pdoc > section:not(.module-info) h3{font-size:1.3rem;font-weight:500;}.pdoc > section:not(.module-info) h4{font-size:1.2rem;}.pdoc > section:not(.module-info) h5{font-size:1.1rem;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-top:0;margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;background-color:var(--code);}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--accent);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc > section:not(.module-info){margin-bottom:1.5rem;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.view-source-toggle-state,.view-source-toggle-state ~ .pdoc-code{display:none;}.view-source-toggle-state:checked ~ .pdoc-code{display:block;}.view-source-button{display:inline-block;float:right;font-size:.75rem;line-height:1.5rem;color:var(--muted);padding:0 .4rem 0 1.3rem;cursor:pointer;text-indent:-2px;}.view-source-button > span{visibility:hidden;}.module-info .view-source-button{float:none;display:flex;justify-content:flex-end;margin:-1.2rem .4rem -.2rem 0;}.view-source-button::before{position:absolute;content:"View Source";display:list-item;list-style-type:disclosure-closed;}.view-source-toggle-state:checked ~ .attr .view-source-button::before,.view-source-toggle-state:checked ~ .view-source-button::before{list-style-type:disclosure-open;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc section:not(.module-info) .docstring{margin-left:clamp(0rem, 5vw - 2rem, 1rem);}.pdoc .docstring .pdoc-code{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target,.pdoc .pdoc-code > pre > span:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc .pdoc-code > pre > span:target{display:block;}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc *{scroll-margin:2rem;}.pdoc .pdoc-code .linenos{user-select:none;}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc section, .pdoc .classattr{position:relative;}.pdoc .headerlink{--width:clamp(1rem, 3vw, 2rem);position:absolute;top:0;left:calc(0rem - var(--width));transition:all 100ms ease-in-out;opacity:0;}.pdoc .headerlink::before{content:"#";display:block;text-align:center;width:var(--width);height:2.3rem;line-height:2.3rem;font-size:1.5rem;}.pdoc .attr:hover ~ .headerlink,.pdoc *:target > .headerlink,.pdoc .headerlink:hover{opacity:1;}.pdoc .attr{display:block;margin:.5rem 0 .5rem;padding:.4rem .4rem .4rem 1rem;background-color:var(--accent);overflow-x:auto;}.pdoc .classattr{margin-left:2rem;}.pdoc .decorator-deprecated{color:#842029;}.pdoc .decorator-deprecated ~ span{filter:grayscale(1) opacity(0.8);}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{background-color:transparent;}.pdoc .param, .pdoc .return-annotation{white-space:pre;}.pdoc .signature.multiline .param{display:block;}.pdoc .signature.condensed .param{display:inline-block;}.pdoc .annotation{color:var(--annotation);}.pdoc .view-value-toggle-state,.pdoc .view-value-toggle-state ~ .default_value{display:none;}.pdoc .view-value-toggle-state:checked ~ .default_value{display:inherit;}.pdoc .view-value-button{font-size:.5rem;vertical-align:middle;border-style:dashed;margin-top:-0.1rem;}.pdoc .view-value-button:hover{background:white;}.pdoc .view-value-button::before{content:"show";text-align:center;width:2.2em;display:inline-block;}.pdoc .view-value-toggle-state:checked ~ .view-value-button::before{content:"hide";}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .search-result .docstring{overflow:auto;max-height:25vh;}.pdoc .search-result.focused > .attr{background-color:var(--active);}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:27px;vertical-align:bottom;width:50px;transition:all 200ms;}.pdoc table{display:block;width:max-content;max-width:100%;overflow:auto;margin-bottom:1rem;}.pdoc table th{font-weight:600;}.pdoc table th, .pdoc table td{padding:6px 13px;border:1px solid var(--accent2);}</style>
+    <style>/*! custom.css */</style><!-- mongopredict-theme -->
+<style>/* Theme added to every pdoc page by docs/_postprocess.py (light, and dark from the system setting). */
+.pdoc{--text:#1d1d1b;--muted:#6b6b64;--link:#2a78d6;--link-hover:#1b5fb0;--code:#f5f5f2;--active:#fff6d6;
+      --accent:#f2f4f7;--accent2:#e3e6eb;--nav-hover:rgba(42,120,214,.08);--name:#1b5fb0;--def:#8a3ffc;
+      --annotation:#0a7f6f;--border:#e6e6e1;--surface:#fff;--chip:#eef4fc}
+:root{--pdoc-background:#fbfbfa}
+@media (prefers-color-scheme: dark){
+  :root{--pdoc-background:#111110}
+  .pdoc{--text:#ecebe6;--muted:#a3a29a;--link:#6aa8f5;--link-hover:#9cc6fa;--code:#1b1b19;--active:#3a3420;
+        --accent:#1d1d1b;--accent2:#2a2a27;--nav-hover:rgba(106,168,245,.10);--name:#8ab8f7;--def:#c39bff;
+        --annotation:#4fd1bd;--border:#2c2c29;--surface:#171715;--chip:#1c2a3d}
+}
+html,body{background:var(--pdoc-background)}
+.pdoc{font-family:Inter,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.65;
+      -webkit-font-smoothing:antialiased;color:var(--text)}
+.pdoc code,.pdoc pre,.pdoc .signature{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-size:.86em}
+@media (min-width:770px){main.pdoc{padding:2.5rem 3rem 4rem calc(var(--sidebar-width) + 3.5rem)}}
+.pdoc h1,.pdoc h2,.pdoc h3,.pdoc h4{font-weight:650;letter-spacing:-.01em;line-height:1.25}
+.pdoc h1{font-size:1.9rem;margin:.2rem 0 1rem}
+.pdoc h2{font-size:1.35rem;margin-top:2.2rem;padding-bottom:.35rem;border-bottom:1px solid var(--border)}
+.pdoc h3{font-size:1.1rem;margin-top:1.6rem}
+.pdoc a{text-decoration:none}
+.pdoc a:hover{text-decoration:underline;text-underline-offset:3px}
+.pdoc .modulename{font-size:1.6rem;font-weight:700;margin-bottom:.5rem}
+/* inline code */
+.pdoc :not(pre)>code{background:var(--code);border:1px solid var(--border);border-radius:5px;padding:.08em .35em}
+/* code blocks */
+.pdoc .pdoc-code{position:relative;margin:1rem 0 1.25rem}
+.pdoc .pdoc-code pre,.pdoc pre{background:var(--code) !important;border:1px solid var(--border);border-radius:10px;
+      padding:.95rem 1.1rem;line-height:1.55;overflow-x:auto}
+.pdoc .mp-copy{position:absolute;top:.5rem;right:.5rem;font:500 12px/1 Inter,-apple-system,"Segoe UI",sans-serif;
+      color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.35rem .55rem;
+      cursor:pointer;opacity:0;transition:opacity .15s}
+.pdoc .pdoc-code:hover .mp-copy,.pdoc .mp-copy:focus{opacity:1}
+.pdoc .mp-copy.done{color:var(--link)}
+/* each class and function as a card */
+main.pdoc > section[id]{background:var(--surface);border:1px solid var(--border);border-radius:14px;
+      padding:1.2rem 1.5rem 1rem;margin:1.5rem 0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.pdoc .classattr{border-top:1px solid var(--border);padding-top:.9rem;margin-top:.9rem}
+.pdoc .attr{background:none;border:0;padding:0;margin:0 0 .4rem;font-size:1.02rem}
+.pdoc .signature{display:block;margin-top:.5rem;padding:.6rem .85rem;white-space:pre-wrap;
+      background:var(--code) !important;border:1px solid var(--border);border-radius:8px}
+.pdoc .def{color:var(--def);font-weight:600}
+.pdoc .name{color:var(--name);font-weight:650}
+.pdoc .annotation{color:var(--annotation)}
+.pdoc .headerlink{opacity:0;transition:opacity .15s}
+.pdoc .attr:hover .headerlink,.pdoc h2:hover .headerlink{opacity:.6}
+.pdoc .docstring{margin-top:.6rem}
+.pdoc .docstring > p,.pdoc .docstring li{max-width:72ch}
+/* numpy sections: Parameters / Returns / Raises headers */
+.pdoc .docstring h6{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:1.2rem 0 .4rem}
+.pdoc .docstring dl dt code,.pdoc .docstring dt{font-weight:600}
+/* tables */
+.pdoc table{border-collapse:separate;border-spacing:0;width:auto;border:1px solid var(--border);border-radius:10px;
+      overflow:hidden;margin:1rem 0;font-size:.93em}
+.pdoc th{background:var(--accent);text-align:left;font-weight:600}
+.pdoc th,.pdoc td{padding:.5rem .8rem;border-bottom:1px solid var(--border)}
+.pdoc tr:last-child td{border-bottom:0}
+.pdoc tbody tr:hover td{background:var(--nav-hover)}
+/* sidebar */
+nav.pdoc{background:var(--surface);border-right:1px solid var(--border);box-shadow:none;font-size:14px}
+nav.pdoc a:hover{text-decoration:none}
+nav.pdoc li{border-radius:6px}
+nav.pdoc h2{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:0;margin-top:1.4rem}
+nav.pdoc input[type=search]{border:1px solid var(--border);border-radius:8px;background:var(--pdoc-background);
+      color:var(--text);padding:.45rem .65rem}
+.pdoc .attribution{color:var(--muted);font-size:12px}
+
+@media (prefers-color-scheme: dark){
+pre { line-height: 125%; }
+td.linenos .normal { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+.pdoc .pdoc-code .hll { background-color: #6e7681 }
+.pdoc .pdoc-code { background: #0d1117; color: #E6EDF3 }
+.pdoc .pdoc-code .c { color: #8B949E; font-style: italic } /* Comment */
+.pdoc .pdoc-code .err { color: #F85149 } /* Error */
+.pdoc .pdoc-code .esc { color: #E6EDF3 } /* Escape */
+.pdoc .pdoc-code .g { color: #E6EDF3 } /* Generic */
+.pdoc .pdoc-code .k { color: #FF7B72 } /* Keyword */
+.pdoc .pdoc-code .l { color: #A5D6FF } /* Literal */
+.pdoc .pdoc-code .n { color: #E6EDF3 } /* Name */
+.pdoc .pdoc-code .o { color: #FF7B72; font-weight: bold } /* Operator */
+.pdoc .pdoc-code .x { color: #E6EDF3 } /* Other */
+.pdoc .pdoc-code .p { color: #E6EDF3 } /* Punctuation */
+.pdoc .pdoc-code .ch { color: #8B949E; font-style: italic } /* Comment.Hashbang */
+.pdoc .pdoc-code .cm { color: #8B949E; font-style: italic } /* Comment.Multiline */
+.pdoc .pdoc-code .cp { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Preproc */
+.pdoc .pdoc-code .cpf { color: #8B949E; font-style: italic } /* Comment.PreprocFile */
+.pdoc .pdoc-code .c1 { color: #8B949E; font-style: italic } /* Comment.Single */
+.pdoc .pdoc-code .cs { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Special */
+.pdoc .pdoc-code .gd { color: #FFA198; background-color: #490202 } /* Generic.Deleted */
+.pdoc .pdoc-code .ge { color: #E6EDF3; font-style: italic } /* Generic.Emph */
+.pdoc .pdoc-code .ges { color: #E6EDF3; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.pdoc .pdoc-code .gr { color: #FFA198 } /* Generic.Error */
+.pdoc .pdoc-code .gh { color: #79C0FF; font-weight: bold } /* Generic.Heading */
+.pdoc .pdoc-code .gi { color: #56D364; background-color: #0F5323 } /* Generic.Inserted */
+.pdoc .pdoc-code .go { color: #8B949E } /* Generic.Output */
+.pdoc .pdoc-code .gp { color: #8B949E } /* Generic.Prompt */
+.pdoc .pdoc-code .gs { color: #E6EDF3; font-weight: bold } /* Generic.Strong */
+.pdoc .pdoc-code .gu { color: #79C0FF } /* Generic.Subheading */
+.pdoc .pdoc-code .gt { color: #FF7B72 } /* Generic.Traceback */
+.pdoc .pdoc-code .g-Underline { color: #E6EDF3; text-decoration: underline } /* Generic.Underline */
+.pdoc .pdoc-code .kc { color: #79C0FF } /* Keyword.Constant */
+.pdoc .pdoc-code .kd { color: #FF7B72 } /* Keyword.Declaration */
+.pdoc .pdoc-code .kn { color: #FF7B72 } /* Keyword.Namespace */
+.pdoc .pdoc-code .kp { color: #79C0FF } /* Keyword.Pseudo */
+.pdoc .pdoc-code .kr { color: #FF7B72 } /* Keyword.Reserved */
+.pdoc .pdoc-code .kt { color: #FF7B72 } /* Keyword.Type */
+.pdoc .pdoc-code .ld { color: #79C0FF } /* Literal.Date */
+.pdoc .pdoc-code .m { color: #A5D6FF } /* Literal.Number */
+.pdoc .pdoc-code .s { color: #A5D6FF } /* Literal.String */
+.pdoc .pdoc-code .na { color: #E6EDF3 } /* Name.Attribute */
+.pdoc .pdoc-code .nb { color: #E6EDF3 } /* Name.Builtin */
+.pdoc .pdoc-code .nc { color: #F0883E; font-weight: bold } /* Name.Class */
+.pdoc .pdoc-code .no { color: #79C0FF; font-weight: bold } /* Name.Constant */
+.pdoc .pdoc-code .nd { color: #D2A8FF; font-weight: bold } /* Name.Decorator */
+.pdoc .pdoc-code .ni { color: #FFA657 } /* Name.Entity */
+.pdoc .pdoc-code .ne { color: #F0883E; font-weight: bold } /* Name.Exception */
+.pdoc .pdoc-code .nf { color: #D2A8FF; font-weight: bold } /* Name.Function */
+.pdoc .pdoc-code .nl { color: #79C0FF; font-weight: bold } /* Name.Label */
+.pdoc .pdoc-code .nn { color: #FF7B72 } /* Name.Namespace */
+.pdoc .pdoc-code .nx { color: #E6EDF3 } /* Name.Other */
+.pdoc .pdoc-code .py { color: #79C0FF } /* Name.Property */
+.pdoc .pdoc-code .nt { color: #7EE787 } /* Name.Tag */
+.pdoc .pdoc-code .nv { color: #79C0FF } /* Name.Variable */
+.pdoc .pdoc-code .ow { color: #FF7B72; font-weight: bold } /* Operator.Word */
+.pdoc .pdoc-code .pm { color: #E6EDF3 } /* Punctuation.Marker */
+.pdoc .pdoc-code .w { color: #6E7681 } /* Text.Whitespace */
+.pdoc .pdoc-code .mb { color: #A5D6FF } /* Literal.Number.Bin */
+.pdoc .pdoc-code .mf { color: #A5D6FF } /* Literal.Number.Float */
+.pdoc .pdoc-code .mh { color: #A5D6FF } /* Literal.Number.Hex */
+.pdoc .pdoc-code .mi { color: #A5D6FF } /* Literal.Number.Integer */
+.pdoc .pdoc-code .mo { color: #A5D6FF } /* Literal.Number.Oct */
+.pdoc .pdoc-code .sa { color: #79C0FF } /* Literal.String.Affix */
+.pdoc .pdoc-code .sb { color: #A5D6FF } /* Literal.String.Backtick */
+.pdoc .pdoc-code .sc { color: #A5D6FF } /* Literal.String.Char */
+.pdoc .pdoc-code .dl { color: #79C0FF } /* Literal.String.Delimiter */
+.pdoc .pdoc-code .sd { color: #A5D6FF } /* Literal.String.Doc */
+.pdoc .pdoc-code .s2 { color: #A5D6FF } /* Literal.String.Double */
+.pdoc .pdoc-code .se { color: #79C0FF } /* Literal.String.Escape */
+.pdoc .pdoc-code .sh { color: #79C0FF } /* Literal.String.Heredoc */
+.pdoc .pdoc-code .si { color: #A5D6FF } /* Literal.String.Interpol */
+.pdoc .pdoc-code .sx { color: #A5D6FF } /* Literal.String.Other */
+.pdoc .pdoc-code .sr { color: #79C0FF } /* Literal.String.Regex */
+.pdoc .pdoc-code .s1 { color: #A5D6FF } /* Literal.String.Single */
+.pdoc .pdoc-code .ss { color: #A5D6FF } /* Literal.String.Symbol */
+.pdoc .pdoc-code .bp { color: #E6EDF3 } /* Name.Builtin.Pseudo */
+.pdoc .pdoc-code .fm { color: #D2A8FF; font-weight: bold } /* Name.Function.Magic */
+.pdoc .pdoc-code .vc { color: #79C0FF } /* Name.Variable.Class */
+.pdoc .pdoc-code .vg { color: #79C0FF } /* Name.Variable.Global */
+.pdoc .pdoc-code .vi { color: #79C0FF } /* Name.Variable.Instance */
+.pdoc .pdoc-code .vm { color: #79C0FF } /* Name.Variable.Magic */
+.pdoc .pdoc-code .il { color: #A5D6FF } /* Literal.Number.Integer.Long */
+}</style>
+</head>
+<body>
+    <nav class="pdoc">
+        <label id="navtoggle" for="togglestate" class="pdoc-button"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke-linecap='round' stroke="currentColor" stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg></label>
+        <input id="togglestate" type="checkbox" aria-hidden="true" tabindex="-1">
+        <div>            <a class="pdoc-button module-list-button" href="../pymongopredict.html">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+</svg>                &nbsp;pymongopredict</a>
+
+
+            <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
+                   pattern=".+" required>
+
+            <h2>Contents</h2>
+            <ul>
+  <li><a href="#datasets-and-splits">Datasets and splits</a></li>
+  <li><a href="#featurizing-and-fitting">Featurizing and fitting</a></li>
+  <li><a href="#forecasting-with-sktime">Forecasting with sktime</a></li>
+  <li><a href="#streaming-large-collections">Streaming large collections</a></li>
+  <li><a href="#how-documents-become-features">How documents become features</a></li>
+  <li><a href="#embedding-models">Embedding models</a></li>
+</ul>
+
+
+
+            <h2>API Documentation</h2>
+                <ul class="memberlist">
+            <li>
+                    <a class="class" href="#MongoDataset">MongoDataset</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#MongoDataset.__init__">MongoDataset</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.collection">collection</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.target">target</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.filter">filter</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.projection">projection</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.limit">limit</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.sort">sort</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.streaming">streaming</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.batch_size">batch_size</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.prefetch">prefetch</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MongoDataset.from_documents">from_documents</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MongoDataset.load">load</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.ids">ids</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.y">y</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.documents">documents</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MongoDataset.iter_batches">iter_batches</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MongoDataset.field_values">field_values</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MongoDataset.subset">subset</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.shape">shape</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MongoDataset.take">take</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoDataset.iloc">iloc</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#MongoSeries">MongoSeries</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#MongoSeries.__init__">MongoSeries</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoSeries.collection">collection</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoSeries.time_field">time_field</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoSeries.value_field">value_field</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoSeries.freq">freq</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoSeries.agg">agg</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoSeries.fill">fill</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoSeries.filter">filter</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoSeries.valid">valid</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoSeries.limit">limit</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MongoSeries.load">load</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MongoSeries.series">series</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MongoSeries.split">split</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#DocumentFeaturizer">DocumentFeaturizer</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#DocumentFeaturizer.__init__">DocumentFeaturizer</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.columns">columns</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.embed_fields">embed_fields</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.exclude">exclude</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.embedding_model">embedding_model</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.embedding_kwargs">embedding_kwargs</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.cache_dir">cache_dir</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.batch_size">batch_size</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.mask_target">mask_target</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.mask_token">mask_token</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.mask_key">mask_key</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.prefix">prefix</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.max_json_chars">max_json_chars</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.max_tokens">max_tokens</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.tokenizer">tokenizer</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.scale_numeric">scale_numeric</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.min_frequency">min_frequency</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DocumentFeaturizer.max_categories">max_categories</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#DocumentFeaturizer.token_limit">token_limit</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#DocumentFeaturizer.fit">fit</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#DocumentFeaturizer.fit_transform">fit_transform</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#DocumentFeaturizer.transform">transform</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#DocumentFeaturizer.fit_batches">fit_batches</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#DocumentFeaturizer.fit_transform_batches">fit_transform_batches</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#DocumentFeaturizer.transform_batches">transform_batches</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#DocumentFeaturizer.get_feature_names_out">get_feature_names_out</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#SentenceTransformerEmbedder">SentenceTransformerEmbedder</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#SentenceTransformerEmbedder.__init__">SentenceTransformerEmbedder</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.model_name">model_name</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.prompt">prompt</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.batch_size">batch_size</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.max_batch_tokens">max_batch_tokens</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.max_seq_length">max_seq_length</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.device">device</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.normalize">normalize</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.trust_remote_code">trust_remote_code</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.show_progress_bar">show_progress_bar</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.dtype">dtype</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.name">name</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.model">model</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#SentenceTransformerEmbedder.embed">embed</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.part">part</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SentenceTransformerEmbedder.last_done">last_done</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#SentenceTransformerEmbedder.part_of">part_of</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#VoyageEmbedder">VoyageEmbedder</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#VoyageEmbedder.__init__">VoyageEmbedder</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VoyageEmbedder.model">model</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VoyageEmbedder.output_dimension">output_dimension</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VoyageEmbedder.input_type">input_type</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VoyageEmbedder.batch_size">batch_size</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VoyageEmbedder.api_key">api_key</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VoyageEmbedder.truncation">truncation</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VoyageEmbedder.max_retries">max_retries</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VoyageEmbedder.timeout">timeout</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VoyageEmbedder.name">name</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VoyageEmbedder.client">client</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#VoyageEmbedder.embed">embed</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#HashingEmbedder">HashingEmbedder</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#HashingEmbedder.__init__">HashingEmbedder</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#HashingEmbedder.n_features">n_features</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#HashingEmbedder.name">name</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#HashingEmbedder.embed">embed</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#BaseEmbedder">BaseEmbedder</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#BaseEmbedder.name">name</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#BaseEmbedder.embed">embed</a>
+                        </li>
+                </ul>
+
+            </li>
+    </ul>
+
+
+            <footer>mongo-predict 0.5.0</footer>
+
+        <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
+            built with <span class="visually-hidden">pdoc</span><img
+                alt="pdoc logo"
+                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20role%3D%22img%22%20aria-label%3D%22pdoc%20logo%22%20width%3D%22300%22%20height%3D%22160%22%20viewBox%3D%220%200%20150%2080%22%3E%3Ctitle%3Epdoc%3C/title%3E%3Cpath%20d%3D%22M132.316%2048.886c.276-4.679%202.342-6.698%204.409-7.982s4.27-1.165%206.751-1.055c1.586.07%203.044.156%204.222-.482%201.142-.619%202.026-1.932%202.162-3.739.268-3.576-1.929-5.368-5.006-5.551s-7.599.524-10.517%201.606c-4.455%201.652-8.588%206.606-9.552%208.992s-2.342%206.193-1.745%2010.873%202.664%209.221%205.878%2011.79%205.878%203.808%2010.103%204.312%203.444.229%206.062.229%205.006-2.202%204.914-4.909-2.296-5.001-4.501-4.863-3.077.505-5.281.229-7.715-2.064-7.899-9.451z%22%20fill%3D%22%23198754%22/%3E%3Ccircle%20cx%3D%22101.504%22%20cy%3D%2248.943%22%20r%3D%2214.208%22%20fill%3D%22none%22%20stroke%3D%22%23198754%22%20stroke-width%3D%229.354%22/%3E%3Cpath%20d%3D%22M87.81.002c-3.637.065-5.001.454-7.014%201.232s-3.443%201.363-6.3%204.282c-1.723%201.76-3.148%205.019-3.776%207.329-.413%201.521-.316%202.63-.316%202.63l-.195%2034.612c.065%205.774-6.755%208.305-9.612%208.37s-9.678-1.038-9.743-9.408%207.128-9.521%208.362-9.521c1.413-.13%202.526-.021%203.718-.016%202.071.009%204.157-.778%204.092-4.671s-4.157-4.736-4.157-4.736c-6.3-.843-11.43%202.206-11.43%202.206S40.917%2038.15%2041.372%2049.634%2051.568%2068.19%2061.311%2068.125s18.316-7.007%2018.445-17.193l.13-22.772c.046-2.291%202.683-3.644%204.476-4.203.745-.232%201.694-.274%201.694-.274l10.457-.13s4.871-.324%207.729-3.114%204.352-6.294%204.352-6.294.974-3.049.13-4.606-.195-1.233-2.792-3.309-8.573-4.477-8.573-4.477S91.447-.063%2087.81.002zM0%2047.169l.065%2028.417S0%2080.127%204.481%2079.997s5.072-3.866%205.049-4.152l-.113-28.482s1.624-7.656%209.937-7.721%2010.002%206.942%2010.002%208.499-.909%2010.51-9.093%2010.51c-.948%200-2.99-.567-4.145-.272-3.919%201-3.194%204.554-3.194%204.554s.065%205.061%207.404%204.996%2018.575-6.034%2018.575-19.074S26.953%2030.04%2019.549%2029.91%201.234%2035.296%200%2047.169z%22%20fill%3D%22%23198754%22/%3E%3Cg%20transform%3D%22matrix%28.325601%200%200%20.325256%20-10.32669%20-45.802786%29%22%3E%3Ccircle%20cx%3D%22297.554%22%20cy%3D%22172.286%22%20r%3D%2216.5%22%20fill%3D%22%23fff%22/%3E%3Cellipse%20cx%3D%22297.709%22%20cy%3D%22172.642%22%20rx%3D%2211.071%22%20ry%3D%2210.871%22%20fill%3D%22%23105a48%22/%3E%3Ccircle%20cx%3D%22304.104%22%20cy%3D%22167.667%22%20r%3D%224.5%22%20fill%3D%22%23fff%22/%3E%3C/g%3E%3Cpath%20d%3D%22M94.661%2017.032l.893-1.476s.99.714%201.916.925%201.575.114%202.955.114l14.565-.162c1.283-.032%203.085-.762%203.02-3.293s-.373-3.503-.373-3.503l1.283-.487s.52.503.877%201.573.309%201.995.292%202.66-.227%201.541-.227%201.541%201.564-.308%202.359-1.038.823-.779%201.489-1.508.812-.86.812-.86.552-.13.877.26.341.957.065%201.46-1.672%202.206-3.247%203.066-2.76%201.427-3.929%201.768-3.848.73-7.063.714l-10.944-.114s-2.143-.081-3.02-.373-2.241-.973-2.598-1.265z%22%20fill%3D%22%23d36d49%22/%3E%3Cg%20fill%3D%22%23105a48%22%3E%3Cellipse%20cx%3D%2293.052%22%20cy%3D%2243.567%22%20rx%3D%22.869%22%20ry%3D%221.014%22%20transform%3D%22rotate%28341.022%29%22/%3E%3Cellipse%20cx%3D%22104.3%22%20cy%3D%22-16.184%22%20rx%3D%22.865%22%20ry%3D%221.009%22%20transform%3D%22rotate%2814.786%29%22/%3E%3C/g%3E%3C/svg%3E"/>
+        </a>
+</div>
+    </nav>
+    <main class="pdoc">
+            <section class="module-info">
+                    <h1 class="modulename">
+<a href="./../pymongopredict.html">pymongopredict</a><wbr>.embeddings_api    </h1>
+
+                        <div class="docstring"><p>The embeddings API: datasets and a featurizer that turn documents into <code>X</code> for scikit-learn.</p>
+
+<p>This is the scikit-learn workflow underneath <code>$predict</code> (see
+<code><a href="predictions_api.html">pymongopredict.predictions_api</a></code>): use it to pick your own estimator, cross-validate,
+combine features or forecast.</p>
+
+<p>What you use:</p>
+
+<ul>
+<li><code><a href="#MongoDataset">MongoDataset</a></code>: the documents of a collection (with a filter, limit and target) or a
+list of documents, with the target values <code>y</code>. It indexes like an array, so scikit-learn's
+<code>train_test_split</code>, cross-validation splitters and <code>cross_val_score</code> work on it directly.</li>
+<li><code><a href="#DocumentFeaturizer">DocumentFeaturizer</a></code>: an sklearn transformer from documents to chosen columns
+and embeddings of the documents, for any sklearn estimator or <code>Pipeline</code>.</li>
+<li><code><a href="#MongoSeries">MongoSeries</a></code>: a time series aggregated from documents, for sktime forecasters.</li>
+<li><code><a href="#SentenceTransformerEmbedder">SentenceTransformerEmbedder</a></code>, <code><a href="#VoyageEmbedder">VoyageEmbedder</a></code>, <code><a href="#HashingEmbedder">HashingEmbedder</a></code>:
+embedding models with non-default settings, to pass as <code>embedding_model</code> (a name such as
+<code>"voyage-4-nano"</code> or <code>"voyage-4-lite"</code> is enough otherwise).</li>
+</ul>
+
+<h2 id="datasets-and-splits">Datasets and splits</h2>
+
+<p><code>MongoDataset(coll, target=...)</code> reads a collection (<code>filter=</code>, <code>projection=</code>, <code>limit=</code> and <code>sort=</code> are passed
+to <code>find</code>). <code>dataset.y</code> is a float array for numeric targets, bool for booleans and strings otherwise; documents
+without a target value are left out. Split it with scikit-learn: a dataset indexes like an array (<code>ds[indices]</code>,
+<code>ds.iloc[...]</code>, <code>ds.take(...)</code>), so the splitters return train and test datasets that share the same source:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupShuffleSplit</span><span class="p">,</span> <span class="n">TimeSeriesSplit</span><span class="p">,</span> <span class="n">train_test_split</span>
+
+<span class="n">ds_train</span><span class="p">,</span> <span class="n">ds_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># by the target</span>
+<span class="n">ds_train</span><span class="p">,</span> <span class="n">ds_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">field_values</span><span class="p">(</span><span class="s2">"address.market"</span><span class="p">))</span>
+<span class="n">tr</span><span class="p">,</span> <span class="n">te</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">GroupShuffleSplit</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">field_values</span><span class="p">(</span><span class="s2">"host.host_id"</span><span class="p">)))</span>
+<span class="n">ds_train</span><span class="p">,</span> <span class="n">ds_test</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">tr</span><span class="p">],</span> <span class="n">ds</span><span class="p">[</span><span class="n">te</span><span class="p">]</span>                                            <span class="c1"># a host on one side</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">MongoDataset</span><span class="p">(</span><span class="n">coll</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="p">[(</span><span class="s2">"ts"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>                         <span class="c1"># in time order, then</span>
+<span class="n">ds_train</span><span class="p">,</span> <span class="n">ds_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>        <span class="c1"># train on the past</span>
+<span class="k">for</span> <span class="n">tr</span><span class="p">,</span> <span class="n">te</span> <span class="ow">in</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span> <span class="o">...</span>              <span class="c1"># rolling, with a gap</span>
+</pre></div>
+
+<p><code>cross_val_score(make_pipeline(DocumentFeaturizer(...), Ridge()), ds, ds.y)</code> cross-validates in the same way.</p>
+
+<h2 id="featurizing-and-fitting">Featurizing and fitting</h2>
+
+<p><code><a href="#DocumentFeaturizer.fit">DocumentFeaturizer.fit</a></code> / <code>transform</code> accept a <code><a href="#MongoDataset">MongoDataset</a></code>, a pymongo cursor, a generator, a list of documents
+or a DataFrame of records, and return a float32 matrix. When fitting on a <code><a href="#MongoDataset">MongoDataset</a></code>, its target field is removed
+from the embedded JSON (pass <code>exclude=</code> for plain documents), so the answer cannot leak into the features. The
+featurizer is an ordinary scikit-learn transformer, so it works with <code>Pipeline</code>, <code>clone</code> and
+<code>get_feature_names_out</code>:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">RidgeClassifierCV</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
+
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="n">RidgeClassifierCV</span><span class="p">())</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds_train</span><span class="p">,</span> <span class="n">ds_train</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">ds_test</span><span class="p">,</span> <span class="n">ds_test</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">coll</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">"address.market"</span><span class="p">:</span> <span class="s2">"Porto"</span><span class="p">})</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>   <span class="c1"># predict on any cursor</span>
+</pre></div>
+
+<p>For cross-validation or model selection, compute <code>X = prep.fit_transform(ds)</code> once and pass <code>X</code> and <code>ds.y</code> to
+scikit-learn. Embeddings are cached, so refitting with another estimator does not embed a document again.</p>
+
+<h2 id="forecasting-with-sktime">Forecasting with sktime</h2>
+
+<p><code><a href="#MongoSeries">MongoSeries</a></code> aggregates a time series from a collection, and <code>series.split</code> cuts it in time order (sktime's
+<code>temporal_train_test_split(series.series, ...)</code> does the same). The parts are <code>pd.Series</code> with a <code>PeriodIndex</code>
+for any sktime forecaster:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sktime.forecasting.exp_smoothing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExponentialSmoothing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymongopredict</span><span class="w"> </span><span class="kn">import</span> <span class="n">MongoSeries</span>
+
+<span class="n">series</span> <span class="o">=</span> <span class="n">MongoSeries</span><span class="p">(</span><span class="n">coll_weather</span><span class="p">,</span> <span class="n">time_field</span><span class="o">=</span><span class="s2">"ts"</span><span class="p">,</span> <span class="n">value_field</span><span class="o">=</span><span class="s2">"airTemperature.value"</span><span class="p">,</span>
+                     <span class="n">freq</span><span class="o">=</span><span class="s2">"h"</span><span class="p">,</span> <span class="n">agg</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">900</span><span class="p">)</span>
+<span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">fc</span> <span class="o">=</span> <span class="n">ExponentialSmoothing</span><span class="p">(</span><span class="n">trend</span><span class="o">=</span><span class="s2">"add"</span><span class="p">,</span> <span class="n">seasonal</span><span class="o">=</span><span class="s2">"add"</span><span class="p">,</span> <span class="n">sp</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">fc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">fh</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+</pre></div>
+
+<h2 id="streaming-large-collections">Streaming large collections</h2>
+
+<p>By default a <code><a href="#MongoDataset">MongoDataset</a></code> fetches its documents once and keeps them in memory. When documents are much larger than
+the features taken from them (for example listings that carry all their reviews), pass <code>streaming=True</code>:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">MongoDataset</span><span class="p">(</span><span class="n">coll</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">"room_type"</span><span class="p">,</span> <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+</pre></div>
+
+<ul>
+<li>Loading reads only <code>_id</code> and the target, and <code>field_values</code> (for a stratify or group field) fetches only that field.</li>
+<li><code>fit</code> / <code>transform</code> fetch documents in batches of <code>_id</code> values, with only the fields the featurizer uses when
+<code>embed_fields</code> is given, and keep only the feature vectors.</li>
+<li>The next batch is fetched in a background thread while the current one is embedded (<code>prefetch=2</code>).</li>
+<li>Cursors and generators passed to <code>fit</code> / <code>transform</code> are also read batch by batch.</li>
+</ul>
+
+<p>The results are the same as in memory (the tests check this). On the Airbnb demo, peak memory drops from about 300 MB
+to about 215 MB, and the difference grows with the size of the documents.</p>
+
+<h2 id="how-documents-become-features">How documents become features</h2>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="n">MongoDataset</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="nb">filter</span><span class="p">)</span>  <span class="o">-&gt;</span>  <span class="n">sklearn</span> <span class="n">train_test_split</span>  <span class="o">-&gt;</span>  <span class="n">ds_train</span> <span class="o">/</span> <span class="n">ds_test</span>
+                                                                               <span class="o">|</span>
+                     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">"#DocumentFeaturizer.fit_transform"</span><span class="o">&gt;</span><span class="n">DocumentFeaturizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ds_train</span><span class="p">)</span> <span class="o">/</span> <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">ds_test</span><span class="p">)</span>
+                                                                               <span class="o">|</span>
+    <span class="n">columns</span> <span class="p">(</span><span class="n">dotted</span> <span class="n">paths</span><span class="p">):</span> <span class="n">types</span> <span class="n">inferred</span>                 <span class="n">embed_fields</span> <span class="p">(</span><span class="ow">or</span> <span class="n">the</span> <span class="n">whole</span> <span class="n">document</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="nb">list</span> <span class="n">size</span><span class="p">),</span>             <span class="n">compact</span> <span class="n">JSON</span> <span class="o">-&gt;</span> <span class="n">embedding</span> <span class="n">model</span>
+    <span class="n">missing</span> <span class="n">values</span> <span class="n">filled</span><span class="p">,</span> <span class="n">scaled</span><span class="p">,</span> <span class="n">one</span><span class="o">-</span><span class="n">hot</span> <span class="n">encoded</span>         <span class="p">(</span><span class="n">voyage</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="n">nano</span><span class="p">,</span> <span class="n">Hugging</span> <span class="n">Face</span><span class="p">,</span> <span class="n">Voyage</span> <span class="n">API</span><span class="p">)</span>
+                                                                               <span class="o">|</span>
+                                    <span class="n">batch</span> <span class="n">by</span> <span class="n">batch</span><span class="p">,</span> <span class="n">side</span> <span class="n">by</span> <span class="n">side</span>  <span class="o">-&gt;</span>  <span class="n">X</span> <span class="k">for</span> <span class="nb">any</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">estimator</span>
+</pre></div>
+
+<ul>
+<li>Embeddings are cached in a sqlite file (<code>.mongopredict_cache/</code>), keyed by the model and the text.</li>
+<li>Documents are serialised with <code>orjson</code>. <code>max_json_chars</code> (8000 by default) is applied field by field, so a
+document with a very long trailing array is not serialised in full only to be cut. <code>max_tokens=32768</code> or
+<code>max_tokens="model"</code> measures the budget in tokens with the model's tokenizer instead.</li>
+<li>BSON types are converted: <code>Decimal128</code> to float, <code>ObjectId</code> to string, dates to ISO strings.</li>
+</ul>
+
+<h2 id="embedding-models">Embedding models</h2>
+
+<p><code>embedding_model=</code> (<code>"embeddingModel"</code> in a prediction model definition) accepts:</p>
+
+<table>
+<thead>
+<tr>
+  <th>value</th>
+  <th>embedding model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>"voyage-4-nano"</code> (default)</td>
+  <td>runs locally with sentence-transformers, 346M parameters, no API key</td>
+</tr>
+<tr>
+  <td><code>"org/name"</code> or a path containing <code>/</code></td>
+  <td>any sentence-transformers model from Hugging Face or disk</td>
+</tr>
+<tr>
+  <td>other <code>"voyage-*"</code> names: <code>"voyage-4-lite"</code>, <code>"voyage-4"</code>, <code>"voyage-4-large"</code>, <code>"voyage-code-4"</code>, ...</td>
+  <td>the Voyage API (needs <code>VOYAGE_API_KEY</code>)</td>
+</tr>
+<tr>
+  <td><code>"hashing"</code></td>
+  <td>a hashed bag of words without dependencies, for tests and quick baselines</td>
+</tr>
+<tr>
+  <td>an embedder object</td>
+  <td>used as it is (cached under its <code>name</code>; an object without a name is not cached)</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><code>"voyage-4-nano@512"</code> (or <code>embedding_kwargs={"dimension": 512}</code>) truncates Matryoshka embeddings after the cache,
+so the full vector is computed once and serves every dimension.</li>
+<li>Local models run in bfloat16 on CUDA (float32 elsewhere), with the token limit capped at the model's maximum.</li>
+<li>Voyage API models (<code><a href="#VoyageEmbedder">pymongopredict.embeddings_api.embed.VoyageEmbedder</a></code>) take <code>output_dimension</code> (256, 512,
+1024 or 2048), <code>api_key</code>, <code>max_retries</code> (default 5, with exponential backoff on rate limits) and <code>timeout</code>
+through <code>embedding_kwargs</code>. Texts go in requests of at most 1,000 texts and within the model's tokens per request.
+Contextualized and multimodal models (<code>voyage-context-*</code>, <code>voyage-multimodal-*</code>) are not supported.</li>
+<li><code>mask_target=True</code> keeps the target as the first key with the value <code>&lt;MASK&gt;</code> and puts
+<code>Predict the value of &lt;MASK&gt;:</code> before the text (<code>mask_token</code> and <code>prefix</code> change them), so the model knows
+which field is asked for. This is the input format of the voyage-json models, which are trained to predict from
+whole documents.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<p>Usage:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymongopredict</span><span class="w"> </span><span class="kn">import</span> <span class="n">DocumentFeaturizer</span><span class="p">,</span> <span class="n">MongoDataset</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">MongoDataset</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">"room_type"</span><span class="p">)</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">prep</span> <span class="o">=</span> <span class="n">DocumentFeaturizer</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span> <span class="n">embed_fields</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">])</span>   <span class="c1"># docs -&gt; X</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">prep</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train</span><span class="p">),</span> <span class="n">train</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">prep</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">),</span> <span class="n">test</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+
+                
+                
+                
+            </section>
+                <section id="MongoDataset">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">MongoDataset</span>:
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset"></a>
+    
+            <div class="docstring"><p>Documents of a collection (or an explicit list) together with an optional target.</p>
+
+<p>The query is lazy: nothing is read until the first access to <code>len()</code>, <code><a href="#MongoDataset.ids">ids</a></code>,
+<code><a href="#MongoDataset.y">y</a></code>, <code><a href="#MongoDataset.iter_batches">iter_batches()</a></code> or <code><a href="#MongoDataset.field_values">field_values()</a></code> (or an explicit <code><a href="#MongoDataset.load">load()</a></code>), and the
+result is cached.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>collection</strong> (pymongo <code>Collection</code> or None):
+Anything with <code>.find</code> (mongomock works). <code>None</code> for in-memory documents (see
+<code><a href="#MongoDataset.from_documents">from_documents()</a></code>).</li>
+<li><strong>target</strong> (str, optional):
+Dotted path of the field to predict (e.g. <code>"imdb.rating"</code>). Documents without a value
+are dropped. <code>None</code> (default) for an unlabelled dataset; <code><a href="#MongoDataset.y">y</a></code> is then <code>None</code>.</li>
+<li><strong>filter, projection, limit, sort</strong> (optional):
+Forwarded to <code>collection.find</code>. The <code><a href="#MongoDataset.projection">projection</a></code> defines what a document looks like
+in both modes; the target field is added to an inclusion projection (or removed from the
+excluded fields of an exclusion projection) so <code><a href="#MongoDataset.y">y</a></code> can always be read. <code><a href="#MongoDataset.limit">limit</a></code> of
+<code>None</code> or 0 means no limit.</li>
+<li><strong>streaming</strong> (bool, default False):
+If <code>True</code> the documents are never held in memory all at once. <code><a href="#MongoDataset.load">load()</a></code> only reads
+<code>_id</code> and the target; documents are fetched again in <code>_id</code> batches whenever an
+estimator iterates over the dataset (with a projection limited to the fields it uses).
+Use it when documents are much larger than the features derived from them. The
+collection must not change in between: a document that disappeared raises <code>KeyError</code>.</li>
+<li><strong>batch_size</strong> (int, default 512):
+Documents per batch in <code><a href="#MongoDataset.iter_batches">iter_batches()</a></code> (and per <code>_id</code> query in streaming mode).</li>
+<li><strong>prefetch</strong> (int, default 2):
+In streaming mode, number of batches fetched ahead in a background thread so the
+database round trip overlaps with featurisation / embedding (0 disables).</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: If <code><a href="#MongoDataset.batch_size">batch_size</a></code> is smaller than 1.</li>
+</ul>
+
+<h6 id="notes">Notes</h6>
+
+<p>Each document is identified by its <code>_id</code>. When a document has no <code>_id</code> (in-memory
+documents, or an in-memory projection with <code>"_id": 0</code>) its position is used instead.</p>
+
+<h6 id="examples">Examples</h6>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">MongoDataset</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">movies</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">"imdb.rating"</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">"title"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"plot"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">dtype('float64')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">field_values</span><span class="p">(</span><span class="s2">"title"</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span>
+</code></pre>
+</div>
+</div>
+
+
+                            <div id="MongoDataset.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">MongoDataset</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">collection</span>,</span><span class="param">	<span class="n">target</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="nb">filter</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">projection</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">sort</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">streaming</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span>,</span><span class="param">	<span class="n">prefetch</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoDataset.collection" class="classattr">
+                                <div class="attr variable">
+            <span class="name">collection</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.collection"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoDataset.target" class="classattr">
+                                <div class="attr variable">
+            <span class="name">target</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.target"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoDataset.filter" class="classattr">
+                                <div class="attr variable">
+            <span class="name">filter</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.filter"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoDataset.projection" class="classattr">
+                                <div class="attr variable">
+            <span class="name">projection</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.projection"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoDataset.limit" class="classattr">
+                                <div class="attr variable">
+            <span class="name">limit</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.limit"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoDataset.sort" class="classattr">
+                                <div class="attr variable">
+            <span class="name">sort</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.sort"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoDataset.streaming" class="classattr">
+                                <div class="attr variable">
+            <span class="name">streaming</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.streaming"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoDataset.batch_size" class="classattr">
+                                <div class="attr variable">
+            <span class="name">batch_size</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.batch_size"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoDataset.prefetch" class="classattr">
+                                <div class="attr variable">
+            <span class="name">prefetch</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.prefetch"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoDataset.from_documents" class="classattr">
+                                <div class="attr function">
+                    <div class="decorator decorator-classmethod">@classmethod</div>
+
+        <span class="def">def</span>
+        <span class="name">from_documents</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">cls</span>, </span><span class="param"><span class="n">documents</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>, </span><span class="param"><span class="n">target</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>, </span><span class="param"><span class="n">y</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.from_documents"></a>
+    
+            <div class="docstring"><p>In-memory dataset from a list / cursor of documents.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>documents</strong> (iterable of dict):
+Documents (a list, a pymongo cursor, a generator). It is read once into a list.</li>
+<li><strong>target</strong> (str, optional):
+Dotted path of the label inside each document. Documents missing it are dropped.
+Ignored for labels when <code><a href="#MongoDataset.y">y</a></code> is given, but still stored as <code><a href="#MongoDataset.target">target</a></code>.</li>
+<li><strong>y</strong> (array-like, optional):
+Labels given separately, one per document (no document is dropped). Converted with
+<code>_as_target_array()</code>.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>MongoDataset</strong>: A dataset with no collection; it cannot be reloaded, and fields left out of the
+documents cannot be fetched later.</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: If <code><a href="#MongoDataset.y">y</a></code> is not one dimensional or its length differs from the number of documents.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n"><a href="#MongoDataset.from_documents">MongoDataset.from_documents</a></span><span class="p">([{</span><span class="s2">"a"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"t"</span><span class="p">:</span> <span class="s2">"x"</span><span class="p">},</span> <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="mi">2</span><span class="p">}],</span> <span class="n">target</span><span class="o">=</span><span class="s2">"t"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n"><a href="#MongoDataset.from_documents">MongoDataset.from_documents</a></span><span class="p">([{</span><span class="s2">"a"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="mi">2</span><span class="p">}],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+</code></pre>
+</div>
+</div>
+
+
+                            </div>
+                            <div id="MongoDataset.load" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">load</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">force</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.load"></a>
+    
+            <div class="docstring"><p>Run the query and cache the result.</p>
+
+<p>In memory, the documents are fetched with the dataset's projection (extended to the
+target). When streaming, only <code>_id</code> and the target are fetched. Documents with a
+missing target are dropped. A reload clears the cache of <code><a href="#MongoDataset.field_values">field_values()</a></code>.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>force</strong> (bool, default False):
+Run the query again even if the dataset is already loaded (e.g. after the
+collection changed).</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>MongoDataset</strong>: <code>self</code>, so calls can be chained (<code>ds.load().y</code>).</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: If the dataset is a subset (from <code><a href="#MongoDataset.subset">subset()</a></code> or a scikit-learn split), which
+only knows its ids, or if it has no collection and was not built with
+<code><a href="#MongoDataset.from_documents">from_documents()</a></code>.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="MongoDataset.ids" class="classattr">
+                                <div class="attr variable">
+            <span class="name">ids</span><span class="annotation">: list</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.ids"></a>
+    
+            <div class="docstring"><p><code>_id</code> of every document, in dataset order (a copy).</p>
+
+<p>Documents without an <code>_id</code> (in-memory documents, or a projection with <code>"_id": 0</code>)
+are identified by their position in the query result instead.</p>
+</div>
+
+
+                            </div>
+                            <div id="MongoDataset.y" class="classattr">
+                                <div class="attr variable">
+            <span class="name">y</span><span class="annotation">: numpy.ndarray | None</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.y"></a>
+    
+            <div class="docstring"><p>Target values aligned with <code><a href="#MongoDataset.ids">ids</a></code> (<code>None</code> when the dataset has no target).</p>
+
+<p>Numeric targets come back as a float array, booleans as bool, anything else as strings,
+so the array can go straight into an sklearn estimator.</p>
+</div>
+
+
+                            </div>
+                            <div id="MongoDataset.documents" class="classattr">
+                                <div class="attr variable">
+            <span class="name">documents</span><span class="annotation">: list[dict]</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.documents"></a>
+    
+            <div class="docstring"><p>All documents as a list, in dataset order (a new list on every access).</p>
+
+<p>In streaming mode this fetches every document (defeating the purpose), so prefer
+<code><a href="#MongoDataset.iter_batches">iter_batches()</a></code>.</p>
+</div>
+
+
+                            </div>
+                            <div id="MongoDataset.iter_batches" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">iter_batches</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">projection</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.iter_batches"></a>
+    
+            <div class="docstring"><p>Yield lists of at most <code><a href="#MongoDataset.batch_size">batch_size</a></code> documents, in dataset order.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>projection</strong> (dict, optional):
+Fields the consumer needs, used to limit what is fetched in streaming mode. It is
+ignored for in-memory documents (already loaded) and for datasets that have their
+own <code><a href="#MongoDataset.projection">projection</a></code>, since that projection defines the documents in both modes.</li>
+</ul>
+
+<h6 id="yields">Yields</h6>
+
+<ul>
+<li><strong>list of dict</strong>: Consecutive batches. In streaming mode each batch is one <code>_id</code> query; with
+<code>prefetch &gt; 0</code> and more than one batch, the next batches are fetched in a
+background thread while the current one is processed.</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>KeyError</strong>: In streaming mode, if documents were deleted from the collection after loading.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">iter_batches</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">"title"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}):</span>
+<span class="gp">... </span>    <span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"title"</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">]</span>
+</code></pre>
+</div>
+</div>
+
+
+                            </div>
+                            <div id="MongoDataset.field_values" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">field_values</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="nb">list</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.field_values"></a>
+    
+            <div class="docstring"><p>Values of a dotted field for every document, aligned with <code><a href="#MongoDataset.ids">ids</a></code>.</p>
+
+<p>Used for stratify or group values in scikit-learn splits, and by featurizers that
+read single columns. Streaming datasets fetch just that field (once, then cached until
+the next <code><a href="#MongoDataset.load">load()</a></code>) with a projection, and so do in-memory datasets whose
+<code><a href="#MongoDataset.projection">projection</a></code> left the field out, so both modes see the same values.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>path</strong> (str):
+Dotted field path, e.g. <code>"host.host_id"</code> or <code>"scores.0"</code>.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>list</strong>: One value per document (a new list). Missing fields give <code>None</code>; BSON scalars
+(Decimal128, ObjectId) are converted to plain Python values.</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: For an in-memory dataset whose projection leaves out both <code>path</code> and <code>_id</code> (or
+that has no collection), since the field then cannot be fetched by <code>_id</code>.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="MongoDataset.subset" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">subset</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">idx</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="n"><a href="#MongoDataset">MongoDataset</a></span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.subset"></a>
+    
+            <div class="docstring"><p>Dataset restricted to positional indices.</p>
+
+<p>The subset shares the collection, query settings and mode (in memory or streaming),
+and copies the matching ids, targets, documents and cached <code><a href="#MongoDataset.field_values">field_values()</a></code>. It is a
+view: it cannot <code><a href="#MongoDataset.load">load()</a></code> its query again.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>idx</strong> (sequence of int):
+Positions into this dataset (e.g. from a scikit-learn splitter). Order is kept and
+repeats are allowed.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>MongoDataset</strong>: A new dataset with <code>len(idx)</code> documents.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">first_ten</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre>
+</div>
+</div>
+
+
+                            </div>
+                            <div id="MongoDataset.shape" class="classattr">
+                                <div class="attr variable">
+            <span class="name">shape</span><span class="annotation">: tuple[int]</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.shape"></a>
+    
+            <div class="docstring"><p><code>(n_documents,)</code>, as scikit-learn expects of an array-like (loads the dataset).</p>
+</div>
+
+
+                            </div>
+                            <div id="MongoDataset.take" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">take</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">indices</span>,</span><span class="param">	<span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="n"><a href="#MongoDataset">MongoDataset</a></span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.take"></a>
+    
+            <div class="docstring"><p>The documents at <code>indices</code> as a new dataset (<code><a href="#MongoDataset.subset">subset()</a></code>); <code>axis</code> must be 0.</p>
+
+<p>This is what <code>sklearn.model_selection.train_test_split</code> and the other scikit-learn
+splitters call, so they split a dataset into datasets:</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre>
+</div>
+</div>
+
+
+                            </div>
+                            <div id="MongoDataset.iloc" class="classattr">
+                                <div class="attr variable">
+            <span class="name">iloc</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoDataset.iloc"></a>
+    
+            <div class="docstring"><p>Positional indexing as in pandas: <code>ds.iloc[10:20]</code> or <code>ds.iloc[[0, 5]]</code>.</p>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="MongoSeries">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">MongoSeries</span>:
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries"></a>
+    
+            <div class="docstring"><p>A univariate time series aggregated from the documents of a collection.</p>
+
+<p>Only the two fields are read, streamed through the cursor. <code><a href="#MongoSeries.series">series</a></code> is a <code>pd.Series</code>
+with a <code>PeriodIndex</code>, ready for sktime. The collection is read lazily, on the first
+access to <code><a href="#MongoSeries.series">series</a></code>, <code>len()</code> or <code><a href="#MongoSeries.split">split()</a></code>, and the result is cached.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>collection</strong> (pymongo.collection.Collection):
+The collection to read.</li>
+<li><strong>time_field</strong> (str):
+Dotted path of the timestamp field. Accepted values: <code>datetime</code> / <code>date</code> /
+<code>pd.Timestamp</code>, ISO 8601 strings, and numbers as epoch seconds (or epoch milliseconds
+when above 1e11). Timezone-aware times are converted to naive UTC. Documents whose time
+cannot be parsed are skipped.</li>
+<li><strong>value_field</strong> (str):
+Dotted path of the numeric field to aggregate. <code>Decimal128</code> values are read as floats;
+values that are missing, <code>None</code> or not convertible to <code>float</code> are skipped.</li>
+<li><strong>freq</strong> (str, default "D"):
+pandas offset alias used to bucket timestamps (<code>"h"</code>, <code>"D"</code>, <code>"W"</code>, <code>"MS"</code> ...),
+with an optional multiple and anchor (<code>"2MS"</code>, <code>"QS-FEB"</code>). The period-style
+aliases <code>"M"</code>, <code>"Q"</code>, <code>"Y"</code> and <code>"A"</code> are accepted and resampled as <code>"ME"</code>,
+<code>"QE"</code> and <code>"YE"</code>, which pandas 3 requires. Month, quarter and year aliases (also
+business ones) map to the matching periods, keeping the multiple (<code>"2MS"</code> gives
+<code>"2M"</code> periods) and ending start-anchored periods the month before the anchor
+(<code>"QS-FEB"</code> gives <code>"Q-JAN"</code>). For other aliases the period frequency is inferred
+from the resampled index.</li>
+<li><strong>agg</strong> (str, default "mean"):
+Aggregation within a bucket, any name pandas <code>Resampler.agg</code> accepts (<code>"mean"</code>,
+<code>"sum"</code>, <code>"count"</code>, <code>"median"</code>, <code>"max"</code> ...).</li>
+<li><strong>fill</strong> ({"interpolate", "ffill"}, number or None, default "interpolate"):
+How to fill empty buckets: <code>"interpolate"</code> interpolates linearly and extends the
+first and last values to the ends; <code>"ffill"</code> carries the last value forward (and the
+first value backward for leading gaps); a number fills with that value; <code>None</code> leaves
+<code>NaN</code>. Aggregations such as <code>"count"</code> and <code>"sum"</code> give 0, not <code>NaN</code>, for empty
+buckets, so there is nothing to fill.</li>
+<li><strong>filter</strong> (dict or None, default None):
+<code>find</code> filter; <code>None</code> reads every document.</li>
+<li><strong>valid</strong> (callable or None, default None):
+<code>valid(value) -&gt; bool</code> to drop sentinel values (e.g. <code>999.9</code> in the weather sample
+data). It sees the value before conversion to <code>float</code>.</li>
+<li><strong>limit</strong> (int or None, default None):
+Read at most this many documents (in natural order); <code>None</code> or <code>0</code> reads all.</li>
+</ul>
+
+<h6 id="attributes">Attributes</h6>
+
+<ul>
+<li><strong>series</strong> (pandas.Series):
+The aggregated series, named after <code><a href="#MongoSeries.value_field">value_field</a></code>.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">ms</span> <span class="o">=</span> <span class="n">MongoSeries</span><span class="p">(</span><span class="n">coll</span><span class="p">,</span> <span class="s2">"ts"</span><span class="p">,</span> <span class="s2">"airTemperature.value"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>  <span class="c1"># doctest: +SKIP</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>  <span class="c1"># doctest: +SKIP</span>
+</code></pre>
+</div>
+</div>
+
+
+                            <div id="MongoSeries.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">MongoSeries</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">collection</span>,</span><span class="param">	<span class="n">time_field</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">value_field</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">freq</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'D'</span>,</span><span class="param">	<span class="n">agg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'mean'</span>,</span><span class="param">	<span class="n">fill</span><span class="o">=</span><span class="s1">'interpolate'</span>,</span><span class="param">	<span class="nb">filter</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">valid</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoSeries.collection" class="classattr">
+                                <div class="attr variable">
+            <span class="name">collection</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.collection"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoSeries.time_field" class="classattr">
+                                <div class="attr variable">
+            <span class="name">time_field</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.time_field"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoSeries.value_field" class="classattr">
+                                <div class="attr variable">
+            <span class="name">value_field</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.value_field"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoSeries.freq" class="classattr">
+                                <div class="attr variable">
+            <span class="name">freq</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.freq"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoSeries.agg" class="classattr">
+                                <div class="attr variable">
+            <span class="name">agg</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.agg"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoSeries.fill" class="classattr">
+                                <div class="attr variable">
+            <span class="name">fill</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.fill"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoSeries.filter" class="classattr">
+                                <div class="attr variable">
+            <span class="name">filter</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.filter"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoSeries.valid" class="classattr">
+                                <div class="attr variable">
+            <span class="name">valid</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.valid"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoSeries.limit" class="classattr">
+                                <div class="attr variable">
+            <span class="name">limit</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.limit"></a>
+    
+    
+
+                            </div>
+                            <div id="MongoSeries.load" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">load</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">force</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.load"></a>
+    
+            <div class="docstring"><p>Read the collection and build the series (once, unless <code>force</code>).</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>force</strong> (bool, default False):
+Re-read the collection even if the series is already cached, e.g. after new
+documents were inserted.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>MongoSeries</strong>: <code>self</code>, so that <code>ms.load().series</code> chains.</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: If fewer than three documents have a usable (time, value) pair, or fewer than three
+periods remain after resampling.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="MongoSeries.series" class="classattr">
+                                <div class="attr variable">
+            <span class="name">series</span><span class="annotation">: pandas.Series</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.series"></a>
+    
+            <div class="docstring"><p>The aggregated series (float values, <code>PeriodIndex</code>); loads it on first access.</p>
+</div>
+
+
+                            </div>
+                            <div id="MongoSeries.split" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">split</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">test_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="mf">0.2</span></span><span class="return-annotation">) -> <span class="nb">tuple</span><span class="p">[</span><span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">]</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#MongoSeries.split"></a>
+    
+            <div class="docstring"><p>Trailing <code>test_size</code> periods (int) or fraction (float) become the test series.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>test_size</strong> (float or int, default 0.2):
+An integer of at least 1 is a number of periods; anything else is a fraction of the
+series length (rounded). The test size is clipped so that the test series has at
+least one period and the training series at least two.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>tuple of pandas.Series</strong>: <code>(train, test)</code>, contiguous and in time order.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>  <span class="c1"># last 12 periods  # doctest: +SKIP</span>
+</code></pre>
+</div>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="DocumentFeaturizer">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">DocumentFeaturizer</span><wbr>(<span class="base">sklearn.base.BaseEstimator</span>, <span class="base">sklearn.base.TransformerMixin</span>):
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer"></a>
+    
+            <div class="docstring"><p>Turn documents into <code>[tabular columns | embedding of JSON]</code> features.</p>
+
+<p>A scikit-learn transformer. All constructor arguments are stored unchanged (so <code><a href="#DocumentFeaturizer.get_params">get_params</a></code>,
+<code>clone</code> and grid search work); everything learned is set by <code><a href="#DocumentFeaturizer.fit">fit</a></code> in attributes ending
+with <code>_</code>, and every fit starts from scratch.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><p><strong>columns</strong> (list of str or None, default None):
+Dotted field paths (<code>"imdb.rating"</code>, <code>"tags.0"</code>) used directly as tabular features.
+<code>None</code> or <code>[]</code> means no tabular block. The kind of each column is inferred from the
+training documents (see <code>_infer_kind</code>):</p>
+
+<ul>
+<li><code>"size"</code>: every value is a list or sub-document; the feature is its length.</li>
+<li><code>"bool"</code>: every value is a boolean; at transform time <code>0</code> / <code>1</code>, <code>"yes"</code> /
+<code>"no"</code>, <code>"true"</code> / <code>"false"</code>, <code>"t"</code> / <code>"f"</code> and <code>"y"</code> / <code>"n"</code> are read too,
+anything else is missing.</li>
+<li><code>"datetime"</code>: datetime values; the feature is seconds since 1970-01-01 UTC.</li>
+<li><code>"numeric"</code>: a numeric dtype, or at least 95% of the values parse as numbers
+(numeric strings included). Unparsable values and infinities are missing, values
+beyond the float32 range are clipped. A column with no values at all is numeric.</li>
+<li><code>"categorical"</code>: anything else. Values become strings (<code>1</code>, <code>1.0</code> and <code>"1"</code>
+are one category) and missing values the category <code>"&lt;NA&gt;"</code>.</li>
+</ul>
+
+<p>Non-categorical columns are imputed with the training median (and standardised when
+<code><a href="#DocumentFeaturizer.scale_numeric">scale_numeric</a></code>); categorical columns are one-hot encoded.</p></li>
+<li><strong>embed_fields</strong> (list of str, bool or None, default None):
+What is serialised to JSON and embedded. <code>None</code> or <code>True</code>: the whole document except
+<code>_id</code> and the excluded paths (the <code><a href="#DocumentFeaturizer.columns">columns</a></code> stay in the JSON too). A list of dotted
+paths: only those fields, in document order. <code>False</code> or <code>[]</code>: no embedding block.</li>
+<li><strong>exclude</strong> (sequence of str, default ()):
+Dotted paths never embedded. The target of a <code><a href="#MongoDataset">MongoDataset</a></code> passed to <code><a href="#DocumentFeaturizer.fit">fit</a></code> is
+excluded automatically; <code>exclude_</code> holds the effective list after fitting.</li>
+<li><strong>embedding_model</strong> (str, BaseEmbedder or None, default <code>"voyage-4-nano"</code>):
+Embedding model: <code>"voyage-4-nano"</code> or any
+<code>"org/name"</code> Hugging Face id (local), other <code>"voyage-*"</code> names (Voyage API),
+<code>"hashing"</code> (tests), a <code>"@&lt;dim&gt;"</code> suffix for Matryoshka truncation, or an embedder
+instance.</li>
+<li><strong>embedding_kwargs</strong> (dict or None, default None):
+Forwarded to the embedder constructor (e.g. <code>{"dimension": 512}</code>,
+<code>{"batch_size": 64}</code>).</li>
+<li><strong>cache_dir</strong> (str or None, default <code>".mongopredict_cache"</code>):
+Directory of the sqlite embedding cache, keyed by the embedder's settings and the
+text; <code>None</code> disables it.</li>
+<li><strong>batch_size</strong> (int, default 512):
+Documents per batch for cursors, generators and lists. A <code><a href="#MongoDataset">MongoDataset</a></code> uses its own
+<code><a href="#DocumentFeaturizer.batch_size">batch_size</a></code>.</li>
+<li><strong>mask_target</strong> (bool, default False):
+<code>False</code> removes the target field from the embedded JSON. <code>True</code> keeps it as the first
+key, with the value <code><a href="#DocumentFeaturizer.mask_token">mask_token</a></code>, and puts <code><a href="#DocumentFeaturizer.prefix">prefix</a></code> before the JSON, so the model
+sees which field is asked for. The masked key is <code><a href="#DocumentFeaturizer.mask_key">mask_key</a></code> or, failing that, the
+dataset target; with plain documents (no dataset target) only <code><a href="#DocumentFeaturizer.mask_key">mask_key</a></code> can be masked,
+and it is then also excluded from the rest of the JSON.</li>
+<li><strong>mask_token</strong> (str, default <code>"&lt;MASK&gt;"</code>):
+The value shown for the masked field.</li>
+<li><strong>mask_key</strong> (str or None, default None):
+The key shown with the mask (default: the dataset target). Useful when the target is a
+derived field (e.g. a collapsed or logged copy) and the model should see the original
+field name.</li>
+<li><strong>prefix</strong> (str or None, default None):
+Text put before the JSON. <code>None</code> means <code>"Predict the value of &lt;mask_token&gt;: "</code> when a
+field is masked and nothing otherwise; any string (<code>""</code> included) is used as is.</li>
+<li><strong>max_json_chars</strong> (int or None, default 8000):
+Character budget for the whole text (prefix included). Fields are added in order and the
+first one that does not fit is cut (when more than its key fits), the rest dropped.
+<code>None</code> means unlimited. Ignored when <code><a href="#DocumentFeaturizer.max_tokens">max_tokens</a></code> is set.</li>
+<li><strong>max_tokens</strong> (int, <code>"model"</code> or None, default None):
+Token budget instead of characters, measured with <code><a href="#DocumentFeaturizer.tokenizer">tokenizer</a></code>. <code>"model"</code> uses the
+tokenizer's <code>model_max_length</code>, capped by the model config's
+<code>max_position_embeddings</code> (32768 for voyage-4-nano). 16 tokens are kept free for the
+document prompt and special tokens. For a local embedder the model's <code>max_seq_length</code>
+is set to this budget too, unless <code><a href="#DocumentFeaturizer.embedding_kwargs">embedding_kwargs</a></code> sets it.</li>
+<li><strong>tokenizer</strong> (str, tokenizer object or None, default None):
+Used only to measure <code><a href="#DocumentFeaturizer.max_tokens">max_tokens</a></code>. A Hugging Face id, or a Hugging Face style tokenizer
+(callable on a list of texts, returning <code>{"input_ids": ...}</code>, with <code>decode</code>).
+<code>None</code>: the embedding model's tokenizer when it is a local model, else voyage-4-nano's.</li>
+<li><strong>scale_numeric</strong> (bool, default True):
+Standardise the non-categorical columns after imputation.</li>
+<li><strong>min_frequency</strong> (int, default 5):
+Categories seen fewer times in training go to the one-hot "infrequent" column.</li>
+<li><strong>max_categories</strong> (int, default 100):
+Upper bound on one-hot columns per categorical column (infrequent bucket included).
+The feature matrix is dense float32: its memory is documents x (embedding dimension +
+numeric columns + one-hot columns) x 4 bytes, so many categorical columns with a large
+<code><a href="#DocumentFeaturizer.max_categories">max_categories</a></code> cost memory on large training sets.</li>
+</ul>
+
+<h6 id="attributes">Attributes</h6>
+
+<ul>
+<li><strong>target_</strong> (str or None):
+The dataset target seen by the last fit (<code>None</code> for plain documents).</li>
+<li><strong>exclude_</strong> (list of str):
+Paths left out of the embedded JSON: <code><a href="#DocumentFeaturizer.exclude">exclude</a></code>, the target and, for plain documents in
+mask mode, <code><a href="#DocumentFeaturizer.mask_key">mask_key</a></code>.</li>
+<li><strong>embedder_</strong> (BaseEmbedder or None):
+The embedder built by the last fit (<code>None</code> when embeddings are disabled).</li>
+<li><strong>tokenizer_</strong> (tokenizer or None):
+Tokenizer loaded for <code><a href="#DocumentFeaturizer.max_tokens">max_tokens</a></code>; reset by every fit.</li>
+<li><strong>column_kinds_</strong> (dict of str to str):
+Inferred kind of each column (see <code><a href="#DocumentFeaturizer.columns">columns</a></code>).</li>
+<li><strong>tabular_</strong> (sklearn ColumnTransformer or None):
+Fitted preprocessing of the columns (<code>None</code> without columns).</li>
+<li><strong>n_tabular_features_, n_embedding_features_</strong> (int):
+Widths of the two blocks of the output matrix.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">docs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"_id"</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">"price"</span><span class="p">:</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="s2">"kind"</span><span class="p">:</span> <span class="s2">"a"</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="k">else</span> <span class="s2">"b"</span><span class="p">,</span>
+<span class="gp">... </span>         <span class="s2">"text"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"item </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">prep</span> <span class="o">=</span> <span class="n">DocumentFeaturizer</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"price"</span><span class="p">,</span> <span class="s2">"kind"</span><span class="p">],</span> <span class="n">embedding_model</span><span class="o">=</span><span class="s2">"hashing"</span><span class="p">,</span>
+<span class="gp">... </span>                          <span class="n">embedding_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"n_features"</span><span class="p">:</span> <span class="mi">32</span><span class="p">},</span> <span class="n">cache_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">prep</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>  <span class="c1"># the whole document but ``_id`` is embedded</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">((20, 35), dtype('float32'))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">prep</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()[:</span><span class="mi">4</span><span class="p">])</span>
+<span class="go">['num__price', 'cat__kind_a', 'cat__kind_b', 'emb_0']</span>
+</code></pre>
+</div>
+</div>
+
+
+                            <div id="DocumentFeaturizer.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">DocumentFeaturizer</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">columns</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">embed_fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">exclude</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>,</span><span class="param">	<span class="n">embedding_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n"><a href="#BaseEmbedder">BaseEmbedder</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s1">'voyage-4-nano'</span>,</span><span class="param">	<span class="n">embedding_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">cache_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s1">'.mongopredict_cache'</span>,</span><span class="param">	<span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span>,</span><span class="param">	<span class="n">mask_target</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">mask_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'&lt;MASK&gt;'</span>,</span><span class="param">	<span class="n">mask_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">max_json_chars</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">8000</span>,</span><span class="param">	<span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">tokenizer</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">scale_numeric</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">min_frequency</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>,</span><span class="param">	<span class="n">max_categories</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.columns" class="classattr">
+                                <div class="attr variable">
+            <span class="name">columns</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.columns"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.embed_fields" class="classattr">
+                                <div class="attr variable">
+            <span class="name">embed_fields</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.embed_fields"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.exclude" class="classattr">
+                                <div class="attr variable">
+            <span class="name">exclude</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.exclude"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.embedding_model" class="classattr">
+                                <div class="attr variable">
+            <span class="name">embedding_model</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.embedding_model"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.embedding_kwargs" class="classattr">
+                                <div class="attr variable">
+            <span class="name">embedding_kwargs</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.embedding_kwargs"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.cache_dir" class="classattr">
+                                <div class="attr variable">
+            <span class="name">cache_dir</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.cache_dir"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.batch_size" class="classattr">
+                                <div class="attr variable">
+            <span class="name">batch_size</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.batch_size"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.mask_target" class="classattr">
+                                <div class="attr variable">
+            <span class="name">mask_target</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.mask_target"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.mask_token" class="classattr">
+                                <div class="attr variable">
+            <span class="name">mask_token</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.mask_token"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.mask_key" class="classattr">
+                                <div class="attr variable">
+            <span class="name">mask_key</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.mask_key"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.prefix" class="classattr">
+                                <div class="attr variable">
+            <span class="name">prefix</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.prefix"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.max_json_chars" class="classattr">
+                                <div class="attr variable">
+            <span class="name">max_json_chars</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.max_json_chars"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.max_tokens" class="classattr">
+                                <div class="attr variable">
+            <span class="name">max_tokens</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.max_tokens"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.tokenizer" class="classattr">
+                                <div class="attr variable">
+            <span class="name">tokenizer</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.tokenizer"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.scale_numeric" class="classattr">
+                                <div class="attr variable">
+            <span class="name">scale_numeric</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.scale_numeric"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.min_frequency" class="classattr">
+                                <div class="attr variable">
+            <span class="name">min_frequency</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.min_frequency"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.max_categories" class="classattr">
+                                <div class="attr variable">
+            <span class="name">max_categories</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.max_categories"></a>
+    
+    
+
+                            </div>
+                            <div id="DocumentFeaturizer.token_limit" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">token_limit</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.token_limit"></a>
+    
+            <div class="docstring"><p>Effective token budget per text.</p>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>int or None</strong>: <code><a href="#DocumentFeaturizer.max_tokens">max_tokens</a></code> as an int; for <code>max_tokens="model"</code> the tokenizer's
+<code>model_max_length</code> capped by the model's <code>max_position_embeddings</code>. <code>None</code> when
+<code><a href="#DocumentFeaturizer.max_tokens">max_tokens</a></code> is <code>None</code> (the character budget <code><a href="#DocumentFeaturizer.max_json_chars">max_json_chars</a></code> is used).</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: With <code>max_tokens="model"</code> when the tokenizer reports no usable length.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="DocumentFeaturizer.fit" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">fit</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">X</span>, </span><span class="param"><span class="n">y</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.fit"></a>
+    
+            <div class="docstring"><p>Fit the featurizer (column kinds, tabular preprocessing, embedder).</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>X</strong> (MongoDataset, cursor, iterable of dict or list of dict):
+Training documents. A <code><a href="#MongoDataset">MongoDataset</a></code> is read in its own batches and its <code>target</code>
+is excluded from (or masked in) the embedded JSON. Other inputs are read in batches
+of <code><a href="#DocumentFeaturizer.batch_size">batch_size</a></code>.</li>
+<li><strong>y</strong> (ignored):
+Present for sklearn compatibility; take labels from <code><a href="#MongoDataset.y">MongoDataset.y</a></code>.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>DocumentFeaturizer</strong>: <code>self</code>. The documents are embedded during the fit, so with a cache a following
+<code><a href="#DocumentFeaturizer.transform">transform</a></code> of the same documents is cheap.</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>TypeError</strong>: If <code><a href="#DocumentFeaturizer.columns">columns</a></code>, <code><a href="#DocumentFeaturizer.embed_fields">embed_fields</a></code> or <code><a href="#DocumentFeaturizer.exclude">exclude</a></code> is a single string.</li>
+<li><strong>ValueError</strong>: If there are no documents, or neither columns nor embeddings.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="DocumentFeaturizer.fit_transform" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">fit_transform</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">X</span>, </span><span class="param"><span class="n">y</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="o">**</span><span class="n">fit_params</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.fit_transform"></a>
+    
+            <div class="docstring"><p>Fit on <code>X</code> and return its feature matrix, reading the documents once.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>X</strong> (MongoDataset, cursor, iterable of dict or list of dict):
+As in <code><a href="#DocumentFeaturizer.fit">fit()</a></code>.</li>
+<li><p><strong>y</strong> (ignored):</p></li>
+<li><p>**<strong>fit_params</strong> (ignored):</p></li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>numpy.ndarray of float32, shape (n_documents, n_features)</strong>: <code>[tabular columns | embedding]</code>; column names from <code><a href="#DocumentFeaturizer.get_feature_names_out">get_feature_names_out()</a></code>.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="DocumentFeaturizer.transform" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">transform</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">X</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.transform"></a>
+    
+            <div class="docstring"><p>Feature matrix of <code>X</code> with the fitted preprocessing and embedder.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>X</strong> (MongoDataset, cursor, iterable of dict or list of dict):
+Documents to featurize. The target is excluded (or masked) as in the fit, so it may
+be present or absent.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>numpy.ndarray of float32, shape (n_documents, n_features)</strong>: An empty <code>(0, n_features)</code> array when <code>X</code> has no documents.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="DocumentFeaturizer.fit_batches" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">fit_batches</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">batches</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.fit_batches"></a>
+    
+            <div class="docstring"><p>Fit from an iterable of document batches (lists of dicts) without holding them all.</p>
+
+<p>Batches carry no target, so nothing is excluded automatically: pass the target in
+<code><a href="#DocumentFeaturizer.exclude">exclude</a></code> (or set <code><a href="#DocumentFeaturizer.mask_key">mask_key</a></code> with <code>mask_target=True</code>). Returns <code>self</code>.</p>
+</div>
+
+
+                            </div>
+                            <div id="DocumentFeaturizer.fit_transform_batches" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">fit_transform_batches</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">batches</span></span><span class="return-annotation">) -> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.fit_transform_batches"></a>
+    
+            <div class="docstring"><p>Fit and return the feature matrix, consuming the document batches once.</p>
+
+<p>Only the values of <code><a href="#DocumentFeaturizer.columns">columns</a></code> and the embeddings are kept per batch, so memory stays
+proportional to the features rather than to the raw documents. As in
+<code><a href="#DocumentFeaturizer.fit_batches">fit_batches()</a></code>, no target is known, so it must be in <code><a href="#DocumentFeaturizer.exclude">exclude</a></code>.</p>
+</div>
+
+
+                            </div>
+                            <div id="DocumentFeaturizer.transform_batches" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">transform_batches</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">batches</span></span><span class="return-annotation">) -> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.transform_batches"></a>
+    
+            <div class="docstring"><p>Transform an iterable of document batches.</p>
+
+<p>Embeddings are computed batch by batch (so a streaming dataset is never held in memory),
+while the column values, which are small, are collected and encoded in a single sklearn
+call at the end: per batch sklearn overhead dominated on collections of small documents.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>batches</strong> (iterable of list of dict):
+Document batches, e.g. from <code><a href="#MongoDataset.iter_batches">MongoDataset.iter_batches</a></code>.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>numpy.ndarray of float32, shape (n_documents, n_features)</strong></li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="DocumentFeaturizer.get_feature_names_out" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_feature_names_out</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">input_features</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#DocumentFeaturizer.get_feature_names_out"></a>
+    
+            <div class="docstring"><p>Names of the output columns, in order.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>input_features</strong> (ignored):
+Present for sklearn compatibility.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>numpy.ndarray of str (object dtype)</strong>: The tabular names from the <code>ColumnTransformer</code> (e.g. <code>"num__year"</code>,
+<code>"cat__rated_PG"</code>, <code>"cat__rated_infrequent_sklearn"</code>), then <code>"emb_0"</code> ...
+<code>"emb_&lt;d-1&gt;"</code> for the embedding dimensions.</li>
+</ul>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="SentenceTransformerEmbedder">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">SentenceTransformerEmbedder</span><wbr>(<span class="base"><a href="#BaseEmbedder">pymongopredict.embeddings_api.BaseEmbedder</a></span>):
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder"></a>
+    
+            <div class="docstring"><p>Local embeddings through sentence-transformers.</p>
+
+<p>The model is loaded lazily on first use (see <code><a href="#SentenceTransformerEmbedder.model">model</a></code>) and is never pickled, so a fitted
+featurizer can be saved and loaded on another host.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>model_name</strong> (str, default <code>"voyageai/voyage-4-nano"</code>):
+Hugging Face id, or a key of <code>LOCAL_ALIASES</code> (<code>"voyage-4-nano"</code>). voyage-4-nano is
+Apache 2.0, 346M parameters.</li>
+<li><strong>batch_size</strong> (int, default 32):
+Maximum texts per forward pass.</li>
+<li><strong>max_seq_length</strong> (int or None, default 1024):
+Token limit per text; longer JSON documents are truncated. Capped at the model's own
+limit (e.g. 256 for all-MiniLM-L6-v2). <code>None</code> keeps the model's limit.</li>
+<li><strong>device</strong> (str or None, default None):
+<code>"cuda"</code>, <code>"cpu"</code> (or e.g. <code>"cuda:1"</code>); <code>None</code> picks CUDA when available.</li>
+<li><strong>normalize</strong> (bool, default True):
+Return unit-length vectors.</li>
+<li><strong>trust_remote_code</strong> (bool, default True):
+Forwarded to <code>SentenceTransformer</code> (needed by models with custom code).</li>
+<li><strong>show_progress_bar</strong> (bool, default False):
+Forwarded to <code>encode</code>.</li>
+<li><strong>dtype</strong> (str, default <code>"auto"</code>):
+<code>"auto"</code> runs in bfloat16 on CUDA devices that support it and float32 elsewhere; or an
+explicit torch dtype name such as <code>"float32"</code> / <code>"float16"</code>. float16 overflows in
+voyage-4-nano (Qwen3 backbone) and yields NaN vectors: if any vector of a call comes
+back non-finite, a <code>RuntimeWarning</code> is issued, the model is switched to float32 for
+good and those rows are recomputed.</li>
+<li><strong>max_batch_tokens</strong> (int, default 65536):
+Texts are grouped by length so that a batch holds at most about this many tokens
+(estimated as characters / 3, capped by <code><a href="#SentenceTransformerEmbedder.max_seq_length">max_seq_length</a></code>). This keeps long documents
+from exhausting GPU memory while short ones still go through in batches of
+<code><a href="#SentenceTransformerEmbedder.batch_size">batch_size</a></code>. On a CUDA out-of-memory error a group is retried with a quarter of the
+batch size, down to one text, before the error is raised.</li>
+<li><strong>prompt</strong> (str or None, default None):
+Text put before every document instead of the model's document prompt. <code>None</code>: the
+model's own (e.g. voyage-4-nano's <code>"Represent the document for retrieval: "</code>);
+<code>""</code>: none.</li>
+<li><strong>max_seq_length_in_key</strong> (bool, default True):
+Whether <code>|len=&lt;max_seq_length&gt;</code> goes into <code><a href="#SentenceTransformerEmbedder.name">name</a></code> (the cache key). The featurizer
+turns it off when it has already cut every text to the model's length with the model's
+own tokenizer, so those vectors are the same as untruncated ones.</li>
+</ul>
+
+<h6 id="attributes">Attributes</h6>
+
+<ul>
+<li><strong>name</strong> (str):
+Cache key prefix: the model id, then <code>|prompt=&lt;prompt&gt;</code> for a custom prompt, <code>|raw</code>
+when not normalised, and <code>|len=&lt;max_seq_length&gt;</code> (see <code>max_seq_length_in_key</code>).</li>
+<li><strong>part</strong> (tuple of (int, int) or None):
+Set only by <code>_CachedEmbedder</code> during one call in part mode.</li>
+<li><strong>last_done</strong> (numpy.ndarray of bool or None):
+Rows the last <code><a href="#SentenceTransformerEmbedder.embed">embed()</a></code> call computed (all of them outside part mode).</li>
+</ul>
+
+<h6 id="notes">Notes</h6>
+
+<p>Matryoshka truncation is not done here: pass <code>dimension=</code> to <code>_make_embedder()</code>, which
+caches the full vectors once and truncates on the way out (see <code>_MatryoshkaTruncate</code>).</p>
+</div>
+
+
+                            <div id="SentenceTransformerEmbedder.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">SentenceTransformerEmbedder</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'voyageai/voyage-4-nano'</span>,</span><span class="param">	<span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32</span>,</span><span class="param">	<span class="n">max_seq_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1024</span>,</span><span class="param">	<span class="n">device</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">trust_remote_code</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">show_progress_bar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'auto'</span>,</span><span class="param">	<span class="n">max_batch_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">65536</span>,</span><span class="param">	<span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">max_seq_length_in_key</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.model_name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">model_name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.model_name"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.prompt" class="classattr">
+                                <div class="attr variable">
+            <span class="name">prompt</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.prompt"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.batch_size" class="classattr">
+                                <div class="attr variable">
+            <span class="name">batch_size</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.batch_size"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.max_batch_tokens" class="classattr">
+                                <div class="attr variable">
+            <span class="name">max_batch_tokens</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.max_batch_tokens"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.max_seq_length" class="classattr">
+                                <div class="attr variable">
+            <span class="name">max_seq_length</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.max_seq_length"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.device" class="classattr">
+                                <div class="attr variable">
+            <span class="name">device</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.device"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.normalize" class="classattr">
+                                <div class="attr variable">
+            <span class="name">normalize</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.normalize"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.trust_remote_code" class="classattr">
+                                <div class="attr variable">
+            <span class="name">trust_remote_code</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.trust_remote_code"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.show_progress_bar" class="classattr">
+                                <div class="attr variable">
+            <span class="name">show_progress_bar</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.show_progress_bar"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.dtype" class="classattr">
+                                <div class="attr variable">
+            <span class="name">dtype</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.dtype"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">name</span>        =
+<span class="default_value">&#39;base&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.name"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.model" class="classattr">
+                                <div class="attr variable">
+            <span class="name">model</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.model"></a>
+    
+            <div class="docstring"><p>The <code>SentenceTransformer</code>, loaded on first access.</p>
+
+<p>Resolves <code><a href="#SentenceTransformerEmbedder.device">device</a></code> and <code>dtype="auto"</code> at load time and sets the model's
+<code><a href="#SentenceTransformerEmbedder.max_seq_length">max_seq_length</a></code> to <code>min(max_seq_length, native limit)</code>.</p>
+</div>
+
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.embed" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">embed</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">texts</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.embed"></a>
+    
+            <div class="docstring"><p>Embed <code>texts</code> in length-grouped batches.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>texts</strong> (sequence of str):</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>numpy.ndarray of float32, shape (len(texts), dim)</strong>: Rows in the order of <code>texts</code>. In part mode (<code><a href="#SentenceTransformerEmbedder.part">part</a></code> set) only this part's rows are
+computed; the others are zero and <code><a href="#SentenceTransformerEmbedder.last_done">last_done</a></code> marks which rows are real.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.part" class="classattr">
+                                <div class="attr variable">
+            <span class="name">part</span><span class="annotation">: tuple[int, int] | None</span>        =
+<span class="default_value">None</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.part"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.last_done" class="classattr">
+                                <div class="attr variable">
+            <span class="name">last_done</span>        =
+<span class="default_value">None</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.last_done"></a>
+    
+    
+
+                            </div>
+                            <div id="SentenceTransformerEmbedder.part_of" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">part_of</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">groups</span>, </span><span class="param"><span class="n">texts</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#SentenceTransformerEmbedder.part_of"></a>
+    
+            <div class="docstring"><p>Assign every length group to one of the <code>K</code> parts of <code>part = (k, K)</code>.</p>
+
+<p>Each group goes to the least loaded part, the load being the group's padded tokens
+(estimated as characters / 3), in the groups' order (longest first). The assignment is
+deterministic and the loads carry over between calls, so the <code>K</code> processes, each
+running the same calls, agree on who computes which group.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>groups</strong> (list of list of int):
+Groups from <code>_token_groups</code>.</li>
+<li><strong>texts</strong> (list of str):
+The texts the indices refer to.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>list of int</strong>: The part (<code>0</code> .. <code>K-1</code>) of each group.</li>
+</ul>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="VoyageEmbedder">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">VoyageEmbedder</span><wbr>(<span class="base"><a href="#BaseEmbedder">pymongopredict.embeddings_api.BaseEmbedder</a></span>):
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder"></a>
+    
+            <div class="docstring"><p>Embeddings through the Voyage AI API (the <code>voyageai</code> client is a dependency of the
+package; needs an API key in <code>VOYAGE_API_KEY</code> or <code><a href="#VoyageEmbedder.api_key">api_key</a></code>).</p>
+
+<p>Any text embedding model the API serves works, e.g. <code>"voyage-4-lite"</code>, <code>"voyage-4"</code>,
+<code>"voyage-4-large"</code>, <code>"voyage-code-4"</code>, <code>"voyage-finance-2"</code> or <code>"voyage-law-2"</code>.
+voyage-4-nano is an open-weight model and always runs locally (see
+<code><a href="#SentenceTransformerEmbedder">SentenceTransformerEmbedder</a></code>). Texts are sent in requests of at most <code><a href="#VoyageEmbedder.batch_size">batch_size</a></code>
+texts (the API takes up to 1,000) and at most the model's tokens per request (1M for
+voyage-4-lite, 320K for voyage-4, 120K for voyage-4-large and the others), estimated as
+characters / 3. Rate limits and server errors are retried by the client, with exponential
+backoff, up to <code><a href="#VoyageEmbedder.max_retries">max_retries</a></code> times.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>model</strong> (str, default <code>"voyage-4-lite"</code>):
+Voyage model name.</li>
+<li><strong>output_dimension</strong> (int or None, default None):
+Dimension requested from the API (256, 512, 1024 or 2048 for the voyage-4 models);
+<code>None</code> is the model's default (1024).</li>
+<li><strong>input_type</strong> (str or None, default <code>"document"</code>):
+Voyage <code><a href="#VoyageEmbedder.input_type">input_type</a></code> (<code>"document"</code>, <code>"query"</code> or <code>None</code>).</li>
+<li><strong>batch_size</strong> (int, default 1000):
+Most texts per API request.</li>
+<li><strong>api_key</strong> (str or None, default None):
+API key; <code>None</code> reads <code>VOYAGE_API_KEY</code>.</li>
+<li><strong>truncation</strong> (bool, default True):
+Let the API truncate texts longer than the model's context (32,000 tokens for the voyage-4
+models) instead of failing.</li>
+<li><strong>max_retries</strong> (int, default 5):
+Retries of a failed request (rate limit, timeout, server error), passed to
+<code>voyageai.Client</code>.</li>
+<li><strong>timeout</strong> (float or None, default None):
+Seconds before a request times out; <code>None</code> is the client's default.</li>
+</ul>
+
+<h6 id="attributes">Attributes</h6>
+
+<ul>
+<li><strong>name</strong> (str):
+<code>"voyage-api:&lt;model&gt;@&lt;output_dimension or full&gt;"</code>, plus <code>|&lt;input_type&gt;|truncation=...</code>
+when those differ from the defaults (so default keys stay as they were).</li>
+</ul>
+
+<h6 id="raises">Raises</h6>
+
+<ul>
+<li><strong>ValueError</strong>: For a model served by another endpoint (<code>voyage-context-*</code>, <code>voyage-multimodal-*</code>),
+and, on the first request, when no API key is set.</li>
+<li><strong>ImportError</strong>: On the first request, when the <code>voyageai</code> package is not installed.</li>
+</ul>
+</div>
+
+
+                            <div id="VoyageEmbedder.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">VoyageEmbedder</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'voyage-4-lite'</span>,</span><span class="param">	<span class="n">output_dimension</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s1">'document'</span>,</span><span class="param">	<span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span>,</span><span class="param">	<span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">truncation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>,</span><span class="param">	<span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="VoyageEmbedder.model" class="classattr">
+                                <div class="attr variable">
+            <span class="name">model</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.model"></a>
+    
+    
+
+                            </div>
+                            <div id="VoyageEmbedder.output_dimension" class="classattr">
+                                <div class="attr variable">
+            <span class="name">output_dimension</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.output_dimension"></a>
+    
+    
+
+                            </div>
+                            <div id="VoyageEmbedder.input_type" class="classattr">
+                                <div class="attr variable">
+            <span class="name">input_type</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.input_type"></a>
+    
+    
+
+                            </div>
+                            <div id="VoyageEmbedder.batch_size" class="classattr">
+                                <div class="attr variable">
+            <span class="name">batch_size</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.batch_size"></a>
+    
+    
+
+                            </div>
+                            <div id="VoyageEmbedder.api_key" class="classattr">
+                                <div class="attr variable">
+            <span class="name">api_key</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.api_key"></a>
+    
+    
+
+                            </div>
+                            <div id="VoyageEmbedder.truncation" class="classattr">
+                                <div class="attr variable">
+            <span class="name">truncation</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.truncation"></a>
+    
+    
+
+                            </div>
+                            <div id="VoyageEmbedder.max_retries" class="classattr">
+                                <div class="attr variable">
+            <span class="name">max_retries</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.max_retries"></a>
+    
+    
+
+                            </div>
+                            <div id="VoyageEmbedder.timeout" class="classattr">
+                                <div class="attr variable">
+            <span class="name">timeout</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.timeout"></a>
+    
+    
+
+                            </div>
+                            <div id="VoyageEmbedder.name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">name</span>        =
+<span class="default_value">&#39;base&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.name"></a>
+    
+    
+
+                            </div>
+                            <div id="VoyageEmbedder.client" class="classattr">
+                                <div class="attr variable">
+            <span class="name">client</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.client"></a>
+    
+            <div class="docstring"><p>The <code>voyageai.Client</code>, created on first use (so importing needs no <code>voyageai</code>).</p>
+</div>
+
+
+                            </div>
+                            <div id="VoyageEmbedder.embed" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">embed</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">texts</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#VoyageEmbedder.embed"></a>
+    
+            <div class="docstring"><p>Embed <code>texts</code> with as few API requests as the limits allow.</p>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>numpy.ndarray of float32, shape (len(texts), dim)</strong></li>
+</ul>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="HashingEmbedder">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">HashingEmbedder</span><wbr>(<span class="base"><a href="#BaseEmbedder">pymongopredict.embeddings_api.BaseEmbedder</a></span>):
+
+        
+    </div>
+    <a class="headerlink" href="#HashingEmbedder"></a>
+    
+            <div class="docstring"><p>Hashed word uni- and bigram vectors: fast, deterministic and dependency free.</p>
+
+<p>Not a semantic embedding; use it for tests, CI, quick pipeline checks and as a cheap
+bag-of-tokens baseline. <code>analyzer="char_wb"</code> with <code>ngram_range=(3, 5)</code> gives character
+n-grams instead (about 10x slower on long JSON documents).</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>n_features</strong> (int, default 256):
+Output dimension (number of hash buckets).</li>
+<li><strong>ngram_range</strong> (tuple of (int, int), default (1, 2)):
+Range of n-gram lengths.</li>
+<li><strong>analyzer</strong> (str, default <code>"word"</code>):
+<code>HashingVectorizer</code> analyzer (<code>"word"</code>, <code>"char"</code> or <code>"char_wb"</code>).</li>
+</ul>
+
+<h6 id="attributes">Attributes</h6>
+
+<ul>
+<li><strong>name</strong> (str):
+<code>"hashing@&lt;n_features&gt;"</code>, plus <code>|&lt;analyzer&gt;&lt;ngram_range&gt;</code> for non-default
+analyzers, so different settings never share cache entries.</li>
+</ul>
+
+<h6 id="examples">Examples</h6>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">HashingEmbedder</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">embed</span><span class="p">([</span><span class="s1">'{"a": 1}'</span><span class="p">])</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(1, 8)</span>
+</code></pre>
+</div>
+</div>
+
+
+                            <div id="HashingEmbedder.__init__" class="classattr">
+                                <div class="attr function">
+            
+        <span class="name">HashingEmbedder</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">n_features</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">256</span>, </span><span class="param"><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>, </span><span class="param"><span class="n">analyzer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'word'</span></span>)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#HashingEmbedder.__init__"></a>
+    
+    
+
+                            </div>
+                            <div id="HashingEmbedder.n_features" class="classattr">
+                                <div class="attr variable">
+            <span class="name">n_features</span>
+
+        
+    </div>
+    <a class="headerlink" href="#HashingEmbedder.n_features"></a>
+    
+    
+
+                            </div>
+                            <div id="HashingEmbedder.name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">name</span>        =
+<span class="default_value">&#39;base&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#HashingEmbedder.name"></a>
+    
+    
+
+                            </div>
+                            <div id="HashingEmbedder.embed" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">embed</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">texts</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#HashingEmbedder.embed"></a>
+    
+            <div class="docstring"><p>L2-normalised hashed n-gram counts of <code>texts</code>, shape <code>(len(texts), n_features)</code>.</p>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="BaseEmbedder">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">BaseEmbedder</span>:
+
+        
+    </div>
+    <a class="headerlink" href="#BaseEmbedder"></a>
+    
+            <div class="docstring"><p>Interface of all embedders: <code>embed(texts) -&gt; np.ndarray</code> of shape <code>(n_texts, dim)</code>.</p>
+
+<p>Subclass it to plug in any model: implement <code><a href="#BaseEmbedder.embed">embed()</a></code> and set <code><a href="#BaseEmbedder.name">name</a></code> to a string that
+identifies the model and every setting that changes its vectors. <code><a href="#BaseEmbedder.name">name</a></code> is the cache key
+prefix of <code>_CachedEmbedder</code>; an embedder that keeps the default <code>"base"</code> is not
+cached by <code>_make_embedder()</code>.</p>
+
+<h6 id="attributes">Attributes</h6>
+
+<ul>
+<li><strong>name</strong> (str):
+Identifier of the model and its settings, used in cache keys.</li>
+</ul>
+</div>
+
+
+                            <div id="BaseEmbedder.name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">name</span><span class="annotation">: str</span>        =
+<span class="default_value">&#39;base&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#BaseEmbedder.name"></a>
+    
+    
+
+                            </div>
+                            <div id="BaseEmbedder.embed" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">embed</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">texts</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#BaseEmbedder.embed"></a>
+    
+            <div class="docstring"><p>Embed <code>texts</code>.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>texts</strong> (sequence of str):</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<ul>
+<li><strong>numpy.ndarray of float32, shape (len(texts), dim)</strong></li>
+</ul>
+</div>
+
+
+                            </div>
+                </section>
+    </main>
+<script>
+    function escapeHTML(html) {
+        return document.createElement('div').appendChild(document.createTextNode(html)).parentNode.innerHTML;
+    }
+
+    const originalContent = document.querySelector("main.pdoc");
+    let currentContent = originalContent;
+
+    function setContent(innerHTML) {
+        let elem;
+        if (innerHTML) {
+            elem = document.createElement("main");
+            elem.classList.add("pdoc");
+            elem.innerHTML = innerHTML;
+        } else {
+            elem = originalContent;
+        }
+        if (currentContent !== elem) {
+            currentContent.replaceWith(elem);
+            currentContent = elem;
+        }
+    }
+
+    function getSearchTerm() {
+        return (new URL(window.location)).searchParams.get("search");
+    }
+
+    const searchBox = document.querySelector(".pdoc input[type=search]");
+    searchBox.addEventListener("input", function () {
+        let url = new URL(window.location);
+        if (searchBox.value.trim()) {
+            url.hash = "";
+            url.searchParams.set("search", searchBox.value);
+        } else {
+            url.searchParams.delete("search");
+        }
+        history.replaceState("", "", url.toString());
+        onInput();
+    });
+    window.addEventListener("popstate", onInput);
+
+
+    let search, searchErr;
+
+    async function initialize() {
+        try {
+            search = await new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.type = "text/javascript";
+                script.async = true;
+                script.onload = () => resolve(window.pdocSearch);
+                script.onerror = (e) => reject(e);
+                script.src = "../search.js";
+                document.getElementsByTagName("head")[0].appendChild(script);
+            });
+        } catch (e) {
+            console.error("Cannot fetch pdoc search index");
+            searchErr = "Cannot fetch search index.";
+        }
+        onInput();
+
+        document.querySelector("nav.pdoc").addEventListener("click", e => {
+            if (e.target.hash) {
+                searchBox.value = "";
+                searchBox.dispatchEvent(new Event("input"));
+            }
+        });
+    }
+
+    function onInput() {
+        setContent((() => {
+            const term = getSearchTerm();
+            if (!term) {
+                return null
+            }
+            if (searchErr) {
+                return `<h3>Error: ${searchErr}</h3>`
+            }
+            if (!search) {
+                return "<h3>Searching...</h3>"
+            }
+
+            window.scrollTo({top: 0, left: 0, behavior: 'auto'});
+
+            const results = search(term);
+
+            let html;
+            if (results.length === 0) {
+                html = `No search results for '${escapeHTML(term)}'.`
+            } else {
+                html = `<h4>${results.length} search result${results.length > 1 ? "s" : ""} for '${escapeHTML(term)}'.</h4>`;
+            }
+            for (let result of results.slice(0, 10)) {
+                let doc = result.doc;
+                let url = `../${doc.modulename.replaceAll(".", "/")}.html`;
+                if (doc.qualname) {
+                    url += `#${doc.qualname}`;
+                }
+
+                let heading;
+                switch (result.doc.kind) {
+                    case "function":
+                        if (doc.fullname.endsWith(".__init__")) {
+                            heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
+                        } else {
+                            heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span>${doc.signature}`;
+                        }
+                        break;
+                    case "class":
+                        heading = `<span class="def">class</span> <span class="name">${doc.fullname}</span>`;
+                        if (doc.bases)
+                            heading += `<wbr>(<span class="base">${doc.bases}</span>)`;
+                        heading += `:`;
+                        break;
+                    case "variable":
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        if (doc.annotation)
+                            heading += `<span class="annotation">${doc.annotation}</span>`;
+                        if (doc.default_value)
+                            heading += `<span class="default_value"> = ${doc.default_value}</span>`;
+                        break;
+                    default:
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        break;
+                }
+                html += `
+                        <section class="search-result">
+                        <a href="${url}" class="attr ${doc.kind}">${heading}</a>
+                        <div class="docstring">${doc.doc}</div>
+                        </section>
+                    `;
+
+            }
+            return html;
+        })());
+    }
+
+    if (getSearchTerm()) {
+        initialize();
+        searchBox.value = getSearchTerm();
+        onInput();
+    } else {
+        searchBox.addEventListener("focus", initialize, {once: true});
+    }
+
+    searchBox.addEventListener("keydown", e => {
+        if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
+            let focused = currentContent.querySelector(".search-result.focused");
+            if (!focused) {
+                currentContent.querySelector(".search-result").classList.add("focused");
+            } else if (
+                e.key === "ArrowDown"
+                && focused.nextElementSibling
+                && focused.nextElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.nextElementSibling.classList.add("focused");
+                focused.nextElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "ArrowUp"
+                && focused.previousElementSibling
+                && focused.previousElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.previousElementSibling.classList.add("focused");
+                focused.previousElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "Enter"
+            ) {
+                focused.querySelector("a").click();
+            }
+        }
+    });
+</script><script>
+document.querySelectorAll('.pdoc .pdoc-code').forEach(function (box) {
+  if (box.querySelector('.mp-copy')) return;
+  var b = document.createElement('button');
+  b.className = 'mp-copy'; b.type = 'button'; b.textContent = 'Copy';
+  b.addEventListener('click', function () {
+    var text = box.querySelector('pre').innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      b.textContent = 'Copied'; b.classList.add('done');
+      setTimeout(function () { b.textContent = 'Copy'; b.classList.remove('done'); }, 1400);
+    });
+  });
+  box.appendChild(b);
+});
+</script>
+</body>
+</html>

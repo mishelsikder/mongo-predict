@@ -1,0 +1,138 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>embeddings API speed</title><style>
+:root { --surface-0:#ffffff; --surface-1:#f7f7f5; --surface-2:#ecece7; --border:#d8d8d2;
+  --text-1:#14140f; --text-2:#3d3d38; --text-3:#6b6b64; --accent:#1b5fb0; --callout:#eef4fd;
+  --good:#1b5fb0; --bad:#c0392b; --code-bg:#f4f4f0; --radius:8px; }
+* { box-sizing:border-box; }
+body { font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text-1); background:var(--surface-0); max-width:1100px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+h1 { font-size:1.7rem; margin:0 0 .25rem; letter-spacing:-.01em; }
+h2 { font-size:1.2rem; margin:2.2rem 0 .8rem; padding-bottom:.35rem; border-bottom:1px solid var(--border); }
+h3 { font-size:1rem; margin:1.4rem 0 .4rem; }
+p, li { color:var(--text-2); max-width:80ch; }
+a { color:var(--accent); }
+code { font-family:ui-monospace,Menlo,monospace; font-size:.85em; background:var(--code-bg);
+  border:1px solid var(--border); border-radius:4px; padding:.05em .35em; }
+pre { background:var(--code-bg); border:1px solid var(--border); border-radius:var(--radius); padding:1rem 1.1rem;
+  white-space:pre-wrap; overflow-wrap:anywhere; font-family:ui-monospace,Menlo,monospace; font-size:.8rem;
+  line-height:1.5; color:var(--text-2); }
+.wrap { overflow-x:auto; }
+table { border-collapse:collapse; width:100%; font-size:.82rem; background:var(--surface-1);
+  border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin:.6rem 0; }
+th,td { text-align:right; padding:.4rem .6rem; border-bottom:1px solid var(--border); white-space:nowrap;
+  font-variant-numeric:tabular-nums; }
+th:first-child,td:first-child { text-align:left; }
+th { color:var(--text-2); font-weight:600; background:var(--surface-0); position:sticky; top:0; }
+tr:last-child td { border-bottom:none; }
+tr.avg td { background:var(--callout); font-weight:600; border-top:2px solid var(--border); }
+td.txt { white-space:normal; text-align:left; }
+tr.span td { background:var(--surface-0); text-align:left; white-space:nowrap; }
+.pos { color:var(--good); } .neg { color:var(--bad); }
+.tiles { display:flex; flex-wrap:wrap; gap:.9rem; margin:1rem 0; }
+.tile { background:var(--surface-1); border:1px solid var(--border); border-radius:var(--radius);
+  padding:.85rem 1rem; min-width:150px; }
+.tile .num { font-size:1.5rem; font-weight:650; letter-spacing:-.02em; line-height:1.1; }
+.tile .lbl { color:var(--text-2); font-size:.82rem; margin-top:.2rem; max-width:22ch; }
+.callout { background:var(--callout); border:1px solid var(--border); border-radius:var(--radius);
+  padding:1rem 1.15rem; margin:1rem 0; }
+details { margin:.8rem 0; border:1px solid var(--border); border-radius:var(--radius); padding:.4rem .9rem; background:var(--surface-1); }
+summary { cursor:pointer; font-weight:600; color:var(--text-2); }
+header.top { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border);
+  padding-bottom:.5rem; margin-bottom:1.2rem; font-size:.9rem; color:var(--text-2); }
+.note { color:var(--text-3); font-size:.9rem; }
+caption { caption-side:top; text-align:center; color:var(--text-3); font-size:.8rem; padding:0 0 4px; }
+footer { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--border); color:var(--text-2); font-size:.9rem; }
+</style></head><body>
+<header class="top"><span><a href="index.html">reports</a> &rsaquo; 00 embeddings api</span>
+<span>generated 2026-10-07 by <code>uv run python -m src.embeddings_api_report</code></span></header>
+
+<h1>embeddings API: wrapper speed, before vs after the performance work</h1>
+<p class="note">The 14 tasks of <code>src/tasks.py</code> (one per collection of the MongoDB sample
+datasets), each run in a fresh process in two modes (in memory and streaming) with the hashing embedder, on the baseline commit
+<code>55b3540</code> (the package before it moved to this repository) and on the current code.</p>
+
+<div class="tiles">
+<div class='tile'><div class='num'>2.4x</div><div class='lbl'>wrapper stages (fetch + JSON + tabular) faster (median)</div></div>
+<div class='tile'><div class='num'>3.4x</div><div class='lbl'>end to end fit faster (median)</div></div>
+<div class='tile'><div class='num'>1.02x</div><div class='lbl'>peak memory, before / after (median)</div></div>
+<div class='tile'><div class='num'>26</div><div class='lbl'>(task, mode) pairs measured</div></div>
+</div>
+
+<div class="callout">
+<ul>
+<li>Across 26 (task, mode) pairs the wrapper stages (fetch + JSON + tabular) got <b>2.4x faster</b>
+(median; 1.3x to 5.9x) and the end to end <code>fit</code> <b>3.4x faster</b>; peak memory changed by a
+median factor of 1.02x.</li>
+<li>The code changes behind these numbers (orjson serialisation with a per field budget, tabular columns encoded once per call,
+vectorised column coercion, word n-gram hashing) are listed under "What changed" below.</li>
+</ul>
+</div>
+
+<details><summary>Setup</summary>
+<ul>
+<li>MongoDB 7.0 standalone on the same machine, sample datasets loaded with <code>python -m demos.load_sample_data</code>.</li>
+<li>Every (task, mode) pair runs in a fresh process, hashing embedder (256 features, no cache), linear estimator;
+"before" is commit <code>55b3540</code> of the package before it moved to this repository, "after" is the current code. Task definitions are in
+<code>src/tasks.py</code>.</li>
+</ul>
+</details>
+
+<h2>1. Before vs after</h2>
+<p>Wrapper seconds = fetching the training documents + serialising them to JSON + extracting and encoding the columns, measured on the
+fitted featurizer. The hashing embedder time is listed separately because it stands in for an embedding model and is not part of the
+wrapper (its analyzer also changed from character to word n-grams). <code>fit</code> is the end to end call. Speed-ups are blue when
+faster and red when slower. The main table averages across tasks (speed-ups: mean of the per task factors); the per dataset rows are
+in the expandable below it.</p>
+<div class='wrap'><table><thead><tr><th>task</th><th>mode</th><th>n train</th><th>avg doc bytes</th><th>wrapper s before</th><th>wrapper s after</th><th>wrapper speed-up</th><th>hashing embed s before</th><th>hashing embed s after</th><th>fit s before</th><th>fit s after</th><th>fit speed-up</th><th>peak MB before</th><th>peak MB after</th></tr></thead><tbody><tr class='avg'><td>average (in memory, 13 tasks)</td><td>in memory</td><td></td><td></td><td>1.03</td><td>0.44</td><td><span class='pos'>2.7x</span></td><td>9.90</td><td>1.22</td><td>13.08</td><td>4.10</td><td><span class='pos'>4.1x</span></td><td>771</td><td>744</td></tr><tr class='avg'><td>average (streaming, 13 tasks)</td><td>streaming</td><td></td><td></td><td>1.54</td><td>0.54</td><td><span class='pos'>2.8x</span></td><td>9.94</td><td>1.44</td><td>13.95</td><td>4.43</td><td><span class='pos'>3.7x</span></td><td>697</td><td>674</td></tr></tbody></table></div>
+<details><summary>Per dataset speed results</summary><div class='wrap'><table><thead><tr><th>task</th><th>mode</th><th>n train</th><th>avg doc bytes</th><th>wrapper s before</th><th>wrapper s after</th><th>wrapper speed-up</th><th>hashing embed s before</th><th>hashing embed s after</th><th>fit s before</th><th>fit s after</th><th>fit speed-up</th><th>peak MB before</th><th>peak MB after</th></tr></thead><tbody><tr><td>airbnb_room_type</td><td>in memory</td><td>4444</td><td>16986</td><td>1.37</td><td>0.54</td><td><span class='pos'>2.5x</span></td><td>18.24</td><td>2.99</td><td>20.28</td><td>3.86</td><td><span class='pos'>5.3x</span></td><td>586</td><td>548</td></tr><tr><td>weather_air_temperature</td><td>in memory</td><td>7541</td><td>1684</td><td>0.61</td><td>0.27</td><td><span class='pos'>2.2x</span></td><td>10.52</td><td>0.92</td><td>12.21</td><td>1.90</td><td><span class='pos'>6.4x</span></td><td>452</td><td>443</td></tr><tr><td>mflix_imdb_rating</td><td>in memory</td><td>18782</td><td>1598</td><td>1.67</td><td>0.58</td><td><span class='pos'>2.9x</span></td><td>23.67</td><td>3.06</td><td>25.73</td><td>5.13</td><td><span class='pos'>5.0x</span></td><td>572</td><td>595</td></tr><tr><td>analytics_transaction_count</td><td>in memory</td><td>1396</td><td>9242</td><td>0.35</td><td>0.06</td><td><span class='pos'>5.9x</span></td><td>7.45</td><td>0.68</td><td>7.84</td><td>0.80</td><td><span class='pos'>9.8x</span></td><td>509</td><td>272</td></tr><tr><td>geospatial_wreck_type</td><td>in memory</td><td>8806</td><td>328</td><td>0.57</td><td>0.15</td><td><span class='pos'>3.9x</span></td><td>2.52</td><td>0.21</td><td>4.87</td><td>1.60</td><td><span class='pos'>3.1x</span></td><td>386</td><td>403</td></tr><tr><td>supplies_purchase_method</td><td>in memory</td><td>4000</td><td>865</td><td>0.32</td><td>0.18</td><td><span class='pos'>1.8x</span></td><td>1.83</td><td>0.25</td><td>2.28</td><td>0.67</td><td><span class='pos'>3.4x</span></td><td>254</td><td>250</td></tr><tr><td>grades_exam_score</td><td>in memory</td><td>80000</td><td>225</td><td>1.90</td><td>0.80</td><td><span class='pos'>2.4x</span></td><td>12.44</td><td>1.42</td><td>17.03</td><td>6.58</td><td><span class='pos'>2.6x</span></td><td>1333</td><td>1320</td></tr><tr><td>inspections_result</td><td>in memory</td><td>59676</td><td>276</td><td>1.42</td><td>1.09</td><td><span class='pos'>1.3x</span></td><td>8.95</td><td>1.54</td><td>17.79</td><td>9.78</td><td><span class='pos'>1.8x</span></td><td>1675</td><td>1675</td></tr><tr><td>routes_codeshare</td><td>in memory</td><td>53588</td><td>184</td><td>2.23</td><td>0.85</td><td><span class='pos'>2.6x</span></td><td>5.63</td><td>0.77</td><td>15.32</td><td>11.28</td><td><span class='pos'>1.4x</span></td><td>2106</td><td>2088</td></tr><tr><td>stories_media</td><td>in memory</td><td>7873</td><td>1024</td><td>0.31</td><td>0.17</td><td><span class='pos'>1.8x</span></td><td>5.66</td><td>0.69</td><td>8.18</td><td>1.62</td><td><span class='pos'>5.0x</span></td><td>349</td><td>338</td></tr><tr><td>trips_usertype</td><td>in memory</td><td>8000</td><td>440</td><td>0.28</td><td>0.15</td><td><span class='pos'>1.9x</span></td><td>2.59</td><td>0.39</td><td>3.08</td><td>1.38</td><td><span class='pos'>2.2x</span></td><td>323</td><td>327</td></tr><tr><td>tweets_user_lang</td><td>in memory</td><td>19428</td><td>1663</td><td>1.33</td><td>0.67</td><td><span class='pos'>2.0x</span></td><td>27.73</td><td>2.67</td><td>31.37</td><td>5.89</td><td><span class='pos'>5.3x</span></td><td>796</td><td>771</td></tr><tr><td>zips_population</td><td>in memory</td><td>23576</td><td>111</td><td>1.00</td><td>0.26</td><td><span class='pos'>3.8x</span></td><td>1.50</td><td>0.27</td><td>4.09</td><td>2.85</td><td><span class='pos'>1.4x</span></td><td>681</td><td>645</td></tr><tr><td>airbnb_room_type</td><td>streaming</td><td>4444</td><td>16986</td><td>2.03</td><td>0.90</td><td><span class='pos'>2.3x</span></td><td>20.80</td><td>3.16</td><td>21.70</td><td>4.93</td><td><span class='pos'>4.4x</span></td><td>404</td><td>376</td></tr><tr><td>weather_air_temperature</td><td>streaming</td><td>7541</td><td>1684</td><td>1.14</td><td>0.39</td><td><span class='pos'>2.9x</span></td><td>8.80</td><td>1.27</td><td>12.15</td><td>2.31</td><td><span class='pos'>5.3x</span></td><td>342</td><td>338</td></tr><tr><td>mflix_imdb_rating</td><td>streaming</td><td>18782</td><td>1598</td><td>1.82</td><td>0.73</td><td><span class='pos'>2.5x</span></td><td>19.17</td><td>3.54</td><td>24.86</td><td>5.61</td><td><span class='pos'>4.4x</span></td><td>450</td><td>468</td></tr><tr><td>analytics_transaction_count</td><td>streaming</td><td>1396</td><td>9242</td><td>0.44</td><td>0.11</td><td><span class='pos'>4.2x</span></td><td>7.79</td><td>0.64</td><td>8.05</td><td>0.98</td><td><span class='pos'>8.2x</span></td><td>435</td><td>252</td></tr><tr><td>geospatial_wreck_type</td><td>streaming</td><td>8806</td><td>328</td><td>0.39</td><td>0.18</td><td><span class='pos'>2.1x</span></td><td>1.63</td><td>0.32</td><td>6.85</td><td>1.57</td><td><span class='pos'>4.3x</span></td><td>371</td><td>373</td></tr><tr><td>supplies_purchase_method</td><td>streaming</td><td>4000</td><td>865</td><td>0.47</td><td>0.26</td><td><span class='pos'>1.8x</span></td><td>1.84</td><td>0.29</td><td>2.46</td><td>0.82</td><td><span class='pos'>3.0x</span></td><td>242</td><td>237</td></tr><tr><td>grades_exam_score</td><td>streaming</td><td>80000</td><td>225</td><td>2.73</td><td>0.96</td><td><span class='pos'>2.9x</span></td><td>12.32</td><td>1.78</td><td>18.23</td><td>7.33</td><td><span class='pos'>2.5x</span></td><td>1312</td><td>1319</td></tr><tr><td>inspections_result</td><td>streaming</td><td>59676</td><td>276</td><td>3.44</td><td>1.05</td><td><span class='pos'>3.3x</span></td><td>13.96</td><td>1.64</td><td>26.20</td><td>9.95</td><td><span class='pos'>2.6x</span></td><td>1571</td><td>1535</td></tr><tr><td>routes_codeshare</td><td>streaming</td><td>53588</td><td>184</td><td>3.55</td><td>0.98</td><td><span class='pos'>3.6x</span></td><td>6.79</td><td>1.02</td><td>16.90</td><td>11.53</td><td><span class='pos'>1.5x</span></td><td>2024</td><td>2010</td></tr><tr><td>stories_media</td><td>streaming</td><td>7873</td><td>1024</td><td>0.41</td><td>0.18</td><td><span class='pos'>2.2x</span></td><td>5.60</td><td>0.75</td><td>6.21</td><td>1.80</td><td><span class='pos'>3.4x</span></td><td>309</td><td>302</td></tr><tr><td>trips_usertype</td><td>streaming</td><td>8000</td><td>440</td><td>0.33</td><td>0.20</td><td><span class='pos'>1.7x</span></td><td>2.36</td><td>0.57</td><td>3.36</td><td>1.43</td><td><span class='pos'>2.4x</span></td><td>299</td><td>305</td></tr><tr><td>tweets_user_lang</td><td>streaming</td><td>19428</td><td>1663</td><td>1.95</td><td>0.82</td><td><span class='pos'>2.4x</span></td><td>26.58</td><td>3.43</td><td>29.90</td><td>6.64</td><td><span class='pos'>4.5x</span></td><td>640</td><td>618</td></tr><tr><td>zips_population</td><td>streaming</td><td>23576</td><td>111</td><td>1.26</td><td>0.30</td><td><span class='pos'>4.2x</span></td><td>1.57</td><td>0.30</td><td>4.45</td><td>2.72</td><td><span class='pos'>1.6x</span></td><td>663</td><td>626</td></tr></tbody></table></div></details>
+
+<h2>2. Stage breakdown after the changes (streaming mode)</h2>
+<div class='wrap'><table><thead><tr><th>task</th><th>n train</th><th>avg doc bytes</th><th>JSON chars/doc</th><th>load+split s</th><th>fetch s</th><th>JSON s</th><th>tabular s</th><th>hashing embed s</th><th>wrapper docs/s</th></tr></thead><tbody><tr class='avg'><td>average (14 tasks)</td><td>21,685</td><td>2,748</td><td>1691</td><td>0.15</td><td>0.06</td><td>0.29</td><td>0.20</td><td>1.51</td><td>36,913</td></tr></tbody></table></div>
+<details><summary>Per dataset stage breakdown</summary><div class='wrap'><table><thead><tr><th>task</th><th>n train</th><th>avg doc bytes</th><th>JSON chars/doc</th><th>load+split s</th><th>fetch s</th><th>JSON s</th><th>tabular s</th><th>hashing embed s</th><th>wrapper docs/s</th></tr></thead><tbody><tr><td>airbnb_room_type</td><td>4444</td><td>16986</td><td>6119</td><td>0.02</td><td>0.13</td><td>0.62</td><td>0.15</td><td>3.16</td><td>4,962</td></tr><tr><td>weather_air_temperature</td><td>7541</td><td>1684</td><td>1512</td><td>0.09</td><td>0.05</td><td>0.20</td><td>0.14</td><td>1.27</td><td>19,301</td></tr><tr><td>mflix_imdb_rating</td><td>18782</td><td>1598</td><td>1514</td><td>0.17</td><td>0.07</td><td>0.42</td><td>0.24</td><td>3.54</td><td>25,900</td></tr><tr><td>analytics_transaction_count</td><td>1396</td><td>9242</td><td>6298</td><td>0.01</td><td>0.06</td><td>0.03</td><td>0.01</td><td>0.64</td><td>13,293</td></tr><tr><td>geospatial_wreck_type</td><td>8806</td><td>328</td><td>260</td><td>0.03</td><td>0.01</td><td>0.10</td><td>0.07</td><td>0.32</td><td>47,688</td></tr><tr><td>supplies_purchase_method</td><td>4000</td><td>865</td><td>649</td><td>0.02</td><td>0.02</td><td>0.20</td><td>0.03</td><td>0.29</td><td>15,599</td></tr><tr><td>companies_category</td><td>6474</td><td>3839</td><td>3538</td><td>0.03</td><td>0.11</td><td>0.50</td><td>0.07</td><td>2.47</td><td>9,434</td></tr><tr><td>grades_exam_score</td><td>80000</td><td>225</td><td>195</td><td>0.90</td><td>0.13</td><td>0.47</td><td>0.35</td><td>1.78</td><td>83,694</td></tr><tr><td>inspections_result</td><td>59676</td><td>276</td><td>230</td><td>0.26</td><td>0.08</td><td>0.40</td><td>0.57</td><td>1.64</td><td>56,825</td></tr><tr><td>routes_codeshare</td><td>53588</td><td>184</td><td>141</td><td>0.19</td><td>0.07</td><td>0.30</td><td>0.61</td><td>1.02</td><td>54,497</td></tr><tr><td>stories_media</td><td>7873</td><td>1024</td><td>990</td><td>0.03</td><td>0.02</td><td>0.11</td><td>0.06</td><td>0.75</td><td>42,722</td></tr><tr><td>trips_usertype</td><td>8000</td><td>440</td><td>426</td><td>0.10</td><td>0.02</td><td>0.11</td><td>0.07</td><td>0.57</td><td>40,317</td></tr><tr><td>tweets_user_lang</td><td>19428</td><td>1663</td><td>1726</td><td>0.15</td><td>0.08</td><td>0.48</td><td>0.27</td><td>3.43</td><td>23,577</td></tr><tr><td>zips_population</td><td>23576</td><td>111</td><td>82</td><td>0.11</td><td>0.05</td><td>0.11</td><td>0.14</td><td>0.30</td><td>78,978</td></tr></tbody></table></div></details>
+<details><summary>What changed</summary>
+<ul>
+<li><b>JSON serialisation</b> uses <code>orjson</code> with a <code>default</code> hook for BSON types instead of a recursive pure-Python
+conversion followed by <code>json.dumps</code>, and the <code>max_json_chars</code> budget is applied field by field so a huge trailing
+array (reviews, transactions) is never serialised only to be cut off: 3x to 11x faster per document.</li>
+<li><b>Tabular columns are encoded once per call</b>: <code>transform_batches</code> collects the small column frames of all batches and runs
+the sklearn preprocessing a single time (embeddings still go batch by batch). Per batch sklearn overhead used to dominate on collections of
+small documents (routes: 2.2 s to 0.7 s for 67k documents).</li>
+<li><b>Column coercion</b> is vectorised and dotted paths are pre-split once per column.</li>
+<li><b>Hashing embedder</b> defaults to hashed word uni/bigrams instead of character 3-5 grams (about 10x faster on long JSON).</li>
+<li><b>Prefetching</b>: in streaming mode the next <code>_id</code> batch is fetched in a background thread while the current one is
+embedded. Measured separately with voyage-4-nano on 2,048 Airbnb documents: 17.6 / 15.2 s without vs 15.1 / 15.3 s with prefetch, i.e. no
+measurable gain with a local MongoDB, where fetching is under 1% of the embedding time.</li>
+<li><b>Embedding models</b>: bfloat16 on CUDA (float16 overflows in voyage-4-nano and produced NaN vectors; a non-finite batch now triggers a
+float32 fallback), the token limit is capped at each model's own maximum, texts are grouped by length so a batch holds at most
+<code>max_batch_tokens</code>, and Matryoshka truncation (<code>"voyage-4-nano@512"</code>) is applied after the cache.</li>
+<li>Fixed: removing a nested target such as <code>scores.0.score</code> from the embedded JSON now descends through arrays; stratified
+splits pool singleton classes instead of failing.</li>
+</ul></details>
+
+<details><summary>Computational cost</summary>
+<ul>
+<li>54 (task, mode) runs (before and after), CPU only, 10 minutes of measured stage time on a shared 176 core box;
+no GPU (0 H100 node hours).</li>
+<li>Throughput after the changes: 5,166 training documents per second of end to end <code>fit</code>
+with the hashing embedder, summed over all runs.</li>
+</ul></details>
+
+<details><summary>Reproducibility</summary>
+<pre># MongoDB with the sample data (any 7.x server; the loader pulls the collections from a public mirror)
+uv run python -m demos.load_sample_data --uri mongodb://localhost:27017 \
+    sample_airbnb sample_weatherdata sample_analytics sample_geospatial sample_mflix sample_supplies sample_training
+# baseline: a git worktree of the package at 55b3540 (before the changes and the move here) with src/ copied in
+uv run python -m src.speed --uri mongodb://localhost:27017 --tag before
+# current code
+uv run python -m src.speed --uri mongodb://localhost:27017 --tag after
+# this document
+uv run python -m src.embeddings_api_report</pre>
+<p>Prompt for a coding agent: "In the mongo-predict repo (github.com/voyage-ai/mongo-predict), load all MongoDB sample datasets into a local
+MongoDB, run <code>python -m src.speed</code> for the baseline (tag <code>before</code>, from a git worktree of the package before it moved here, at
+commit 55b3540 with this repo's <code>src/</code> copied in) and for the current code (tag <code>after</code>), then render
+<code>reports/00_embeddings_api.html</code> with <code>python -m src.embeddings_api_report</code>. Tasks are defined in
+<code>src/tasks.py</code>; each (task, mode) pair runs in a fresh process via <code>src/_speed_one.py</code>."</p>
+</details>
+<footer>mongo-predict reports. Result files: <code>results/speed_before.json</code>, <code>speed_after.json</code>.</footer>
+</body></html>

@@ -1,0 +1,39 @@
+{
+ "device": "cuda",
+ "gpu": "NVIDIA H100 80GB HBM3",
+ "tasks": [
+  {
+   "task": "airbnb_room_type",
+   "device": "cuda",
+   "threads": null,
+   "n": 2000,
+   "mean_json_chars": 6497.435,
+   "load_s": 12.127817889675498,
+   "embed_s": 19.877221417613328,
+   "docs_per_s": 100.6176848353557,
+   "s_per_1000": 9.938610708806664
+  },
+  {
+   "task": "mflix_imdb_rating",
+   "device": "cuda",
+   "threads": null,
+   "n": 2000,
+   "mean_json_chars": 1570.9415,
+   "load_s": 4.927862401120365,
+   "embed_s": 12.119570191018283,
+   "docs_per_s": 165.02235380279276,
+   "s_per_1000": 6.059785095509142
+  },
+  {
+   "task": "tweets_user_lang",
+   "device": "cuda",
+   "threads": null,
+   "n": 2000,
+   "mean_json_chars": 1733.1275,
+   "load_s": 4.23722458537668,
+   "embed_s": 11.558399153873324,
+   "docs_per_s": 173.03434267796348,
+   "s_per_1000": 5.779199576936662
+  }
+ ]
+}

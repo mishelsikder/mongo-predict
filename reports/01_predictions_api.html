@@ -1,0 +1,206 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Predictions API $predict</title><style>
+:root { --surface-0:#ffffff; --surface-1:#f7f7f5; --surface-2:#ecece7; --border:#d8d8d2;
+  --text-1:#14140f; --text-2:#3d3d38; --text-3:#6b6b64; --accent:#1b5fb0; --callout:#eef4fd;
+  --good:#1b5fb0; --bad:#c0392b; --code-bg:#f4f4f0; --radius:8px; }
+* { box-sizing:border-box; }
+body { font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text-1); background:var(--surface-0); max-width:1100px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+h1 { font-size:1.7rem; margin:0 0 .25rem; letter-spacing:-.01em; }
+h2 { font-size:1.2rem; margin:2.2rem 0 .8rem; padding-bottom:.35rem; border-bottom:1px solid var(--border); }
+h3 { font-size:1rem; margin:1.4rem 0 .4rem; }
+p, li { color:var(--text-2); max-width:80ch; }
+a { color:var(--accent); }
+code { font-family:ui-monospace,Menlo,monospace; font-size:.85em; background:var(--code-bg);
+  border:1px solid var(--border); border-radius:4px; padding:.05em .35em; }
+pre { background:var(--code-bg); border:1px solid var(--border); border-radius:var(--radius); padding:1rem 1.1rem;
+  white-space:pre-wrap; overflow-wrap:anywhere; font-family:ui-monospace,Menlo,monospace; font-size:.8rem;
+  line-height:1.5; color:var(--text-2); }
+.wrap { overflow-x:auto; }
+table { border-collapse:collapse; width:100%; font-size:.82rem; background:var(--surface-1);
+  border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin:.6rem 0; }
+th,td { text-align:right; padding:.4rem .6rem; border-bottom:1px solid var(--border); white-space:nowrap;
+  font-variant-numeric:tabular-nums; }
+th:first-child,td:first-child { text-align:left; }
+th { color:var(--text-2); font-weight:600; background:var(--surface-0); position:sticky; top:0; }
+tr:last-child td { border-bottom:none; }
+tr.avg td { background:var(--callout); font-weight:600; border-top:2px solid var(--border); }
+td.txt { white-space:normal; text-align:left; }
+tr.span td { background:var(--surface-0); text-align:left; white-space:nowrap; }
+.pos { color:var(--good); } .neg { color:var(--bad); }
+.tiles { display:flex; flex-wrap:wrap; gap:.9rem; margin:1rem 0; }
+.tile { background:var(--surface-1); border:1px solid var(--border); border-radius:var(--radius);
+  padding:.85rem 1rem; min-width:150px; }
+.tile .num { font-size:1.5rem; font-weight:650; letter-spacing:-.02em; line-height:1.1; }
+.tile .lbl { color:var(--text-2); font-size:.82rem; margin-top:.2rem; max-width:22ch; }
+.callout { background:var(--callout); border:1px solid var(--border); border-radius:var(--radius);
+  padding:1rem 1.15rem; margin:1rem 0; }
+details { margin:.8rem 0; border:1px solid var(--border); border-radius:var(--radius); padding:.4rem .9rem; background:var(--surface-1); }
+summary { cursor:pointer; font-weight:600; color:var(--text-2); }
+header.top { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border);
+  padding-bottom:.5rem; margin-bottom:1.2rem; font-size:.9rem; color:var(--text-2); }
+.note { color:var(--text-3); font-size:.9rem; }
+caption { caption-side:top; text-align:center; color:var(--text-3); font-size:.8rem; padding:0 0 4px; }
+footer { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--border); color:var(--text-2); font-size:.9rem; }
+</style></head><body>
+<header class="top"><span><a href="index.html">reports</a> &rsaquo; 01 predictions api</span>
+<span>generated 2026-10-08 by <code>uv run python -m src.predictions_api_report</code></span></header>
+
+<h1>Predictions API: a <code>$predict</code> aggregation stage, modelled on <code>$vectorSearch</code></h1>
+<p class="note">A prototype of predictions inside MongoDB aggregation pipelines that needs no change to the server:
+<code>pymongopredict.predictions_api</code> stores a trained model in the database and runs a leading <code>$predict</code> stage on the
+client. Measured on the 14 MongoDB sample tasks of <code>src/tasks.py</code> and on an Airbnb model with voyage-4-nano.</p>
+
+<div class="tiles">
+<div class='tile'><div class='num'>100%</div><div class='lbl'>of 66,746 documents get the same prediction as the client-side code</div></div>
+<div class='tile'><div class='num'>1.39x</div><div class='lbl'>time of a $predict pipeline relative to find + transform + predict (median)</div></div>
+<div class='tile'><div class='num'>57 ms</div><div class='lbl'>added per 1,000 documents (median)</div></div>
+<div class='tile'><div class='num'>0.924</div><div class='lbl'>accuracy on Porto's 554 listings, model trained on the other markets</div></div>
+</div>
+
+<div class="callout"><ul>
+<li>On all 14 tasks a <code>$predict</code> pipeline returns the same predictions as calling the model on the client
+(regression outputs differ only by float32 rounding between batch sizes: at most 2.0e-03 on
+zips_population, whose values are in the thousands), so <code>$match</code>, <code>$sort</code>,
+<code>$group</code> and <code>$merge</code> can be applied to predictions on the server (Sec. <a href='#sec-2'>2</a>).</li>
+<li>The stage costs a median 1.39x the time of the client-side code it replaces, about 57 ms more per 1,000
+documents with the hashing embedder: uploading the predictions and the server join take 15%
+of the pipeline time. Neither depends on the embedding model, so the share is smaller with a slower embedder such as voyage-4-nano.</li>
+<li>Fitting the default ridge model takes a median 1.7 s per task with 16 threads and default XGBoost
+3.2 s; on one thread, 7.5 s against 16.8 s (Sec. <a href='#sec-4'>4</a>). XGBoost builds one set of trees per class, so the 39-class task takes it
+78 s. Inference is under 11 ms per 1,000 documents for both, far below the time to embed them.</li>
+<li>A room type model trained with voyage-4-nano on the 5,001 listings outside Porto (holdout accuracy
+0.912) labels Porto's 554 listings with accuracy 0.924, through one pipeline
+(Sec. <a href='#sec-3'>3</a>).</li>
+</ul></div>
+
+<h2 id="sec-1">1. Design</h2>
+<p>A <code>$vectorSearch</code> query needs an index created beforehand and referenced by name; the stage must come first and later
+stages read its score through <code>$meta</code>. <code>$predict</code> keeps that shape (Table <a href='#tab-1'>1</a>), with a prediction model in
+place of the index.</p>
+<div id="tab-1"><div class='wrap'><table><thead><tr><th></th><th>$vectorSearch (Atlas)</th><th>$predict (mongo-predict)</th></tr></thead><tbody><tr><td class='txt'>defined with</td><td class='txt'><code>create_search_index(SearchIndexModel(definition, name, type="vectorSearch"))</code></td><td class='txt'><code>create_prediction_model(PredictionModel(definition, name))</code></td></tr><tr><td class='txt'>managed with</td><td class='txt'><code>list_ / update_ / drop_search_index</code></td><td class='txt'><code>list_ / update_ / drop_prediction_model</code></td></tr><tr><td class='txt'>stored in</td><td class='txt'>the search index (<code>mongot</code>)</td><td class='txt'>the <code>__mongopredict_models</code> collection (status, definition, metrics, pickled model)</td></tr><tr><td class='txt'>stage</td><td class='txt'><code>{$vectorSearch: {index, path, queryVector, filter, limit, numCandidates}}</code></td><td class='txt'><code>{$predict: {model, filter, limit, batchSize}}</code></td></tr><tr><td class='txt'>position</td><td class='txt'>first stage only</td><td class='txt'>first stage only</td></tr><tr><td class='txt'>output</td><td class='txt'><code>{$meta: "vectorSearchScore"}</code></td><td class='txt'><code>{$meta: "prediction"}</code>, <code>{$meta: "predictScore"}</code>, <code>{$meta: "predictProbabilities"}</code></td></tr><tr><td class='txt'>runs</td><td class='txt'>inside Atlas</td><td class='txt'>on the client, then the rest of the pipeline on the server</td></tr></tbody></table></div></div>
+<pre>from pymongopredict import PredictionModel, predictions_api
+predictions_api.enable()   # pymongo's Collection.aggregate now understands $predict
+
+coll.create_prediction_model(PredictionModel(
+    {"target": "room_type", "columns": [...], "embedFields": [...], "embeddingModel": "voyage-4-nano",
+     "filter": {"address.market": {"$ne": "Porto"}}},
+    name="room_type"))
+coll.aggregate([
+    {"$predict": {"model": "room_type", "filter": {"address.market": "Porto"}}},
+    {"$sort": {"score": {"$meta": "predictScore"}}},
+    {"$project": {"name": 1, "predicted": {"$meta": "prediction"}, "score": {"$meta": "predictScore"}}},
+])</pre>
+<p>How a pipeline runs:</p>
+<ol>
+<li><b>Model</b>: <code>create_prediction_model</code> fits a <code>DocumentFeaturizer</code> (columns plus an embedding of the
+document) and an sklearn estimator (logistic regression or ridge by default) on the documents that have the target, records holdout
+metrics on 20%, refits on all of them and stores the pickled model with its status in <code>__mongopredict_models</code>.</li>
+<li><b>Client</b>: <code>aggregate</code> fetches the documents selected by the stage's <code>filter</code> and <code>limit</code>,
+projected to the fields the model reads, featurizes and predicts them in batches, and inserts only
+<code>{_id, prediction, score, probabilities}</code> rows into a temporary collection.</li>
+<li><b>Server</b>: the rest of the pipeline runs on the temporary collection after a <code>$lookup</code> on <code>_id</code> that
+brings back each full document; <code>{$meta: ...}</code> references are rewritten to the joined fields and the helper field is
+removed before the output (or before a final <code>$merge</code> / <code>$out</code>). The temporary collection is dropped
+afterwards and the result is returned as a list-backed cursor whose <code>stats</code> hold the time of each step.</li>
+</ol>
+
+<h2 id="sec-2">2. Overhead and agreement on the sample tasks</h2>
+<p>For each of the 14 tasks (one per sample collection), a model with the task's columns and the hashing embedder on the whole
+document (no embedding cache) is created on up to 5,000 documents, then applied to up to 5,000 documents four ways: a
+<code>$predict</code> pipeline that projects the prediction, the client-side code it replaces (<code>find</code> +
+<code>transform</code> + <code>predict</code>), a <code>$group</code> on the prediction and a <code>$merge</code> of the predictions into
+a scratch database (Table <a href='#tab-2'>2</a>; per task rows in Table <a href='#tab-3'>3</a>). Agreement is the share of documents whose
+<code>$predict</code> output equals the client-side prediction (relative tolerance 1e-5 for regression). The predicted documents
+overlap the training documents, so the holdout metric, not these predictions, measures accuracy. The <code>$merge</code> wrote
+every prediction on every task.</p>
+<div id="tab-2"><div class='wrap'><table><thead><tr><th>task</th><th>n</th><th>create_prediction_model s</th><th>holdout metric</th><th>$predict s</th><th>client baseline s</th><th>$predict / baseline</th><th>fetch s</th><th>predict s</th><th>upload s</th><th>server s</th><th>agreement</th><th>$group s</th><th>$merge s</th></tr></thead><tbody><tr class='avg'><td>average (14 tasks)</td><td>4,768</td><td>2.17</td><td></td><td>1.19</td><td>0.90</td><td>1.79x</td><td>0.12</td><td>0.90</td><td>0.05</td><td>0.13</td><td>100.0%</td><td>1.24</td><td>1.32</td></tr></tbody></table></div></div>
+<details id="tab-3"><summary>Table 3: per task results</summary><div class='wrap'><table><thead><tr><th>task</th><th>n</th><th>create_prediction_model s</th><th>holdout metric</th><th>$predict s</th><th>client baseline s</th><th>$predict / baseline</th><th>fetch s</th><th>predict s</th><th>upload s</th><th>server s</th><th>agreement</th><th>$group s</th><th>$merge s</th></tr></thead><tbody><tr><td>airbnb_room_type</td><td>5,000</td><td>9.12</td><td>accuracy 0.858</td><td>4.68</td><td>4.28</td><td>1.09x</td><td>0.47</td><td>4.01</td><td>0.05</td><td>0.15</td><td>100.0%</td><td>4.92</td><td>4.69</td></tr><tr><td>weather_air_temperature</td><td>5,000</td><td>2.07</td><td>R² 0.598</td><td>1.30</td><td>0.98</td><td>1.33x</td><td>0.20</td><td>0.92</td><td>0.05</td><td>0.13</td><td>100.0%</td><td>1.26</td><td>1.50</td></tr><tr><td>mflix_imdb_rating</td><td>5,000</td><td>2.33</td><td>R² 0.377</td><td>1.21</td><td>0.95</td><td>1.28x</td><td>0.05</td><td>0.98</td><td>0.04</td><td>0.13</td><td>100.0%</td><td>1.29</td><td>1.32</td></tr><tr><td>analytics_transaction_count</td><td>1,746</td><td>1.80</td><td>R² 0.341</td><td>0.95</td><td>0.83</td><td>1.14x</td><td>0.11</td><td>0.76</td><td>0.03</td><td>0.05</td><td>100.0%</td><td>1.00</td><td>0.98</td></tr><tr><td>geospatial_wreck_type</td><td>5,000</td><td>0.71</td><td>accuracy 0.930</td><td>0.53</td><td>0.24</td><td>2.25x</td><td>0.02</td><td>0.33</td><td>0.04</td><td>0.13</td><td>100.0%</td><td>0.48</td><td>0.66</td></tr><tr><td>supplies_purchase_method</td><td>5,000</td><td>1.39</td><td>accuracy 0.556</td><td>0.90</td><td>0.64</td><td>1.42x</td><td>0.15</td><td>0.58</td><td>0.04</td><td>0.13</td><td>100.0%</td><td>0.90</td><td>1.03</td></tr><tr><td>companies_category</td><td>5,000</td><td>5.79</td><td>accuracy 0.331</td><td>2.70</td><td>2.10</td><td>1.28x</td><td>0.35</td><td>2.11</td><td>0.09</td><td>0.14</td><td>100.0%</td><td>2.86</td><td>3.03</td></tr><tr><td>grades_exam_score</td><td>5,000</td><td>0.54</td><td>R² -0.003</td><td>0.36</td><td>0.16</td><td>2.28x</td><td>0.02</td><td>0.18</td><td>0.04</td><td>0.12</td><td>100.0%</td><td>0.44</td><td>0.45</td></tr><tr><td>inspections_result</td><td>5,000</td><td>0.84</td><td>accuracy 0.647</td><td>0.56</td><td>0.19</td><td>2.85x</td><td>0.07</td><td>0.28</td><td>0.05</td><td>0.16</td><td>100.0%</td><td>0.48</td><td>0.63</td></tr><tr><td>routes_codeshare</td><td>5,000</td><td>0.64</td><td>accuracy 0.962</td><td>0.44</td><td>0.19</td><td>2.36x</td><td>0.02</td><td>0.25</td><td>0.04</td><td>0.13</td><td>100.0%</td><td>0.49</td><td>0.51</td></tr><tr><td>stories_media</td><td>5,000</td><td>1.53</td><td>accuracy 0.827</td><td>0.83</td><td>0.61</td><td>1.36x</td><td>0.04</td><td>0.61</td><td>0.04</td><td>0.13</td><td>100.0%</td><td>0.97</td><td>0.99</td></tr><tr><td>trips_usertype</td><td>5,000</td><td>0.79</td><td>accuracy 0.998</td><td>0.65</td><td>0.34</td><td>1.94x</td><td>0.02</td><td>0.41</td><td>0.04</td><td>0.17</td><td>100.0%</td><td>0.59</td><td>0.86</td></tr><tr><td>tweets_user_lang</td><td>5,000</td><td>2.17</td><td>accuracy 0.905</td><td>1.21</td><td>0.96</td><td>1.26x</td><td>0.09</td><td>0.94</td><td>0.05</td><td>0.13</td><td>100.0%</td><td>1.28</td><td>1.38</td></tr><tr><td>zips_population</td><td>5,000</td><td>0.62</td><td>R² 0.249</td><td>0.40</td><td>0.12</td><td>3.24x</td><td>0.01</td><td>0.21</td><td>0.04</td><td>0.13</td><td>100.0%</td><td>0.40</td><td>0.52</td></tr></tbody></table></div></details>
+<p>Fetching and predicting take 85% of the <code>$predict</code> time, as in
+the client-side code; the upload of the predictions takes 4% and the server join and remaining
+stages 11%.</p>
+
+<h2 id="sec-3">3. Example: Airbnb room types in Porto with voyage-4-nano</h2>
+<p><code>demos/predictions_api/predict_stage.py</code>: the room type model is trained on every market except Porto
+(5,001 listings, the 14 columns of the embeddings API demo and the embedded text fields; holdout accuracy
+0.912, AUROC 0.913). Two pipelines on Porto's 554 listings:
+the most confident "Private room" predictions (<code>$match</code> on the prediction, <code>$sort</code> on
+<code>predictScore</code>; Table <a href='#tab-4'>4</a>) and actual against predicted room type (<code>$group</code>; Table <a href='#tab-5'>5</a>).
+With the embeddings already in the cache, creating the model took 3.5 s and each pipeline
+0.4 s; without the cache, embedding the 5,555 listings took about 2 minutes on a shared H100.</p>
+<div id="tab-4"><div class='wrap'><table><thead><tr><th>name</th><th>room type</th><th>predicted</th><th>predictScore</th></tr></thead><tbody><tr><td class='txt'>Twin Room Standard</td><td>Private room</td><td>Private room</td><td>0.997</td></tr><tr><td class='txt'>Double room with private WC and balcony São Bento</td><td>Private room</td><td>Private room</td><td>0.994</td></tr><tr><td class='txt'>Elegant suite in historic center</td><td>Private room</td><td>Private room</td><td>0.993</td></tr><tr><td class='txt'>BOMBARDA Room</td><td>Private room</td><td>Private room</td><td>0.990</td></tr><tr><td class='txt'>Single Room Near the City Centre</td><td>Private room</td><td>Private room</td><td>0.989</td></tr></tbody></table></div></div>
+<div id="tab-5"><div class='wrap'><table><thead><tr><th>actual</th><th>predicted</th><th>n</th></tr></thead><tbody><tr><td class='txt'>Entire home/apt</td><td class='txt'>Entire home/apt</td><td>417</td></tr><tr><td class='txt'>Private room</td><td class='txt'>Private room</td><td>95</td></tr><tr><td class='txt'>Entire home/apt</td><td class='txt'>Private room</td><td>31</td></tr><tr><td class='txt'>Private room</td><td class='txt'>Entire home/apt</td><td>6</td></tr><tr><td class='txt'>Shared room</td><td class='txt'>Private room</td><td>5</td></tr></tbody></table></div></div>
+<p>Most errors are entire homes predicted as private rooms; the 5 shared rooms are all predicted as private rooms, as shared rooms
+are 1.5% of the training listings.</p>
+
+<h2 id="sec-4">4. Estimator fit and inference time: ridge and XGBoost</h2>
+<p><code>src/estimator_timing.py</code> featurizes each of the 14 tasks once (the task's columns plus the whole document
+embedded at 1,024 dimensions, voyage-4-nano's output size; the hashing embedder stands in for it, since fit and inference time
+depend on the size of the feature matrix, not on where the embedding came from) and then times, on the same train and test
+matrices, the predictions API's <code>estimator="ridge"</code> (<code>RidgeClassifierCV</code> / <code>RidgeCV</code> over 13
+alphas with leave-one-out CV) and <code>XGBClassifier</code> / <code>XGBRegressor</code> with default settings (100 trees per class,
+depth 6, hist). Fit is timed once and inference (<code>predict</code>, plus class probabilities or scores for classifiers) is the
+median of 3 runs on the test documents. Both runs share the login node with other jobs; "16 threads" caps BLAS and XGBoost at 16
+threads, "1 thread" at one (Table <a href='#tab-6'>6</a>; per task in Table <a href='#tab-7'>7</a>). Embedding time is not included.</p>
+<div id="tab-6"><div class='wrap'><table><thead><tr><th>threads</th><th>model</th><th>fit s (median task)</th><th>fit s (all 14 tasks)</th><th>fit s (slowest task)</th><th>inference ms per 1,000 docs (median)</th><th>inference ms per test set (median)</th></tr></thead><tbody><tr><td class='txt'>16 threads</td><td class='txt'>ridge (RidgeCV, 13 alphas)</td><td>1.75</td><td>46.6</td><td>11.9</td><td>0.91</td><td>2.2</td></tr><tr><td class='txt'>16 threads</td><td class='txt'>XGBoost (defaults)</td><td>3.19</td><td>143.6</td><td>78.3</td><td>1.62</td><td>2.7</td></tr><tr><td class='txt'>1 thread</td><td class='txt'>ridge (RidgeCV, 13 alphas)</td><td>7.50</td><td>210.5</td><td>54.8</td><td>1.61</td><td>3.4</td></tr><tr><td class='txt'>1 thread</td><td class='txt'>XGBoost (defaults)</td><td>16.83</td><td>730.3</td><td>361.2</td><td>11.15</td><td>25.8</td></tr></tbody></table></div></div>
+<details id="tab-7"><summary>Table 7: fit and inference time per task</summary><div class='wrap'><table><thead><tr><th>task</th><th>train / test docs</th><th>classes</th><th>ridge fit s (16 threads)</th><th>XGBoost fit s (16 threads)</th><th>ridge inference ms (16 threads)</th><th>XGBoost inference ms (16 threads)</th><th>ridge fit s (1 thread)</th><th>XGBoost fit s (1 thread)</th><th>ridge inference ms (1 thread)</th><th>XGBoost inference ms (1 thread)</th></tr></thead><tbody><tr><td class='txt'>airbnb_room_type</td><td>4,444 / 1,111</td><td>3</td><td>0.98</td><td>9.71</td><td>1.4</td><td>2.6</td><td>3.78</td><td>41.21</td><td>2.3</td><td>15.1</td></tr><tr><td class='txt'>weather_air_temperature</td><td>7,199 / 2,227</td><td>regression</td><td>1.37</td><td>2.04</td><td>1.2</td><td>2.0</td><td>6.05</td><td>10.14</td><td>1.2</td><td>10.0</td></tr><tr><td class='txt'>mflix_imdb_rating</td><td>18,782 / 4,696</td><td>regression</td><td>3.15</td><td>7.89</td><td>2.6</td><td>2.8</td><td>12.54</td><td>41.51</td><td>2.4</td><td>19.8</td></tr><tr><td class='txt'>analytics_transaction_count</td><td>1,396 / 350</td><td>regression</td><td>0.26</td><td>3.17</td><td>0.3</td><td>0.8</td><td>1.39</td><td>18.17</td><td>0.3</td><td>1.8</td></tr><tr><td class='txt'>geospatial_wreck_type</td><td>8,806 / 2,202</td><td>3</td><td>2.01</td><td>1.73</td><td>2.2</td><td>3.9</td><td>8.71</td><td>7.97</td><td>4.5</td><td>32.1</td></tr><tr><td class='txt'>supplies_purchase_method</td><td>4,000 / 1,000</td><td>3</td><td>0.87</td><td>3.20</td><td>1.1</td><td>2.6</td><td>3.14</td><td>14.23</td><td>1.9</td><td>14.3</td></tr><tr><td class='txt'>companies_category</td><td>6,474 / 1,619</td><td>39</td><td>1.26</td><td>78.30</td><td>2.1</td><td>12.8</td><td>5.69</td><td>361.23</td><td>6.1</td><td>134.2</td></tr><tr><td class='txt'>grades_exam_score</td><td>80,000 / 20,000</td><td>regression</td><td>10.82</td><td>1.87</td><td>9.9</td><td>7.3</td><td>49.56</td><td>15.49</td><td>12.3</td><td>81.1</td></tr><tr><td class='txt'>inspections_result</td><td>59,676 / 14,919</td><td>5</td><td>11.92</td><td>8.79</td><td>17.7</td><td>25.5</td><td>54.80</td><td>75.56</td><td>30.5</td><td>302.5</td></tr><tr><td class='txt'>routes_codeshare</td><td>11,671 / 2,918</td><td>1</td><td>3.12</td><td>0.37</td><td>3.0</td><td>2.7</td><td>15.85</td><td>2.66</td><td>4.0</td><td>25.5</td></tr><tr><td class='txt'>stories_media</td><td>7,873 / 1,969</td><td>3</td><td>1.45</td><td>7.13</td><td>1.8</td><td>3.0</td><td>6.10</td><td>36.83</td><td>3.6</td><td>28.8</td></tr><tr><td class='txt'>trips_usertype</td><td>8,000 / 2,000</td><td>2</td><td>1.48</td><td>0.31</td><td>1.7</td><td>2.1</td><td>6.29</td><td>1.71</td><td>2.3</td><td>13.6</td></tr><tr><td class='txt'>tweets_user_lang</td><td>19,428 / 4,857</td><td>3</td><td>3.92</td><td>18.29</td><td>4.5</td><td>9.7</td><td>17.36</td><td>98.43</td><td>9.6</td><td>72.6</td></tr><tr><td class='txt'>zips_population</td><td>23,576 / 5,894</td><td>regression</td><td>4.01</td><td>0.76</td><td>3.1</td><td>2.2</td><td>19.24</td><td>5.14</td><td>3.2</td><td>26.2</td></tr></tbody></table></div></details>
+<p>Ridge time grows with the number of training documents (the largest task, grades_exam_score with
+80,000 documents, takes 10.8 s with 16 threads), while XGBoost time grows with the number of
+classes: companies_category has 39 classes and takes 78 s with 16 threads and 361 s with one.
+With one class or two, or a regression target, XGBoost builds only 100 trees, and it is faster than ridge on
+3 of these 6 tasks (grades_exam_score, trips_usertype, zips_population); ridge fits all 13 alphas
+whatever the number of classes. Going from 1 to 16 threads speeds up fitting a median 4.4x for ridge and 5.3x for XGBoost. routes_codeshare has a single class in its training split, so XGBoost has nothing to fit there. Inference
+takes 0.9 ms (ridge) and 1.6 ms (XGBoost) per 1,000 documents with 16 threads, 1.6 ms and 11.2 ms with one.</p>
+
+<h2 id="sec-5">5. Limitations</h2>
+<ul>
+<li>The documents travel to the client and the model runs there; a server stage would avoid that transfer.</li>
+<li>Results are materialised before they are returned, and the predictions are written to a temporary collection, so the client
+needs write access to the database.</li>
+<li><code>$predict</code> cannot appear inside <code>$lookup</code>, <code>$unionWith</code> or <code>$facet</code> sub-pipelines, and it
+works from Python only (not from mongosh or other drivers).</li>
+<li>The stored model is a pickle of at most 15 MB: only users trusted to run code on the client should be able to write
+<code>__mongopredict_models</code>, unless <code>MONGOPREDICT_MODEL_KEY</code> is set, which signs stored models and refuses
+unsigned ones.</li>
+<li>A native stage would follow <code>$vectorSearch</code>: a thin stage in <code>mongod</code> that hands documents to a model
+service. This prototype fixes the user-facing syntax such a stage could keep.</li>
+</ul>
+
+<details><summary>Computational cost</summary>
+<ul>
+<li>Sec. <a href='#sec-2'>2</a>: 1.6 minutes of measured time on the login node's CPUs (MongoDB 7.0.14 on the same machine), no GPU
+(0 H100 node hours). Throughput of the <code>$predict</code> pipelines: 3,994
+documents per second with the hashing embedder.</li>
+<li>Sec. <a href='#sec-4'>4</a>: 18.9 minutes of fit and inference on the login node's CPUs over the 2 thread settings
+(0 H100 node hours), plus featurizing the 14 tasks with the hashing embedder for each run.</li>
+<li>Sec. <a href='#sec-3'>3</a>: voyage-4-nano embeddings of the 5,555 listings, computed once on one shared H100 (about 2 minutes, under 0.01 H100
+node hours) and then read from the embedding cache.</li>
+</ul></details>
+
+<details><summary>Reproducibility</summary>
+<pre># MongoDB with the sample data
+uv run python -m demos.load_sample_data --uri mongodb://localhost:27017 \
+    sample_airbnb sample_weatherdata sample_analytics sample_geospatial sample_mflix sample_supplies sample_training
+# benchmark (part 2 embeds with voyage-4-nano: a GPU, or a cache that holds the embeddings)
+uv run python -m src.predictions_api_bench --uri mongodb://localhost:27017 --cache-dir .mongopredict_cache
+# Sec. 4: ridge and XGBoost timing, 16 threads and 1 thread
+OMP_NUM_THREADS=16 OPENBLAS_NUM_THREADS=16 MKL_NUM_THREADS=16 uv run python -m src.estimator_timing --threads 16
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 uv run python -m src.estimator_timing --threads 1 \
+    --out results/estimator_timing_1cpu.json
+# this document
+uv run python -m src.predictions_api_report</pre>
+<p>Prompt for a coding agent: "In the mongo-predict repo (github.com/voyage-ai/mongo-predict), load the MongoDB sample datasets into a
+local MongoDB, run <code>python -m src.predictions_api_bench</code> (part 1: for each task of <code>src/tasks.py</code>, create a prediction
+model with the hashing embedder on up to 5,000 documents and time a <code>$predict</code> projection, the client-side
+find + transform + predict, a <code>$group</code> and a <code>$merge</code>, checking that the predictions agree; part 2: the Airbnb room
+type model trained outside Porto with voyage-4-nano and queried on Porto), which writes <code>results/predictions_api.json</code>; run
+<code>python -m src.estimator_timing</code> with 16 threads and with 1 thread (BLAS and XGBoost capped through the environment and
+<code>--threads</code>; the second with <code>--out results/estimator_timing_1cpu.json</code>) to time fitting and inference of the
+ridge estimator against default XGBoost on the same 1,024-dimension embedding plus column features of each task; then
+render <code>reports/01_predictions_api.html</code> with <code>python -m src.predictions_api_report</code>. The stage is in
+<code>pymongopredict/predictions_api/</code>."</p>
+</details>
+<footer>mongo-predict reports. Result files: <code>results/predictions_api.json</code>, <code>results/estimator_timing.json</code>,
+<code>results/estimator_timing_1cpu.json</code>.</footer>
+</body></html>

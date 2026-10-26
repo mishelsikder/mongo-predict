@@ -1,0 +1,23 @@
+{#- Only the user-facing API is documented: the classes and functions below, on the pages of the two
+    APIs (pymongopredict.embeddings_api, pymongopredict.predictions_api). Everything else (helpers,
+    wrappers, constants) stays out of the docs; the package page only links the two APIs. -#}
+{% extends "default/module.html.jinja2" %}
+{% macro is_public(doc) %}
+{%- set user_facing = {
+    "pymongopredict.embeddings_api": [
+        "MongoDataset", "DocumentFeaturizer", "MongoSeries", "BaseEmbedder",
+        "SentenceTransformerEmbedder", "VoyageEmbedder", "HashingEmbedder"],
+    "pymongopredict.predictions_api": [
+        "PredictionModel", "create_prediction_model", "update_prediction_model",
+        "list_prediction_models", "drop_prediction_model", "aggregate", "enable", "disable",
+        "PredictCursor", "cleanup_temporary_collections"],
+} -%}
+{%- set page = doc.fullname.rsplit(".", doc.qualname.count(".") + 1)[0] -%}
+{%- if doc.kind == "module" -%}
+    {{ default_is_public(doc) }}
+{%- elif "." not in doc.qualname -%}
+    {%- if doc.qualname in user_facing.get(page, []) -%}true{%- endif -%}
+{%- else -%}
+    {{ default_is_public(doc) }}
+{%- endif -%}
+{% endmacro %}

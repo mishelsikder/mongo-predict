@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mongo-predict reports</title>
+<style>
+:root { --surface-0:#ffffff; --surface-1:#f7f7f5; --surface-2:#ecece7; --border:#d8d8d2;
+  --text-1:#14140f; --text-2:#3d3d38; --text-3:#6b6b64; --accent:#1b5fb0; --callout:#eef4fd;
+  --good:#1b5fb0; --bad:#c0392b; --code-bg:#f4f4f0; --radius:8px; }
+* { box-sizing:border-box; }
+body { font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text-1); background:var(--surface-0); max-width:1100px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+h1 { font-size:1.7rem; margin:0 0 .25rem; letter-spacing:-.01em; }
+h2 { font-size:1.2rem; margin:2.2rem 0 .8rem; padding-bottom:.35rem; border-bottom:1px solid var(--border); }
+h3 { font-size:1rem; margin:1.4rem 0 .4rem; }
+p, li { color:var(--text-2); max-width:80ch; }
+a { color:var(--accent); }
+code { font-family:ui-monospace,Menlo,monospace; font-size:.85em; background:var(--code-bg);
+  border:1px solid var(--border); border-radius:4px; padding:.05em .35em; }
+pre { background:var(--code-bg); border:1px solid var(--border); border-radius:var(--radius); padding:1rem 1.1rem;
+  white-space:pre-wrap; overflow-wrap:anywhere; font-family:ui-monospace,Menlo,monospace; font-size:.8rem;
+  line-height:1.5; color:var(--text-2); }
+.wrap { overflow-x:auto; }
+table { border-collapse:collapse; width:100%; font-size:.82rem; background:var(--surface-1);
+  border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin:.6rem 0; }
+th,td { text-align:right; padding:.4rem .6rem; border-bottom:1px solid var(--border); white-space:nowrap;
+  font-variant-numeric:tabular-nums; }
+th:first-child,td:first-child { text-align:left; }
+th { color:var(--text-2); font-weight:600; background:var(--surface-0); position:sticky; top:0; }
+tr:last-child td { border-bottom:none; }
+tr.avg td { background:var(--callout); font-weight:600; border-top:2px solid var(--border); }
+td.txt { white-space:normal; text-align:left; }
+tr.span td { background:var(--surface-0); text-align:left; white-space:nowrap; }
+.pos { color:var(--good); } .neg { color:var(--bad); }
+.tiles { display:flex; flex-wrap:wrap; gap:.9rem; margin:1rem 0; }
+.tile { background:var(--surface-1); border:1px solid var(--border); border-radius:var(--radius);
+  padding:.85rem 1rem; min-width:150px; }
+.tile .num { font-size:1.5rem; font-weight:650; letter-spacing:-.02em; line-height:1.1; }
+.tile .lbl { color:var(--text-2); font-size:.82rem; margin-top:.2rem; max-width:22ch; }
+.callout { background:var(--callout); border:1px solid var(--border); border-radius:var(--radius);
+  padding:1rem 1.15rem; margin:1rem 0; }
+details { margin:.8rem 0; border:1px solid var(--border); border-radius:var(--radius); padding:.4rem .9rem; background:var(--surface-1); }
+summary { cursor:pointer; font-weight:600; color:var(--text-2); }
+header.top { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border);
+  padding-bottom:.5rem; margin-bottom:1.2rem; font-size:.9rem; color:var(--text-2); }
+.note { color:var(--text-3); font-size:.9rem; }
+caption { caption-side:top; text-align:center; color:var(--text-3); font-size:.8rem; padding:0 0 4px; }
+footer { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--border); color:var(--text-2); font-size:.9rem; }
+
+.lead { max-width:80ch; }
+.card { background:var(--surface-1); border:1px solid var(--border);
+  border-radius:var(--radius); padding:.8rem 1rem; margin:.8rem 0; }
+.card .t { font-weight:650; }
+.card .t a { text-decoration:none; }
+.card .f { font-family:ui-monospace,Menlo,monospace; font-size:.78rem; color:var(--text-3); margin:.1rem 0 .3rem; }
+.card .d, .card .h { color:var(--text-2); font-size:.9rem; max-width:90ch; }
+.card .h { margin-top:.3rem; }
+</style></head>
+<body>
+<h1>mongo-predict: reports</h1>
+<p class="lead">Benchmarks of the two APIs of <a href="https://github.com/voyage-ai/mongo-predict">mongo-predict</a>: 00 covers
+the embeddings API (<code>pymongopredict.embeddings_api</code>), 01 the predictions API (<code>pymongopredict.predictions_api</code>). Each report
+is self-contained; open it for methods, numbers and how to reproduce them.</p>
+<div class="card"><div class="t"><a href="00_embeddings_api.html">00 · embeddings API speed</a></div><div class="f">00_embeddings_api.html · src/embeddings_api_report.py</div><div class="d">Wrapper speed of the embeddings API (MongoDataset, train_test_split, DocumentFeaturizer) on the 14 MongoDB sample tasks, in memory and streaming, before and after the performance work.</div><div class="h"><b>Highlight:</b> the wrapper stages got 2.4x faster and the end to end fit 3.4x faster (median over 26 task and mode pairs).</div></div><div class="card"><div class="t"><a href="01_predictions_api.html">01 · Predictions API: $predict</a></div><div class="f">01_predictions_api.html · src/predictions_api_report.py</div><div class="d">A $predict aggregation stage modelled on $vectorSearch: stored prediction models, the stage run on the client and the rest of the pipeline on the server; overhead and agreement on the 14 sample tasks and a voyage-4-nano example.</div><div class="h"><b>Highlight:</b> same predictions as the client-side code on all 14 tasks at a median 1.39x its time; a model trained outside Porto labels Porto&#x27;s Airbnb listings with accuracy 0.924.</div></div>
+<footer>Generated by <code>uv run python -m src.reports_index</code>.</footer>
+</body></html>
